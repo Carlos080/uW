@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xr45labs.uworkers">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/icono"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".principal_alumnos"
+            android:label="@string/title_activity_principal_alumnos"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".principal_empresa"
+            android:label="@string/title_activity_principal_empresa"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".principal_instituto"
+            android:label="@string/title_activity_principal_instituto"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+    </application>
+
+</manifest>
