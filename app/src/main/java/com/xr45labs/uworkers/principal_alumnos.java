@@ -1,9 +1,12 @@
 package com.xr45labs.uworkers;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,9 +18,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
+import com.xr45labs.uworkers.fragments.fr_bvacantes;
+import com.xr45labs.uworkers.fragments.fr_perfil;
 
 public class principal_alumnos extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        fr_perfil.OnFragmentInteractionListener,
+        fr_bvacantes.OnFragmentInteractionListener{
+
+    Fragment fragment = null;
+    boolean FragmentTransaction = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,18 +72,21 @@ public class principal_alumnos extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_bvacantes) {
+            fragment = new fr_bvacantes();
+            FragmentTransaction = true;
+        } else if (id == R.id.nav_perfil) {
+            fragment = new  fr_perfil();
+            FragmentTransaction = true;
+        }  else if (id == R.id.nav_logout) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if(FragmentTransaction){
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_principal_alumnos,fragment)
+                    .commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -84,5 +97,10 @@ public class principal_alumnos extends AppCompatActivity
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

@@ -6,7 +6,7 @@
             android:id="@+id/nav_balumnos"
             android:title="@string/balumnos"/>
         <item
-            android:id="@+id/nav_vacantes"
+            android:id="@+id/nav_bvacantes"
             android:title="@string/vacantes"
             />
     </group>
