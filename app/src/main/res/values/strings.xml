@@ -28,6 +28,7 @@
     <string name="ico_email">{gmd_email} Email:</string>
     <string name="ico_flag">{gmd_flag} Objetivos:</string>
     <string name="ico_conocimientos">{gmd_star_border} Conocimientos:</string>
+    <string name="ico_experiencia">{gmd_work} Experiencia laboral:</string>
 
 
 

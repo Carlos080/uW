@@ -80,6 +80,36 @@ Pellentesque lobortis libero et metus."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_objetivos"/>
+
+            <TextView
+                android:id="@+id/tv_conocimientos"
+                android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis venenatis velit et metus. Duis lacinia leo in velit. Sed tristique.
+ Sed id turpis malesuada nulla bibendum iaculis. In nec velit. Fusce augue diam, sollicitudin eu, porttitor vel, euismod vel, nisl.
+ Aenean venenatis quam eu massa. Pellentesque non lorem non tortor placerat vulputate. Maecenas eleifend nibh ut lectus.
+Morbi eget eros. Sed luctus porta justo. Fusce eget est eu elit suscipit cursus. Duis a arcu et diam suscipit facilisis.
+Pellentesque lobortis libero et metus."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_ico_conocimientos"/>
+
+            <TextView
+                android:id="@+id/tv_ico_experiencia"
+                android:text="@string/ico_experiencia"
+                android:textColor="@color/color1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_conocimientos"/>
+
+            <TextView
+                android:id="@+id/tv_experiencia"
+                android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis venenatis velit et metus. Duis lacinia leo in velit. Sed tristique.
+ Sed id turpis malesuada nulla bibendum iaculis. In nec velit. Fusce augue diam, sollicitudin eu, porttitor vel, euismod vel, nisl.
+ Aenean venenatis quam eu massa. Pellentesque non lorem non tortor placerat vulputate. Maecenas eleifend nibh ut lectus.
+Morbi eget eros. Sed luctus porta justo. Fusce eget est eu elit suscipit cursus. Duis a arcu et diam suscipit facilisis.
+Pellentesque lobortis libero et metus."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_ico_experiencia"/>
         </RelativeLayout>
 
     </ScrollView>
