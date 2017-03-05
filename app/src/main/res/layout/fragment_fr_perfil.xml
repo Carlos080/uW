@@ -7,25 +7,82 @@
     <!-- TODO: Update blank fragment layout -->
 
 
+
+    <include layout="@layout/nav_header_principal_alumnos"
+        android:id="@+id/navH"/>
+
     <ScrollView
+        android:id="@+id/sv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/navH">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/tv_ico_pro"
+                android:text="@string/ico_pro"
+                android:textColor="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
 
+            <TextView
+                android:id="@+id/tv_carrera"
+                android:text="Ing. Sistemas"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_ico_pro"
+                />
 
+            <TextView
+                android:id="@+id/tv_ico_email"
+                android:text="@string/ico_email"
+                android:textColor="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_carrera"/>
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:text="carlos_app08@hotmail.com"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_ico_email"/>
+
+            <TextView
+                android:id="@+id/tv_ico_objetivos"
+                android:text="@string/ico_flag"
+                android:textColor="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_email"/>
+
+            <TextView
+                android:id="@+id/tv_objetivos"
+                android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis venenatis velit et metus. Duis lacinia leo in velit. Sed tristique.
+ Sed id turpis malesuada nulla bibendum iaculis. In nec velit. Fusce augue diam, sollicitudin eu, porttitor vel, euismod vel, nisl.
+ Aenean venenatis quam eu massa. Pellentesque non lorem non tortor placerat vulputate. Maecenas eleifend nibh ut lectus.
+Morbi eget eros. Sed luctus porta justo. Fusce eget est eu elit suscipit cursus. Duis a arcu et diam suscipit facilisis.
+Pellentesque lobortis libero et metus."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_ico_objetivos"/>
+
+            <TextView
+                android:id="@+id/tv_ico_conocimientos"
+                android:text="@string/ico_conocimientos"
+                android:textColor="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_objetivos"/>
         </RelativeLayout>
 
-
-
     </ScrollView>
-
-
-
 
 
 </RelativeLayout>

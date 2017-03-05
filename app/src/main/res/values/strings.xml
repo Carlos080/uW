@@ -24,7 +24,10 @@
     <string name="bempresas">{gmd_business} Buscar empresa</string>
 
     <!--TODO: iconos perfil-->
-    <string name="ico_alumno">{gmd_person_outline}</string>
+    <string name="ico_pro">{cmd_professional_hexagon} Carrera:</string>
+    <string name="ico_email">{gmd_email} Email:</string>
+    <string name="ico_flag">{gmd_flag} Objetivos:</string>
+    <string name="ico_conocimientos">{gmd_star_border} Conocimientos:</string>
 
 
 
