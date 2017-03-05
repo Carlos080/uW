@@ -71,7 +71,7 @@ Morbi eget eros. Sed luctus porta justo. Fusce eget est eu elit suscipit cursus.
 Pellentesque lobortis libero et metus."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_ico_objetivos"/>
+                android:layout_below="@+id/tv_ico_objetivos" />
 
             <TextView
                 android:id="@+id/tv_ico_conocimientos"
