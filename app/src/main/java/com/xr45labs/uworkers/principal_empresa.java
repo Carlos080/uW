@@ -18,9 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
-import com.xr45labs.uworkers.fragments.fr_balumnos;
-import com.xr45labs.uworkers.fragments.fr_bvacantes;
-import com.xr45labs.uworkers.fragments.fr_perfil;
+import com.xr45labs.uworkers.fragments.*;
 
 public class principal_empresa extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -37,15 +35,6 @@ public class principal_empresa extends AppCompatActivity
         setContentView(R.layout.activity_principal_empresa);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
