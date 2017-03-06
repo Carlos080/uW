@@ -5,59 +5,72 @@
     tools:context="com.xr45labs.uworkers.fragments.fr_perfil_empresa">
 
     <!-- TODO: Update blank fragment layout -->
-    <include layout="@layout/nav_header_principal_empresa"
-        android:id="@+id/nav_pm"/>
 
-    <TextView
-        android:id="@+id/tv_ico_giro"
-        android:text="@string/ico_giro"
-        android:textColor="@color/color1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nav_pm"/>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_giro"
-        android:text="Giro de la empresa"
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_ico_giro"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_ico_descripcion"
-        android:text="@string/ico_descripcion"
-        android:textColor="@color/color1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_giro"/>
+            <include layout="@layout/nav_header_principal_empresa"
+                android:id="@+id/nav_pm"/>
 
-    <TextView
-        android:id="@+id/tv_descripcion"
-        android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis venenatis velit et metus. Duis lacinia leo in velit. Sed tristique.
+            <TextView
+                android:id="@+id/tv_ico_giro"
+                android:text="@string/ico_giro"
+                android:textColor="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nav_pm"/>
+
+            <TextView
+                android:id="@+id/tv_giro"
+                android:text="Giro de la empresa"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_ico_giro"/>
+
+            <TextView
+                android:id="@+id/tv_ico_descripcion"
+                android:text="@string/ico_descripcion"
+                android:textColor="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_giro"/>
+
+            <TextView
+                android:id="@+id/tv_descripcion"
+                android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis venenatis velit et metus. Duis lacinia leo in velit. Sed tristique.
     Sed id turpis malesuada nulla bibendum iaculis. In nec velit. Fusce augue diam, sollicitudin eu, porttitor vel, euismod vel, nisl.
     Aenean venenatis quam eu massa. Pellentesque non lorem non tortor placerat vulputate. Maecenas eleifend nibh ut lectus.
     Morbi eget eros. Sed luctus porta justo. Fusce eget est eu elit suscipit cursus. Duis a arcu et diam suscipit facilisis.
     Pellentesque lobortis libero et metus."
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_ico_descripcion"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_ico_descripcion"/>
 
-    <TextView
-        android:id="@+id/tv_ico_email"
-        android:text="@string/ico_email"
-        android:textColor="@color/color1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_descripcion"/>
+            <TextView
+                android:id="@+id/tv_ico_email"
+                android:text="@string/ico_email"
+                android:textColor="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_descripcion"/>
 
-    <TextView
-        android:id="@+id/tv_email"
-        android:text="email@empresa.com"
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_ico_email"/>
+            <TextView
+                android:id="@+id/tv_email"
+                android:text="email@empresa.com"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_ico_email"/>
+        </RelativeLayout>
+
+    </ScrollView>
+
 
 
 </RelativeLayout>

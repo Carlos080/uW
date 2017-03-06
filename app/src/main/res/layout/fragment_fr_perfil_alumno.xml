@@ -8,18 +8,19 @@
 
 
 
-    <include layout="@layout/nav_header_principal_alumnos"
-        android:id="@+id/nav_pa"/>
+
 
     <ScrollView
         android:id="@+id/sv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nav_pa">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <include layout="@layout/nav_header_principal_alumnos"
+                android:id="@+id/nav_pa"/>
 
             <TextView
                 android:id="@+id/tv_ico_pro"
@@ -27,6 +28,7 @@
                 android:textColor="@color/color1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/nav_pa"
                 />
 
             <TextView
@@ -110,6 +112,15 @@ Pellentesque lobortis libero et metus."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_ico_experiencia"/>
+
+            <Button
+                android:id="@+id/btn_perfil_a_conf"
+                android:text="@string/config"
+                android:textColor="@color/colorAccent"
+                android:background="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_experiencia"/>
         </RelativeLayout>
 
     </ScrollView>

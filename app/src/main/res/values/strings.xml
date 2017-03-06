@@ -34,5 +34,8 @@
     <string name="ico_descripcion">{gmd_description} Descripcion:</string>
     <string name="ico_giro">{gmd_group_work} Giro:</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="ico_nombre">{gmd_account_circle} Nombre:</string>
+
 
 </resources>
