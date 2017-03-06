@@ -30,7 +30,9 @@
     <string name="ico_conocimientos">{gmd_star_border} Conocimientos:</string>
     <string name="ico_experiencia">{gmd_work} Experiencia laboral:</string>
 
-
+    <!--TODO: iconos empresa-->
+    <string name="ico_descripcion">{gmd_description} Descripcion:</string>
+    <string name="ico_giro">{gmd_group_work} Giro:</string>
 
 
 </resources>

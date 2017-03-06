@@ -1,13 +1,30 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.xr45labs.uworkers.fragments.fr_bvacantes">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Fragment de vacantes" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tv_bvacantes"
+        android:text="@string/bvacantes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <SearchView
+        android:id="@+id/sv_vacantes"
+        android:background="@color/color1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_bvacantes">
+    </SearchView>
+
+    <ListView
+        android:id="@+id/lv_vacantes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sv_vacantes">
+    </ListView>
+
+</RelativeLayout>

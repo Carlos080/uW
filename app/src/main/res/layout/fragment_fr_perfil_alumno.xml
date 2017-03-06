@@ -2,20 +2,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xr45labs.uworkers.fragments.fr_perfil">
+    tools:context="com.xr45labs.uworkers.fragments.fr_perfil_alumno">
 
     <!-- TODO: Update blank fragment layout -->
 
 
 
     <include layout="@layout/nav_header_principal_alumnos"
-        android:id="@+id/navH"/>
+        android:id="@+id/nav_pa"/>
 
     <ScrollView
         android:id="@+id/sv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/navH">
+        android:layout_below="@+id/nav_pa">
 
         <RelativeLayout
             android:layout_width="match_parent"

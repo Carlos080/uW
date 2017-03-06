@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,8 +6,24 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/tv_balumnos"
+        android:text="@string/balumnos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Fragment busqueda alumnos" />
+        android:layout_height="wrap_content" />
+    <SearchView
+        android:id="@+id/sv_alumnos"
+        android:background="@color/color1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_balumnos"/>
 
-</FrameLayout>
+    <ListView
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sv_alumnos">
+
+    </ListView>
+
+
+</RelativeLayout>
