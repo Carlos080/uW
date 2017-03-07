@@ -37,5 +37,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="ico_nombre">{gmd_account_circle} Nombre:</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="ico_campus">{gmd_account_balance} Campus:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="ico_phone">{gmd_local_phone} Telefono:</string>
 
 </resources>
