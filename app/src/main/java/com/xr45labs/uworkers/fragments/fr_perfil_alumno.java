@@ -4,11 +4,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.xr45labs.uworkers.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +22,9 @@ import com.xr45labs.uworkers.R;
  * Use the {@link fr_perfil_alumno#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fr_perfil_alumno extends Fragment {
+public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
+
+    Button btn_modificar;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -65,7 +71,10 @@ public class fr_perfil_alumno extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fr_perfil_alumno, container, false);
+        View rootView =  inflater.inflate(R.layout.fragment_fr_perfil_alumno, container, false);
+        btn_modificar = (Button) rootView.findViewById(R.id.btn_perfil_a_conf);
+        btn_modificar.setOnClickListener(this);
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -91,6 +100,23 @@ public class fr_perfil_alumno extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    @Override
+    public void onClick(View v) {
+
+            /*Toast toast = Toast.makeText(getContext(), "El usuario o contrasena son incorrectos...", Toast.LENGTH_SHORT);
+            toast.show();*/
+
+
+            Fragment fragment = new fr_perfil_alumno_config();
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.content_principal_alumnos,fragment,null);
+            fragmentTransaction.commit();
+
+
+
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this
