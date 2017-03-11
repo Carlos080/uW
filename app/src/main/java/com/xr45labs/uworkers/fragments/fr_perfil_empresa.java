@@ -4,9 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.xr45labs.uworkers.R;
 
@@ -18,7 +20,9 @@ import com.xr45labs.uworkers.R;
  * Use the {@link fr_perfil_empresa#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fr_perfil_empresa extends Fragment {
+public class fr_perfil_empresa extends Fragment implements View.OnClickListener {
+
+    Button btn_perfil_emp_config;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -65,7 +69,11 @@ public class fr_perfil_empresa extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fr_perfil_empresa, container, false);
+        View rootView =  inflater.inflate(R.layout.fragment_fr_perfil_empresa, container, false);
+
+        btn_perfil_emp_config = (Button) rootView.findViewById(R.id.btn_perfil_emp_conf);
+        btn_perfil_emp_config.setOnClickListener(this);
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -90,6 +98,13 @@ public class fr_perfil_empresa extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Fragment fragment = new fr_perfil_empresa_config();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_principal_empresa,fragment).commit();
     }
 
     /**

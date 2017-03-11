@@ -67,6 +67,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_ico_email"/>
+
+            <Button
+                android:id="@+id/btn_perfil_emp_conf"
+                android:text="@string/config"
+                android:textColor="@color/colorAccent"
+                android:background="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_email"/>
         </RelativeLayout>
 
     </ScrollView>

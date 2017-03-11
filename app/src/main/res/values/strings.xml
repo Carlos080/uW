@@ -40,10 +40,10 @@
     <string name="ico_nombre">{gmd_account_circle} Nombre:</string>
     <string name="ico_campus">{gmd_account_balance} Campus:</string>
     <string name="ico_phone">{gmd_local_phone} Telefono:</string>
-
     <string name="ico_guardar">{gmd_save} Guardar</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- TODO: iconos generales-->
+    <string name="ico_contrasena">{gmd_lock_outline} Contrasena:</string>
+    <string name="ico_contrasena_conf">{gmd_lock} Confirmar contrasena:</string>
 
 </resources>

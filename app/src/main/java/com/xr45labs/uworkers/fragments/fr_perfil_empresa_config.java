@@ -4,27 +4,21 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.xr45labs.uworkers.R;
-
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link fr_perfil_alumno.OnFragmentInteractionListener} interface
+ * {@link fr_perfil_empresa_config.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link fr_perfil_alumno#newInstance} factory method to
+ * Use the {@link fr_perfil_empresa_config#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
-
-    Button btn_perfil_a_config;
+public class fr_perfil_empresa_config extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -36,7 +30,7 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
 
     private OnFragmentInteractionListener mListener;
 
-    public fr_perfil_alumno() {
+    public fr_perfil_empresa_config() {
         // Required empty public constructor
     }
 
@@ -46,11 +40,11 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment fr_perfil_alumno.
+     * @return A new instance of fragment fr_perfil_empresa_config.
      */
     // TODO: Rename and change types and number of parameters
-    public static fr_perfil_alumno newInstance(String param1, String param2) {
-        fr_perfil_alumno fragment = new fr_perfil_alumno();
+    public static fr_perfil_empresa_config newInstance(String param1, String param2) {
+        fr_perfil_empresa_config fragment = new fr_perfil_empresa_config();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -71,10 +65,7 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView =  inflater.inflate(R.layout.fragment_fr_perfil_alumno, container, false);
-        btn_perfil_a_config = (Button) rootView.findViewById(R.id.btn_perfil_a_conf);
-        btn_perfil_a_config.setOnClickListener(this);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_fr_perfil_empresa_config, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -100,23 +91,6 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
         super.onDetach();
         mListener = null;
     }
-
-    @Override
-    public void onClick(View v) {
-
-            /*Toast toast = Toast.makeText(getContext(), "El usuario o contrasena son incorrectos...", Toast.LENGTH_SHORT);
-            toast.show();*/
-
-
-            Fragment fragment = new fr_perfil_alumno_config();
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.content_principal_alumnos,fragment,null);
-            fragmentTransaction.commit();
-
-
-
-    }
-
 
     /**
      * This interface must be implemented by activities that contain this

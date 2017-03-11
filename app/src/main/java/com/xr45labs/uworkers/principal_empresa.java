@@ -20,7 +20,8 @@ public class principal_empresa extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         fr_perfil_empresa.OnFragmentInteractionListener,
         fr_bvacantes.OnFragmentInteractionListener,
-        fr_balumnos.OnFragmentInteractionListener{
+        fr_balumnos.OnFragmentInteractionListener,
+        fr_perfil_empresa_config.OnFragmentInteractionListener{
 
     Fragment fragment = null;
     boolean FragmentTransaction = false;
