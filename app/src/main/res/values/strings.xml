@@ -14,6 +14,7 @@
     <string name="perfil">{gmd_person_outline} Perfil</string>
     <string name="logout">{cmd_logout} Cerrar sesion</string>
     <string name="config">Configuraciones</string>
+    <string name="avacantes">{gmd_add_box} Agregar vacante</string>
 
     <string name="balumnos">{cmd_account_search} Buscar alumnos</string>
     <string name="vacantes">{cmd_newspaper} Vacantes</string>
@@ -32,18 +33,18 @@
     <string name="ico_curriculum">{gmd_insert_drive_file} Curriculum:</string>
     <string name="ico_adj">{gmd_attach_file} Adjuntar archivo...</string>
 
-    <!--TODO: iconos empresa-->
     <string name="ico_descripcion">{gmd_description} Descripcion:</string>
     <string name="ico_giro">{gmd_group_work} Giro:</string>
 
-    <!-- TODO: iconos instituto-->
+
     <string name="ico_nombre">{gmd_account_circle} Nombre:</string>
     <string name="ico_campus">{gmd_account_balance} Campus:</string>
     <string name="ico_phone">{gmd_local_phone} Telefono:</string>
     <string name="ico_guardar">{gmd_save} Guardar</string>
 
-    <!-- TODO: iconos generales-->
+
     <string name="ico_contrasena">{gmd_lock_outline} Contrasena:</string>
     <string name="ico_contrasena_conf">{gmd_lock} Confirmar contrasena:</string>
+
 
 </resources>

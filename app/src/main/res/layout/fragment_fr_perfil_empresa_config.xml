@@ -57,12 +57,27 @@
                 android:layout_below="@id/tv_ico_email"/>
 
             <TextView
+                android:id="@+id/tv_ico_phone"
+                android:text="@string/ico_phone"
+                android:textColor="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_email"/>
+
+            <EditText
+                android:id="@+id/et_phone"
+                android:inputType="phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_ico_phone"/>
+
+            <TextView
                 android:id="@+id/tv_ico_contrasena"
                 android:text="@string/ico_contrasena"
                 android:textColor="@color/color1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/et_email"/>
+                android:layout_below="@id/et_phone"/>
 
             <EditText
                 android:id="@+id/et_contrasena"
@@ -84,7 +99,8 @@
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_ico_contrasena_confir"/>
+                android:layout_below="@id/tv_ico_contrasena_confir"
+                tools:ignore="LabelFor" />
 
             <Button
                 android:id="@+id/btn_guardar"

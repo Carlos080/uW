@@ -4,14 +4,21 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_balumnos"
+            android:title="@string/balumnos"
+            />
+        <item
+            android:id="@+id/nav_bvacantes"
             android:title="@string/bvacantes" />
         <item
             android:id="@+id/nav_bempresas"
             android:title="@string/bempresas" />
+        <item
+            android:id="@+id/nav_avacantes"
+            android:title="@string/avacantes"/>
 
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/config">
         <menu>
             <item
                 android:id="@+id/nav_perfil"
