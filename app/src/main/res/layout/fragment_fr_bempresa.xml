@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xr45labs.uworkers.fragments.fr_bempresas">
+
+
+    <TextView
+        android:id="@+id/tv_ico_bempresas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bempresas"/>
+
+    <SearchView
+        android:id="@+id/sv_empresas"
+        android:background="@color/color1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_ico_bempresas"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sv_empresas">
+    </ListView>
+
+</RelativeLayout>

@@ -15,8 +15,8 @@ import android.view.MenuItem;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.xr45labs.uworkers.fragments.fr_bvacantes;
-import com.xr45labs.uworkers.fragments.fr_perfil_alumno;
-import com.xr45labs.uworkers.fragments.fr_perfil_alumno_config;
+import com.xr45labs.uworkers.fragments.alumnos.fr_perfil_alumno;
+import com.xr45labs.uworkers.fragments.alumnos.fr_perfil_alumno_config;
 
 public class principal_alumnos extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,

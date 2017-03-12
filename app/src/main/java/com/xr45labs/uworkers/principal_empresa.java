@@ -15,6 +15,8 @@ import android.view.MenuItem;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.xr45labs.uworkers.fragments.*;
+import com.xr45labs.uworkers.fragments.empresas.fr_perfil_empresa;
+import com.xr45labs.uworkers.fragments.empresas.fr_perfil_empresa_config;
 
 public class principal_empresa extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,

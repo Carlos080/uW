@@ -18,7 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/Et_usuario"
-        android:adjustViewBounds="false" />
+        android:adjustViewBounds="false"
+        android:contentDescription="" />
 
     <EditText
         android:id="@+id/Et_usuario"
@@ -44,4 +45,43 @@
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
         android:layout_below="@+id/Et_contrasena"/>
+    
+    <TextView
+        android:id="@+id/ico_registrar"
+        android:text="@string/ico_signup"
+        android:textColor="@color/colorAccent"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Btn_login"/>
+    
+    <RadioGroup
+        android:id="@+id/rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ico_registrar">
+
+        <RadioButton
+            android:id="@+id/rb_alumno"
+            android:text="@string/ico_alumno"
+            android:textColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:id="@+id/rb_empresa"
+            android:text="@string/ico_empresa"
+            android:textColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_sigup"
+        android:text="@string/signup"
+        android:textColor="@color/color1"
+        android:background="@color/colorAccent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/rg"/>
 </RelativeLayout>

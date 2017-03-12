@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xr45labs.uworkers.fragments.fr_perfil_empresa">
+    tools:context="com.xr45labs.uworkers.fragments.empresas.fr_perfil_empresa">
 
     <!-- TODO: Update blank fragment layout -->
 

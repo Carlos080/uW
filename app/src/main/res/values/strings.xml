@@ -8,7 +8,10 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="ico_signup">{gmd_note_add}Crear cuenta:</string>
+    <string name="signup">{gmd_note_add} Signup</string>
+    <string name="ico_alumno">{gmd_person} Alumno</string>
+    <string name="ico_empresa">{gmd_business} Empresa</string>
 
     <string name="bvacantes">{gmd_search} Buscar vacantes</string>
     <string name="perfil">{gmd_person_outline} Perfil</string>
@@ -45,6 +48,9 @@
 
     <string name="ico_contrasena">{gmd_lock_outline} Contrasena:</string>
     <string name="ico_contrasena_conf">{gmd_lock} Confirmar contrasena:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

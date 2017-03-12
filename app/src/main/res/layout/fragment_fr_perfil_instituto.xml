@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xr45labs.uworkers.fragments.fr_perfil_instituto">
+    tools:context="com.xr45labs.uworkers.fragments.instituto.fr_perfil_instituto">
 
     <!-- TODO: Update blank fragment layout -->
 

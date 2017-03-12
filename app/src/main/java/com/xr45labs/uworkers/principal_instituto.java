@@ -3,29 +3,27 @@ package com.xr45labs.uworkers;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.xr45labs.uworkers.fragments.fr_balumnos;
+import com.xr45labs.uworkers.fragments.fr_bempresas;
 import com.xr45labs.uworkers.fragments.fr_bvacantes;
-import com.xr45labs.uworkers.fragments.fr_perfil_instituto;
+import com.xr45labs.uworkers.fragments.instituto.fr_perfil_instituto;
 
 public class principal_instituto extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         fr_balumnos.OnFragmentInteractionListener,
         fr_bvacantes.OnFragmentInteractionListener,
+        fr_bempresas.OnFragmentInteractionListener,
         fr_perfil_instituto.OnFragmentInteractionListener
         {
 
@@ -75,7 +73,8 @@ public class principal_instituto extends AppCompatActivity
             fragmenttransaction = true;
 
         } else if (id == R.id.nav_bempresas) {
-
+            fragment = new fr_bempresas();
+            fragmenttransaction = true;
         } else if (id == R.id.nav_avacantes) {
 
         } else if (id == R.id.nav_perfil) {

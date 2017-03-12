@@ -1,4 +1,4 @@
-package com.xr45labs.uworkers.fragments;
+package com.xr45labs.uworkers.fragments.alumnos;
 
 import android.content.Context;
 import android.net.Uri;
@@ -13,12 +13,12 @@ import com.xr45labs.uworkers.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link fr_perfil_empresa_config.OnFragmentInteractionListener} interface
+ * {@link fr_perfil_alumno_config.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link fr_perfil_empresa_config#newInstance} factory method to
+ * Use the {@link fr_perfil_alumno_config#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fr_perfil_empresa_config extends Fragment {
+public class fr_perfil_alumno_config extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,7 +30,7 @@ public class fr_perfil_empresa_config extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public fr_perfil_empresa_config() {
+    public fr_perfil_alumno_config() {
         // Required empty public constructor
     }
 
@@ -40,11 +40,11 @@ public class fr_perfil_empresa_config extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment fr_perfil_empresa_config.
+     * @return A new instance of fragment fr_perfil_alumno_config.
      */
     // TODO: Rename and change types and number of parameters
-    public static fr_perfil_empresa_config newInstance(String param1, String param2) {
-        fr_perfil_empresa_config fragment = new fr_perfil_empresa_config();
+    public static fr_perfil_alumno_config newInstance(String param1, String param2) {
+        fr_perfil_alumno_config fragment = new fr_perfil_alumno_config();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,7 +65,7 @@ public class fr_perfil_empresa_config extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fr_perfil_empresa_config, container, false);
+        return inflater.inflate(R.layout.fragment_fr_perfil_alumno_config, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
