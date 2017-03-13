@@ -1,0 +1,55 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xr45labs.uworkers.fragments.empresas.fr_add_vacante_empresa">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_ico_titulo_vacante"
+                android:text="@string/ico_titulo_vacante"
+                android:textColor="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/et_titulo_vacante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_ico_titulo_vacante"/>
+
+            <TextView
+                android:id="@+id/tv_ico_descripcion"
+                android:text="@string/ico_descripcion"
+                android:textColor="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_titulo_vacante"/>
+
+            <EditText
+                android:id="@+id/et_descripcion_vacante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_ico_descripcion"/>
+
+            <Button
+                android:id="@+id/btn_guardar"
+                android:text="@string/ico_guardar"
+                android:textColor="@color/colorAccent"
+                android:background="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_descripcion_vacante"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

@@ -9,6 +9,10 @@
             android:id="@+id/nav_bvacantes"
             android:title="@string/vacantes"
             />
+        <item
+            android:id="@+id/nav_addvacantes"
+            android:title="@string/add_vacantes"
+            />
     </group>
 
     <item android:title="@string/config">

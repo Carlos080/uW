@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
+import com.xr45labs.uworkers.fragments.fr_bempresas;
 import com.xr45labs.uworkers.fragments.fr_bvacantes;
 import com.xr45labs.uworkers.fragments.alumnos.fr_perfil_alumno;
 import com.xr45labs.uworkers.fragments.alumnos.fr_perfil_alumno_config;
@@ -22,7 +23,8 @@ public class principal_alumnos extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         fr_perfil_alumno.OnFragmentInteractionListener,
         fr_bvacantes.OnFragmentInteractionListener,
-        fr_perfil_alumno_config.OnFragmentInteractionListener{
+        fr_perfil_alumno_config.OnFragmentInteractionListener,
+        fr_bempresas.OnFragmentInteractionListener{
 
     Fragment fragment = null;
     boolean FragmentTransaction = false;
@@ -64,7 +66,10 @@ public class principal_alumnos extends AppCompatActivity
         if (id == R.id.nav_bvacantes) {
             fragment = new fr_bvacantes();
             FragmentTransaction = true;
-        } else if (id == R.id.nav_perfil) {
+        }  else if(id==R.id.nav_bempresas){
+            fragment = new fr_bempresas();
+            FragmentTransaction = true;
+        }  else if (id == R.id.nav_perfil) {
             fragment = new fr_perfil_alumno();
             FragmentTransaction = true;
         }  else if (id == R.id.nav_logout) {

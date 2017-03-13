@@ -5,6 +5,11 @@
         <item
             android:id="@+id/nav_bvacantes"
             android:title="@string/bvacantes" />
+
+        <item
+            android:id="@+id/nav_bempresas"
+            android:title="@string/bempresas"
+            />
     </group>
 
     <item android:title="@string/config">

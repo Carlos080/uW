@@ -1,27 +1,24 @@
-package com.xr45labs.uworkers.fragments.instituto;
+package com.xr45labs.uworkers.fragments.empresas;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.xr45labs.uworkers.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link fr_perfil_instituto.OnFragmentInteractionListener} interface
+ * {@link fr_add_vacante_empresa.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link fr_perfil_instituto#newInstance} factory method to
+ * Use the {@link fr_add_vacante_empresa#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fr_perfil_instituto extends Fragment implements View.OnClickListener {
-    Button btn_perfil_instituto_config;
+public class fr_add_vacante_empresa extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -33,7 +30,7 @@ public class fr_perfil_instituto extends Fragment implements View.OnClickListene
 
     private OnFragmentInteractionListener mListener;
 
-    public fr_perfil_instituto() {
+    public fr_add_vacante_empresa() {
         // Required empty public constructor
     }
 
@@ -43,11 +40,11 @@ public class fr_perfil_instituto extends Fragment implements View.OnClickListene
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment fr_perfil_instituto.
+     * @return A new instance of fragment fr_add_vacante_empresa.
      */
     // TODO: Rename and change types and number of parameters
-    public static fr_perfil_instituto newInstance(String param1, String param2) {
-        fr_perfil_instituto fragment = new fr_perfil_instituto();
+    public static fr_add_vacante_empresa newInstance(String param1, String param2) {
+        fr_add_vacante_empresa fragment = new fr_add_vacante_empresa();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -68,11 +65,7 @@ public class fr_perfil_instituto extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        View rootView= inflater.inflate(R.layout.fragment_fr_perfil_instituto, container, false);
-        btn_perfil_instituto_config = (Button) rootView.findViewById(R.id.btn_perfil_instituto_config);
-        btn_perfil_instituto_config.setOnClickListener(this);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_fr_add_vacante, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -97,15 +90,6 @@ public class fr_perfil_instituto extends Fragment implements View.OnClickListene
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    @Override
-    public void onClick(View v) {
-        if(v.getId()==R.id.btn_perfil_instituto_config){
-            Fragment fragment = new fr_perfil_instituto_config();
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.content_principal_instituto,fragment).commit();
-        }
     }
 
     /**

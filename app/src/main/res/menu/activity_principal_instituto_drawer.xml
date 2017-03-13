@@ -13,8 +13,8 @@
             android:id="@+id/nav_bempresas"
             android:title="@string/bempresas" />
         <item
-            android:id="@+id/nav_avacantes"
-            android:title="@string/avacantes"/>
+            android:id="@+id/nav_addacantes"
+            android:title="@string/add_vacantes"/>
 
     </group>
 

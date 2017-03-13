@@ -17,7 +17,7 @@
     <string name="perfil">{gmd_person_outline} Perfil</string>
     <string name="logout">{cmd_logout} Cerrar sesion</string>
     <string name="config">Configuraciones</string>
-    <string name="avacantes">{gmd_add_box} Agregar vacante</string>
+    <string name="add_vacantes">{gmd_add_box} Agregar vacante</string>
 
     <string name="balumnos">{cmd_account_search} Buscar alumnos</string>
     <string name="vacantes">{cmd_newspaper} Vacantes</string>
@@ -52,5 +52,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- TODO: Iconos para vacantes -->
+    <string name="ico_titulo_vacante">{gmd_title} Titulo de la vacante:</string>
 
 </resources>

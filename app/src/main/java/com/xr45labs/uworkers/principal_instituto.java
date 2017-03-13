@@ -18,14 +18,15 @@ import com.xr45labs.uworkers.fragments.fr_balumnos;
 import com.xr45labs.uworkers.fragments.fr_bempresas;
 import com.xr45labs.uworkers.fragments.fr_bvacantes;
 import com.xr45labs.uworkers.fragments.instituto.fr_perfil_instituto;
+import com.xr45labs.uworkers.fragments.instituto.fr_perfil_instituto_config;
 
 public class principal_instituto extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         fr_balumnos.OnFragmentInteractionListener,
         fr_bvacantes.OnFragmentInteractionListener,
         fr_bempresas.OnFragmentInteractionListener,
-        fr_perfil_instituto.OnFragmentInteractionListener
-        {
+        fr_perfil_instituto.OnFragmentInteractionListener,
+        fr_perfil_instituto_config.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,7 @@ public class principal_instituto extends AppCompatActivity
         } else if (id == R.id.nav_bempresas) {
             fragment = new fr_bempresas();
             fragmenttransaction = true;
-        } else if (id == R.id.nav_avacantes) {
+        } else if (id == R.id.nav_addvacantes) {
 
         } else if (id == R.id.nav_perfil) {
             fragment = new fr_perfil_instituto();

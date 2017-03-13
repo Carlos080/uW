@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.xr45labs.uworkers.fragments.*;
+import com.xr45labs.uworkers.fragments.empresas.fr_add_vacante_empresa;
 import com.xr45labs.uworkers.fragments.empresas.fr_perfil_empresa;
 import com.xr45labs.uworkers.fragments.empresas.fr_perfil_empresa_config;
 
@@ -23,7 +24,8 @@ public class principal_empresa extends AppCompatActivity
         fr_perfil_empresa.OnFragmentInteractionListener,
         fr_bvacantes.OnFragmentInteractionListener,
         fr_balumnos.OnFragmentInteractionListener,
-        fr_perfil_empresa_config.OnFragmentInteractionListener{
+        fr_perfil_empresa_config.OnFragmentInteractionListener,
+        fr_add_vacante_empresa.OnFragmentInteractionListener{
 
     Fragment fragment = null;
     boolean FragmentTransaction = false;
@@ -71,7 +73,11 @@ public class principal_empresa extends AppCompatActivity
             fragment = new fr_bvacantes();
             FragmentTransaction = true;
 
-        } else if (id == R.id.nav_perfil) {
+        } else if(id==R.id.nav_addvacantes){
+            fragment = new fr_add_vacante_empresa();
+            FragmentTransaction = true;
+
+        }else if (id == R.id.nav_perfil) {
             fragment = new fr_perfil_empresa();
             FragmentTransaction = true;
 
