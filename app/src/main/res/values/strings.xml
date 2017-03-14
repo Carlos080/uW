@@ -8,7 +8,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="ico_signup">{gmd_note_add}Crear cuenta:</string>
+    <string name="ico_signup">{gmd_note_add}Seleccion quien eres:</string>
     <string name="signup">{gmd_note_add} Signup</string>
     <string name="ico_alumno">{gmd_person} Alumno</string>
     <string name="ico_empresa">{gmd_business} Empresa</string>
@@ -54,5 +54,6 @@
 
     <!-- TODO: Iconos para vacantes -->
     <string name="ico_titulo_vacante">{gmd_title} Titulo de la vacante:</string>
+    <string name="ico_nombre_instituto">{gmd_account_balance} Nombre del instituto:</string>
 
 </resources>

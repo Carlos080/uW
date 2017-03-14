@@ -26,7 +26,9 @@
         <activity
             android:name=".principal_instituto"
             android:label="@string/title_activity_principal_instituto"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".crearcuenta_alumno_content" />
+        <activity android:name=".crearcuenta_empresa_content"></activity>
     </application>
 
 </manifest>

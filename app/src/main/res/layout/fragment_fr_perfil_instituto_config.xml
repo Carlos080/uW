@@ -1,13 +1,83 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.xr45labs.uworkers.fragments.instituto.fr_perfil_instituto_config">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/tv_ico_nombre_instituto"
+        android:text="@string/ico_nombre_instituto"
+        android:textColor="@color/color1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/et_nombre_instituto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_ico_nombre_instituto"/>
+
+    <TextView
+        android:id="@+id/tv_ico_campus_instituto"
+        android:text="@string/ico_campus"
+        android:textColor="@color/color1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_nombre_instituto"/>
+
+    <EditText
+        android:id="@+id/et_campus_instituto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_ico_campus_instituto"/>
+
+    <TextView
+        android:id="@+id/tv_ico_telefono_instituto"
+        android:text="@string/ico_phone"
+        android:textColor="@color/color1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_campus_instituto"/>
+
+    <EditText
+        android:id="@+id/et_telefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_ico_telefono_instituto"/>
+
+    <TextView
+        android:id="@+id/tv_ico_contrasena_instituto"
+        android:text="@string/ico_contrasena"
+        android:textColor="@color/color1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_telefono"/>
+
+    <EditText
+        android:id="@+id/et_contrasena_instituto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_ico_contrasena_instituto"/>
+    <TextView
+        android:id="@+id/tv_ico_contrasena_confir_instituto"
+        android:text="@string/ico_contrasena_conf"
+        android:textColor="@color/color1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_contrasena_instituto"/>
+
+    <EditText
+        android:id="@+id/et_constrasena_confir_instituto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_ico_contrasena_confir_instituto"/>
+
+    <Button
+        android:id="@+id/btn_guardar_instituto"
+        android:text="@string/ico_guardar"
+        android:textColor="@color/colorAccent"
+        android:background="@color/color1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_constrasena_confir_instituto"/>
+</RelativeLayout>
