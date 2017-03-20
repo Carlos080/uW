@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,33 +13,35 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tv_ico_giro"
-                android:text="@string/ico_giro"
+                android:id="@+id/tv_ico_nombre_empresa"
+                android:text="@string/ico_nombre_empresa"
                 android:textColor="@color/color1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <EditText
-                android:id="@+id/et_giro"
+                android:id="@+id/et_nombre_empresa"
                 android:inputType="text"
+                android:maxLength="40"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_ico_giro"/>
+                android:layout_below="@id/tv_ico_nombre_empresa"/>
 
             <TextView
-                android:id="@+id/tv_ico_descripcion"
-                android:text="@string/ico_descripcion"
+                android:id="@+id/tv_ico_giro"
+                android:text="@string/ico_giro"
                 android:textColor="@color/color1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/et_giro"/>
+                android:layout_below="@id/et_nombre_empresa"/>
 
             <EditText
-                android:id="@+id/et_descripcion"
+                android:id="@+id/et_giro"
                 android:inputType="text"
+                android:maxLength="40"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_ico_descripcion"/>
+                android:layout_below="@+id/tv_ico_giro"/>
 
             <TextView
                 android:id="@+id/tv_ico_email"
@@ -47,11 +49,12 @@
                 android:textColor="@color/color1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/et_descripcion"/>
+                android:layout_below="@id/et_giro"/>
 
             <EditText
                 android:id="@+id/et_email"
                 android:inputType="textEmailAddress"
+                android:maxLength="45"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_ico_email"/>
@@ -67,6 +70,7 @@
             <EditText
                 android:id="@+id/et_phone"
                 android:inputType="phone"
+                android:max="13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_ico_phone"/>
@@ -82,6 +86,7 @@
             <EditText
                 android:id="@+id/et_contrasena"
                 android:inputType="textPassword"
+                android:maxLength="15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_ico_contrasena"/>
@@ -97,6 +102,7 @@
             <EditText
                 android:id="@+id/et_contrasena_confir"
                 android:inputType="textPassword"
+                android:maxLength="15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_ico_contrasena_confir"
@@ -116,4 +122,4 @@
         </RelativeLayout>
     </ScrollView>
 
-</FrameLayout>
+</RelativeLayout>

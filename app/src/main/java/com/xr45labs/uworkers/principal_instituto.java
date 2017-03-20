@@ -76,9 +76,9 @@ public class principal_instituto extends AppCompatActivity
         } else if (id == R.id.nav_bempresas) {
             fragment = new fr_bempresas();
             fragmenttransaction = true;
-        } else if (id == R.id.nav_addvacantes) {
 
-        } else if (id == R.id.nav_perfil) {
+        }
+        else if (id == R.id.nav_perfil) {
             fragment = new fr_perfil_instituto();
             fragmenttransaction = true;
 
