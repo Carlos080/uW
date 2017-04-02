@@ -8,8 +8,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="ico_signup">{gmd_note_add}Seleccion quien eres:</string>
-    <string name="signup">{gmd_note_add} Signup</string>
+    <string name="ico_signup">Nueva cuenta:</string>
+    <string name="signup">Signup</string>
     <string name="ico_alumno">{gmd_person} Alumno</string>
     <string name="ico_empresa">{gmd_business} Empresa</string>
 
@@ -42,10 +42,10 @@
     <string name="ico_nombre_empresa">{gmd_business} Nombre empresa:</string>
 
 
-    <string name="ico_nombre">{gmd_account_circle} Nombre:</string>
+    <string name="ico_nombre_alumno">{gmd_account_circle} Nombre completo:</string>
     <string name="ico_campus">{gmd_account_balance} Campus:</string>
     <string name="ico_phone">{gmd_local_phone} Telefono:</string>
-    <string name="ico_guardar">{gmd_save} Guardar</string>
+    <string name="ico_guardar">Guardar</string>
 
 
     <string name="ico_contrasena">{gmd_lock_outline} Contrasena:</string>
@@ -57,5 +57,6 @@
     <!-- TODO: Iconos para vacantes -->
     <string name="ico_titulo_vacante">{gmd_title} Titulo de la vacante:</string>
     <string name="ico_nombre_instituto">{gmd_account_balance} Nombre del instituto:</string>
+    <string name="obligatorio">Obligatorio...</string>
 
 </resources>

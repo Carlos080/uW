@@ -28,28 +28,12 @@
                 android:layout_below="@id/tv_ico_nombre_empresa"/>
 
             <TextView
-                android:id="@+id/tv_ico_giro"
-                android:text="@string/ico_giro"
-                android:textColor="@color/color1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/et_nombre_empresa"/>
-
-            <EditText
-                android:id="@+id/et_giro"
-                android:inputType="text"
-                android:maxLength="40"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_ico_giro"/>
-
-            <TextView
                 android:id="@+id/tv_ico_email"
                 android:text="@string/ico_email"
                 android:textColor="@color/color1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/et_giro"/>
+                android:layout_below="@id/et_nombre_empresa"/>
 
             <EditText
                 android:id="@+id/et_email"
@@ -60,28 +44,12 @@
                 android:layout_below="@id/tv_ico_email"/>
 
             <TextView
-                android:id="@+id/tv_ico_phone"
-                android:text="@string/ico_phone"
-                android:textColor="@color/color1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/et_email"/>
-
-            <EditText
-                android:id="@+id/et_phone"
-                android:inputType="phone"
-                android:max="13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_ico_phone"/>
-
-            <TextView
                 android:id="@+id/tv_ico_contrasena"
                 android:text="@string/ico_contrasena"
                 android:textColor="@color/color1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/et_phone"/>
+                android:layout_below="@id/et_email"/>
 
             <EditText
                 android:id="@+id/et_contrasena"

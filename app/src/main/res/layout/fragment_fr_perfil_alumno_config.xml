@@ -14,13 +14,14 @@
 
             <TextView
                 android:id="@+id/tv_ico_nombre"
-                android:text="@string/ico_nombre"
+                android:text="@string/ico_nombre_alumno"
                 android:textColor="@color/color1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
             <EditText
                 android:id="@+id/et_nombre"
+                android:inputType="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_ico_nombre"/>
