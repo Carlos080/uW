@@ -18,10 +18,11 @@ public interface DataInterface {
     Call<login> login_usuarios(@Field("correo") String correo, @Field("contrasena") String contrasena);
 
 
-
+    @FormUrlEncoded
     @POST("Api/reg_alumnos.php")
     Call<GeneralPOJO> reg_alumnos(@Field("no_control") int no_control, @Field("nombre") String nombre, @Field("correo") String correo, @Field("contrasena") String contrasena);
 
+    @FormUrlEncoded
     @POST("Api/reg_empresas.php")
     Call<GeneralPOJO> reg_empresas(@Field("nombre") String nombre, @Field("correo") String correo, @Field("contrasena") String contrasena);
 }
