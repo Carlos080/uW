@@ -12,6 +12,15 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
+import com.xr45labs.uworkers.Modelo.GeneralPOJO;
+import com.xr45labs.uworkers.Modelo.login;
+import com.xr45labs.uworkers.Util.Connections;
+import com.xr45labs.uworkers.Util.DataInterface;
+import com.xr45labs.uworkers.Util.RetrofitConnection;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     EditText Et_usuario,Et_contrasena;
@@ -58,36 +67,56 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.Btn_login:
                 tipo = Et_usuario.getText().toString();
-                if(!tipo.isEmpty()) {
-                    switch (tipo) {
-                        case "alumno":
-                            intent = new Intent(this, principal_alumnos.class);
-                            startActivity(intent);
-                            break;
+                if((!Et_usuario.getText().toString().equals("")) && (!Et_contrasena.getText().toString().equals(""))) {
+                    RetrofitConnection retrofitConnection = new RetrofitConnection();
+                    DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+                    Call<login> service =  dataInterface.login_usuarios(Et_usuario.getText().toString(),Et_contrasena.getText().toString());
+                    service.enqueue(new Callback<login>() {
+                        @Override
+                        public void onResponse(Call<login> call, Response<login> response) {
+                            if(response.isSuccessful()){
+                                login l = response.body();
 
-                        case "empresa":
-                            intent = new Intent(this, principal_empresa.class);
-                            startActivity(intent);
-                            break;
+                                if(l.isStatus()!=false){
+                                    //Agragar el codigo de shared preferences
+                                    switch(l.getTipo()){
+                                        case 1:
+                                            intent = new Intent(getApplicationContext(),principal_alumnos.class);
+                                            startActivity(intent);
+                                            break;
 
-                        case "instituto":
-                            intent = new Intent(this, principal_instituto.class);
-                            startActivity(intent);
-                            break;
+                                        case 2:
+                                            intent = new Intent(getApplicationContext(),principal_empresa.class);
+                                            startActivity(intent);
+                                            break;
 
+                                        case 3:
+                                            intent = new Intent(getApplicationContext(),principal_instituto.class);
+                                            startActivity(intent);
+                                            break;
 
-                        default:
-                            Toast toast = Toast.makeText(this, "El usuario o contrasena son incorrectos...", Toast.LENGTH_SHORT);
-                            toast.show();
-                            break;
-                    }
+                                        default:
+                                            Toast.makeText(getApplicationContext(),"Error de identificacion",Toast.LENGTH_SHORT).show();
+                                            break;
+                                    }
+                                }else{
+                                    Toast.makeText(MainActivity.this,l.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }else{
+                                Toast.makeText(MainActivity.this,"No se encontro registro", Toast.LENGTH_SHORT).show();
+                            }
+                        }
 
+                        @Override
+                        public void onFailure(Call<login> call, Throwable t) {
 
-                    break;
+                        }
+                    });
                 }else {
                     Toast.makeText(this,"Campos vacios...",Toast.LENGTH_SHORT).show();
                 }
 
+                break;
             case R.id.btn_sigup:
                 if(tipo!=null){
                     switch(tipo){
