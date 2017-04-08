@@ -97,6 +97,7 @@ public class crearcuenta_alumno_content extends AppCompatActivity implements Vie
             @Override
             public void onFailure(Call<GeneralPOJO> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
         });
     }
