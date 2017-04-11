@@ -33,6 +33,7 @@
         android:id="@+id/Et_contrasena"
         android:textColor="@color/colorAccent"
         android:hint="@string/Contrasena"
+        android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Et_usuario" />

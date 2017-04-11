@@ -2,6 +2,7 @@ package com.xr45labs.uworkers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,8 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText Et_usuario,Et_contrasena;
     Button Btn_login,btn_signup;
     RadioGroup radioGroup;
-    String tipo=null;
     Intent intent;
+    String correo, contrasena,tipoc;
+    int idusuario,tipo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,15 +49,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 switch(checkedId){
                     case R.id.rb_alumno:
-                        tipo = "alumno";
+                        tipoc = "alumno";
                         break;
 
                     case R.id.rb_empresa:
-                        tipo = "empresa";
+                        tipoc = "empresa";
                         break;
                 }
             }
         });
+
+        comprobacion_sesion();
 
         HideKeyboard esconderteclado = new HideKeyboard();
         esconderteclado.setupUI(findViewById(R.id.activity_main),MainActivity.this);
@@ -66,60 +70,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
 
             case R.id.Btn_login:
-                tipo = Et_usuario.getText().toString();
+                //tipo = Et_usuario.getText().toString();
                 if((!Et_usuario.getText().toString().equals("")) && (!Et_contrasena.getText().toString().equals(""))) {
-                    RetrofitConnection retrofitConnection = new RetrofitConnection();
-                    DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
-                    Call<login> service =  dataInterface.login_usuarios(Et_usuario.getText().toString(),Et_contrasena.getText().toString());
-                    service.enqueue(new Callback<login>() {
-                        @Override
-                        public void onResponse(Call<login> call, Response<login> response) {
-                            if(response.isSuccessful()){
-                                login l = response.body();
+                    if(android.util.Patterns.EMAIL_ADDRESS.matcher(Et_usuario.getText().toString()).matches()){
+                        correo = Et_usuario.getText().toString();
+                        contrasena = Et_contrasena.getText().toString();
+                        login_metodo(correo,contrasena);
+                    }
 
-                                if(l.isStatus()!=false){
-                                    //Agragar el codigo de shared preferences
-                                    switch(l.getTipo()){
-                                        case 1:
-                                            intent = new Intent(getApplicationContext(),principal_alumnos.class);
-                                            startActivity(intent);
-                                            break;
 
-                                        case 2:
-                                            intent = new Intent(getApplicationContext(),principal_empresa.class);
-                                            startActivity(intent);
-                                            break;
-
-                                        case 3:
-                                            intent = new Intent(getApplicationContext(),principal_instituto.class);
-                                            startActivity(intent);
-                                            break;
-
-                                        default:
-                                            Toast.makeText(getApplicationContext(),"Error de identificacion",Toast.LENGTH_SHORT).show();
-                                            break;
-                                    }
-                                }else{
-                                    Toast.makeText(MainActivity.this,l.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            }else{
-                                Toast.makeText(MainActivity.this,"No se encontro registro", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<login> call, Throwable t) {
-
-                        }
-                    });
                 }else {
                     Toast.makeText(this,"Campos vacios...",Toast.LENGTH_SHORT).show();
                 }
 
                 break;
             case R.id.btn_sigup:
-                if(tipo!=null){
-                    switch(tipo){
+                if(tipoc!=null){
+                    switch(tipoc){
                         case "alumno":
                             intent = new Intent(this, crearcuenta_alumno_content.class);
                             startActivity(intent);
@@ -137,13 +104,85 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     toast.show();
                 }
 
-
-
                 break;
         }
     }
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
+    }
+
+    public void login_metodo(final String correo, final String contrasena){
+
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<login> service =  dataInterface.login_usuarios(correo,contrasena);
+        service.enqueue(new Callback<login>() {
+            @Override
+            public void onResponse(Call<login> call, Response<login> response) {
+                if(response.isSuccessful()){
+                    login l = response.body();
+
+                    if(l.isStatus()!=false){
+                        //Agragar el codigo de shared preferences
+                        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("correo",correo);
+                        editor.putString("contrasena",contrasena);
+                        editor.putInt("idusuario",l.getIdusuario());
+                        editor.putInt("tipo",l.getTipo());
+                        editor.commit();
+
+                        ///
+                        switch(l.getTipo()){
+                            case 1:
+                                intent = new Intent(getApplicationContext(),principal_alumnos.class);
+                                startActivity(intent);
+                                break;
+
+                            case 2:
+                                intent = new Intent(getApplicationContext(),principal_empresa.class);
+                                startActivity(intent);
+                                break;
+
+                            case 3:
+                                intent = new Intent(getApplicationContext(),principal_instituto.class);
+                                startActivity(intent);
+                                break;
+
+                            default:
+                                Toast.makeText(getApplicationContext(),"Error de identificacion",Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                    }else{
+                        Toast.makeText(MainActivity.this,l.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(MainActivity.this,"No se encontro registro", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<login> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    public void comprobacion_sesion(){
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        if(sharedPreferences!=null){
+            correo = sharedPreferences.getString("correo",null);
+            if(correo!=null) {
+                //Toast.makeText(this, "jhaskjdhaksjdh", Toast.LENGTH_SHORT).show();
+                contrasena = sharedPreferences.getString("contrasena",null);
+                idusuario = sharedPreferences.getInt("idusuario",0);
+                tipo = sharedPreferences.getInt("tipo",0);
+
+                login_metodo(correo,contrasena);
+            }
+        }
+
     }
 }

@@ -7,7 +7,7 @@ package com.xr45labs.uworkers.Modelo;
 public class login {
     private boolean status;
     private String message;
-    private String idusuario;
+    private int idusuario;
     private int tipo;
 
     public boolean isStatus() {
@@ -26,11 +26,11 @@ public class login {
         this.message = message;
     }
 
-    public String getIdusuario() {
+    public int getIdusuario() {
         return idusuario;
     }
 
-    public void setIdusuario(String idusuario) {
+    public void setIdusuario(int idusuario) {
         this.idusuario = idusuario;
     }
 
