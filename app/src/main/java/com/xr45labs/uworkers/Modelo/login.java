@@ -7,6 +7,25 @@ package com.xr45labs.uworkers.Modelo;
 public class login {
     private boolean status;
     private String message;
+    private String foto_perfil;
+    private String foto_fondo;
+
+    public String getFoto_perfil() {
+        return foto_perfil;
+    }
+
+    public void setFoto_perfil(String foto_perfil) {
+        this.foto_perfil = foto_perfil;
+    }
+
+    public String getFoto_fondo() {
+        return foto_fondo;
+    }
+
+    public void setFoto_fondo(String foto_fondo) {
+        this.foto_fondo = foto_fondo;
+    }
+
     private int idusuario;
     private int tipo;
 

@@ -1,6 +1,7 @@
 package com.xr45labs.uworkers.Util;
 
 import com.xr45labs.uworkers.Modelo.GeneralPOJO;
+import com.xr45labs.uworkers.Modelo.alumnos;
 import com.xr45labs.uworkers.Modelo.login;
 
 import retrofit2.Call;
@@ -25,4 +26,8 @@ public interface DataInterface {
     @FormUrlEncoded
     @POST("Api/reg_empresas.php")
     Call<GeneralPOJO> reg_empresas(@Field("nombre") String nombre, @Field("correo") String correo, @Field("contrasena") String contrasena);
+
+    @FormUrlEncoded
+    @POST("Api/perfil_alumno.php")
+    Call<alumnos> perfil_alumno(@Field("idusuario") int idusuario);
 }

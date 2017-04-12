@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button Btn_login,btn_signup;
     RadioGroup radioGroup;
     Intent intent;
-    String correo, contrasena,tipoc;
+    String correo, contrasena,tipoc,foto_perfil,foto_fondo;
     int idusuario,tipo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +130,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         editor.putString("correo",correo);
                         editor.putString("contrasena",contrasena);
                         editor.putInt("idusuario",l.getIdusuario());
+                        editor.putString("foto_perfil",l.getFoto_perfil());
+                        editor.putString("foto_fondo",l.getFoto_fondo());
                         editor.putInt("tipo",l.getTipo());
                         editor.commit();
 
@@ -178,6 +180,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //Toast.makeText(this, "jhaskjdhaksjdh", Toast.LENGTH_SHORT).show();
                 contrasena = sharedPreferences.getString("contrasena",null);
                 idusuario = sharedPreferences.getInt("idusuario",0);
+                foto_perfil = sharedPreferences.getString("foto_perfil",null);
+                foto_fondo = sharedPreferences.getString("foto_fondo",null);
                 tipo = sharedPreferences.getInt("tipo",0);
 
                 login_metodo(correo,contrasena);

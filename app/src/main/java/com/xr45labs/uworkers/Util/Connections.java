@@ -9,4 +9,5 @@ public class Connections {
     public static final String URL_LOGIN="Api/login_uworkers.php";
     public static final String URL_SIGNUP_ALUMNOS="Api/reg_alumnos.php";
     public static final String URL_SIGNUP_EMPRESAS="Api/reg_empresa.php";
+    public static final String URL_PERFIL_ALUMNO="Api/perfil_alumno";
 }

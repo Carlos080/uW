@@ -12,9 +12,36 @@ public class alumnos {
     String objetivos;
     String conocimientos;
     String experiencia_laboral;
+    String carrera;
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+
     String curriculum;
-    int CARRERAS_idcarrera;
-    int USUARIOS_idusuario;
+
+    Boolean status;
+    String message;
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public int getIdusuario() {
         return idusuario;
@@ -80,19 +107,5 @@ public class alumnos {
         this.curriculum = curriculum;
     }
 
-    public int getCARRERAS_idcarrera() {
-        return CARRERAS_idcarrera;
-    }
 
-    public void setCARRERAS_idcarrera(int CARRERAS_idcarrera) {
-        this.CARRERAS_idcarrera = CARRERAS_idcarrera;
-    }
-
-    public int getUSUARIOS_idusuario() {
-        return USUARIOS_idusuario;
-    }
-
-    public void setUSUARIOS_idusuario(int USUARIOS_idusuario) {
-        this.USUARIOS_idusuario = USUARIOS_idusuario;
-    }
 }

@@ -9,8 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.xr45labs.uworkers.Modelo.alumnos;
 import com.xr45labs.uworkers.R;
+import com.xr45labs.uworkers.Util.Connections;
+import com.xr45labs.uworkers.Util.DataInterface;
+import com.xr45labs.uworkers.Util.RetrofitConnection;
+import com.xr45labs.uworkers.principal_alumnos;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -22,8 +34,11 @@ import com.xr45labs.uworkers.R;
  * create an instance of this fragment.
  */
 public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
-
+    principal_alumnos pa = new principal_alumnos();
     Button btn_perfil_a_config;
+    int idusuario,no_control;
+    String carrera,email,objetivos,conocimientos,experiencia_laboral;
+    TextView tv_carrera,tv_email,tv_objetivos,tv_conocimientos,tv_experiencia;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -73,6 +88,15 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
         View rootView =  inflater.inflate(R.layout.fragment_fr_perfil_alumno, container, false);
         btn_perfil_a_config = (Button) rootView.findViewById(R.id.btn_perfil_a_conf);
         btn_perfil_a_config.setOnClickListener(this);
+        tv_carrera = (TextView) rootView.findViewById(R.id.tv_carrera);
+        tv_email = (TextView) rootView.findViewById(R.id.tv_email);
+        tv_objetivos = (TextView) rootView.findViewById(R.id.tv_objetivos);
+        tv_conocimientos = (TextView) rootView.findViewById(R.id.tv_conocimientos);
+        tv_experiencia = (TextView) rootView.findViewById(R.id.tv_experiencia);
+        
+        
+        
+
         return rootView;
     }
 
@@ -131,4 +155,6 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
 }
