@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.xr45labs.uworkers.Modelo.GeneralPOJO;
+import com.xr45labs.uworkers.Modelo.alumnos;
 import com.xr45labs.uworkers.Modelo.login;
 import com.xr45labs.uworkers.Util.Connections;
 import com.xr45labs.uworkers.Util.DataInterface;
@@ -29,7 +30,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     RadioGroup radioGroup;
     Intent intent;
     String correo, contrasena,tipoc,foto_perfil,foto_fondo;
-    int idusuario,tipo;
+    String objetivos,conocimientos,experiencia_laboral,carrera,nombre,curriculum;
+
+    int idusuario,tipo,no_control;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     if(l.isStatus()!=false){
                         //Agragar el codigo de shared preferences
+
                         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("correo",correo);
@@ -138,8 +142,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         ///
                         switch(l.getTipo()){
                             case 1:
-                                intent = new Intent(getApplicationContext(),principal_alumnos.class);
-                                startActivity(intent);
+                                /*intent = new Intent(getApplicationContext(),principal_alumnos.class);
+                                startActivity(intent);*/
+                                alumnos_datos(idusuario);
                                 break;
 
                             case 2:
@@ -170,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+
     }
 
     public void comprobacion_sesion(){
@@ -188,5 +194,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
+    }
+
+    public void alumnos_datos(int idusuario){
+
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<alumnos> service = dataInterface.perfil_alumno(idusuario);
+        service.enqueue(new Callback<alumnos>() {
+            @Override
+            public void onResponse(Call<alumnos> call, Response<alumnos> response) {
+                if(response.isSuccessful()){
+                    alumnos a = response.body();
+                    if(a.isStatus()){
+                        Toast.makeText(MainActivity.this, a.getCarrera(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<alumnos> call, Throwable t) {
+
+            }
+        });
     }
 }

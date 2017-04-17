@@ -1,6 +1,7 @@
 package com.xr45labs.uworkers.fragments.alumnos;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -156,5 +157,7 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
         void onFragmentInteraction(Uri uri);
     }
 
+    public void datos_perfil(){
 
+    }
 }

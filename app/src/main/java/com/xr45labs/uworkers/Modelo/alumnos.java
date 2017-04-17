@@ -5,6 +5,8 @@ package com.xr45labs.uworkers.Modelo;
  */
 
 public class alumnos {
+    boolean status;
+    String message;
     int idusuario;
     int no_control;
     String nombre;
@@ -13,25 +15,14 @@ public class alumnos {
     String conocimientos;
     String experiencia_laboral;
     String carrera;
-
-    public String getCarrera() {
-        return carrera;
-    }
-
-    public void setCarrera(String carrera) {
-        this.carrera = carrera;
-    }
-
     String curriculum;
 
-    Boolean status;
-    String message;
 
-    public Boolean getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
@@ -99,6 +90,14 @@ public class alumnos {
         this.experiencia_laboral = experiencia_laboral;
     }
 
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+
     public String getCurriculum() {
         return curriculum;
     }
@@ -106,6 +105,4 @@ public class alumnos {
     public void setCurriculum(String curriculum) {
         this.curriculum = curriculum;
     }
-
-
 }
