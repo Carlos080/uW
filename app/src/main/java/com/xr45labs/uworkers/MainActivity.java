@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if(l.isStatus()!=false){
                         //Agragar el codigo de shared preferences
 
-                        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+                        SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("correo",correo);
                         editor.putString("contrasena",contrasena);
@@ -142,8 +142,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         ///
                         switch(l.getTipo()){
                             case 1:
-                                /*intent = new Intent(getApplicationContext(),principal_alumnos.class);
-                                startActivity(intent);*/
+                                intent = new Intent(getApplicationContext(),principal_alumnos.class);
+                                startActivity(intent);
                                 alumnos_datos(idusuario);
                                 break;
 
@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void comprobacion_sesion(){
-        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
         if(sharedPreferences!=null){
             correo = sharedPreferences.getString("correo",null);
             if(correo!=null) {
@@ -206,16 +206,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onResponse(Call<alumnos> call, Response<alumnos> response) {
                 if(response.isSuccessful()){
                     alumnos a = response.body();
-                    if(a.isStatus()){
-                        Toast.makeText(MainActivity.this, a.getCarrera(), Toast.LENGTH_SHORT).show();
+                    if(a.isStatus()==true){
+                        SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("nombre",a.getNombre());
+                        editor.putInt("no_control",a.getNo_control());
+                        editor.putString("telefono",a.getTelefono());
+                        editor.putString("carrera",a.getCarrera());
+                        editor.putString("objetivos",a.getObjetivos());
+                        editor.putString("conocimientos",a.getConocimientos());
+                        editor.putString("experiencia_laboral",a.getExperiencia_laboral());
+                        editor.commit();
+
+                    }else {
+                        Toast.makeText(MainActivity.this, a.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
+                }else{
+                    Toast.makeText(MainActivity.this, "Error al cargar...", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<alumnos> call, Throwable t) {
-
+                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
