@@ -11,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.xr45labs.uworkers.MainActivity;
 import com.xr45labs.uworkers.Modelo.alumnos;
 import com.xr45labs.uworkers.R;
 import com.xr45labs.uworkers.Util.Connections;
@@ -38,8 +40,8 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
     principal_alumnos pa = new principal_alumnos();
     Button btn_perfil_a_config;
     int idusuario,no_control;
-    String carrera,email,objetivos,conocimientos,experiencia_laboral;
-    TextView tv_carrera,tv_email,tv_objetivos,tv_conocimientos,tv_experiencia;
+    String nombre,carrera,email,objetivos,conocimientos,experiencia_laboral;
+    TextView tv_carrera,tv_email,tv_objetivos,tv_conocimientos,tv_experiencia,tv_nombre_nav,tv_nocontrol_nav;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -87,15 +89,19 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.fragment_fr_perfil_alumno, container, false);
+
         btn_perfil_a_config = (Button) rootView.findViewById(R.id.btn_perfil_a_conf);
         btn_perfil_a_config.setOnClickListener(this);
+        tv_nombre_nav = (TextView) rootView.findViewById(R.id.tv_nombre_nav);
+        tv_nocontrol_nav = (TextView) rootView.findViewById(R.id.tv_nocontrol_nav);
         tv_carrera = (TextView) rootView.findViewById(R.id.tv_carrera);
         tv_email = (TextView) rootView.findViewById(R.id.tv_email);
         tv_objetivos = (TextView) rootView.findViewById(R.id.tv_objetivos);
         tv_conocimientos = (TextView) rootView.findViewById(R.id.tv_conocimientos);
         tv_experiencia = (TextView) rootView.findViewById(R.id.tv_experiencia);
-        
-        
+
+
+        datos_perfil();
         
 
         return rootView;
@@ -158,6 +164,26 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
     }
 
     public void datos_perfil(){
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("data_session",Context.MODE_PRIVATE);
+
+        nombre = sharedPreferences.getString("nombre",null);
+        no_control = sharedPreferences.getInt("no_control",0);
+        carrera = sharedPreferences.getString("carrera",null);
+        email = sharedPreferences.getString("correo",null);
+        objetivos =sharedPreferences.getString("objetivos",null);
+        conocimientos = sharedPreferences.getString("conocimientos",null);
+        experiencia_laboral = sharedPreferences.getString("experiencia_laboral",null);
+
+        tv_nombre_nav.setText(nombre);
+        tv_nocontrol_nav.setText(String.valueOf(no_control));
+        tv_carrera.setText(carrera);
+        tv_email.setText(email);
+        tv_objetivos.setText(objetivos);
+        tv_conocimientos.setText(conocimientos);
+        tv_experiencia.setText(experiencia_laboral);
+
 
     }
+
+
 }

@@ -62,12 +62,13 @@ public class principal_alumnos extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        datos_perfil();
         View vistaheader = navigationView.getHeaderView(0);
 
         tv_nombre = (TextView) vistaheader.findViewById(R.id.tv_nombre_nav);
         tv_nocontrol = (TextView) vistaheader.findViewById(R.id.tv_nocontrol_nav);
-
+        tv_nombre.setText(nombre);
+        tv_nocontrol.setText(String.valueOf(no_control));
 
         Fragment fragment = new fr_perfil_alumno();
         boolean fragmentTransaction = true;
@@ -133,5 +134,10 @@ public class principal_alumnos extends AppCompatActivity
 
     }
 
+    public void datos_perfil(){
+        SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
+        nombre = sharedPreferences.getString("nombre",null);
+        no_control = sharedPreferences.getInt("no_control",0);
+    }
 
 }
