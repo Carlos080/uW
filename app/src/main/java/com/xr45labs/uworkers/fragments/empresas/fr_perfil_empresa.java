@@ -146,5 +146,6 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
         tv_giro.setText(giro);
         tv_descripcion.setText(descripcion);
         tv_telefono.setText(telefono);
+
     }
 }
