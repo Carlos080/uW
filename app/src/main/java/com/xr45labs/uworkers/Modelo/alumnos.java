@@ -7,7 +7,6 @@ package com.xr45labs.uworkers.Modelo;
 public class alumnos {
     boolean status;
     String message;
-    int idusuario;
     int no_control;
     String nombre;
     String telefono;
@@ -32,14 +31,6 @@ public class alumnos {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public int getIdusuario() {
-        return idusuario;
-    }
-
-    public void setIdusuario(int idusuario) {
-        this.idusuario = idusuario;
     }
 
     public int getNo_control() {

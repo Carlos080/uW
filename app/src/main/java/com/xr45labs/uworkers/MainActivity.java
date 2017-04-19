@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.xr45labs.uworkers.Modelo.GeneralPOJO;
 import com.xr45labs.uworkers.Modelo.alumnos;
+import com.xr45labs.uworkers.Modelo.empresas;
 import com.xr45labs.uworkers.Modelo.login;
 import com.xr45labs.uworkers.Util.Connections;
 import com.xr45labs.uworkers.Util.DataInterface;
@@ -142,12 +143,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         ///
                         switch(l.getTipo()){
                             case 1:
+                                alumno_datos(idusuario);
                                 intent = new Intent(getApplicationContext(),principal_alumnos.class);
                                 startActivity(intent);
-                                alumnos_datos(idusuario);
                                 break;
 
                             case 2:
+                                empresa_datos(idusuario);
                                 intent = new Intent(getApplicationContext(),principal_empresa.class);
                                 startActivity(intent);
                                 break;
@@ -171,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onFailure(Call<login> call, Throwable t) {
-
+                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -180,23 +182,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void comprobacion_sesion(){
         SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
-        if(sharedPreferences!=null){
-            correo = sharedPreferences.getString("correo",null);
-            if(correo!=null) {
-                //Toast.makeText(this, "jhaskjdhaksjdh", Toast.LENGTH_SHORT).show();
-                contrasena = sharedPreferences.getString("contrasena",null);
-                idusuario = sharedPreferences.getInt("idusuario",0);
-                foto_perfil = sharedPreferences.getString("foto_perfil",null);
-                foto_fondo = sharedPreferences.getString("foto_fondo",null);
-                tipo = sharedPreferences.getInt("tipo",0);
 
-                login_metodo(correo,contrasena);
-            }
-        }
+        correo = sharedPreferences.getString("correo",null);
+        contrasena = sharedPreferences.getString("contrasena",null);
+        idusuario = sharedPreferences.getInt("idusuario",0);
+        foto_perfil = sharedPreferences.getString("foto_perfil",null);
+        foto_fondo = sharedPreferences.getString("foto_fondo",null);
+        tipo = sharedPreferences.getInt("tipo",0);
+
+        login_metodo(correo,contrasena);
 
     }
 
-    public void alumnos_datos(int idusuario){
+    public void alumno_datos(int idusuario){
 
         RetrofitConnection retrofitConnection = new RetrofitConnection();
         DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
@@ -232,5 +230,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void empresa_datos(int idusuario){
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<empresas> service = dataInterface.perfil_empresa(idusuario);
+        service.enqueue(new Callback<empresas>() {
+            @Override
+            public void onResponse(Call<empresas> call, Response<empresas> response) {
+                if(response.isSuccessful()){
+                    empresas e = response.body();
+                    if(e.isStatus()==true){
+                        SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putInt("idempresa",e.getIdempresa());
+                        editor.putString("nombre",e.getNombre());
+                        editor.putString("descripcion",e.getDescripcion());
+                        editor.putString("telefono",e.getTelefono());
+                        editor.putString("giro",e.getGiro());
+                        editor.commit();
+                    }else{
+                        Toast.makeText(MainActivity.this, "Error al obtener los datos de la empresa...", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(MainActivity.this, "Error de operacion...", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<empresas> call, Throwable t) {
+                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

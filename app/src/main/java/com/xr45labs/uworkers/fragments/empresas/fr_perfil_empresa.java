@@ -1,6 +1,7 @@
 package com.xr45labs.uworkers.fragments.empresas;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.xr45labs.uworkers.R;
 
@@ -21,7 +23,9 @@ import com.xr45labs.uworkers.R;
  * create an instance of this fragment.
  */
 public class fr_perfil_empresa extends Fragment implements View.OnClickListener {
-
+    TextView tv_nombre_nav,tv_secundario_nav,tv_giro,tv_descripcion,tv_telefono;
+    String nombre,correo,giro,descripcion,telefono;
+    int idempresa;
     Button btn_perfil_emp_config;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,9 +74,16 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.fragment_fr_perfil_empresa, container, false);
-
         btn_perfil_emp_config = (Button) rootView.findViewById(R.id.btn_perfil_emp_conf);
         btn_perfil_emp_config.setOnClickListener(this);
+        tv_nombre_nav = (TextView) rootView.findViewById(R.id.tv_nombre_nav);
+        tv_secundario_nav = (TextView) rootView.findViewById(R.id.tv_secundario_nav);
+        tv_giro = (TextView) rootView.findViewById(R.id.tv_giro);
+        tv_descripcion = (TextView) rootView.findViewById(R.id.tv_descripcion);
+        tv_telefono = (TextView) rootView.findViewById(R.id.tv_phone);
+
+        datos_empresa();
+
         return rootView;
     }
 
@@ -120,5 +131,20 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void datos_empresa(){
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("data_session",Context.MODE_PRIVATE);
+        nombre = sharedPreferences.getString("nombre",null);
+        correo = sharedPreferences.getString("correo",null);
+        giro = sharedPreferences.getString("giro",null);
+        descripcion = sharedPreferences.getString("descripcion",null);
+        telefono = sharedPreferences.getString("telefono",null);
+
+        tv_nombre_nav.setText(nombre);
+        tv_secundario_nav.setText(correo);
+        tv_giro.setText(giro);
+        tv_descripcion.setText(descripcion);
+        tv_telefono.setText(telefono);
     }
 }

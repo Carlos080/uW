@@ -5,12 +5,29 @@ package com.xr45labs.uworkers.Modelo;
  */
 
 public class empresas {
+    boolean status;
+    String message;
     int idempresa;
     String nombre;
     String descripcion;
     String telefono;
-    int USUARIOS_idusuario;
-    int GIRO_idgiro;
+    String giro;
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public int getIdempresa() {
         return idempresa;
@@ -44,19 +61,11 @@ public class empresas {
         this.telefono = telefono;
     }
 
-    public int getUSUARIOS_idusuario() {
-        return USUARIOS_idusuario;
+    public String getGiro() {
+        return giro;
     }
 
-    public void setUSUARIOS_idusuario(int USUARIOS_idusuario) {
-        this.USUARIOS_idusuario = USUARIOS_idusuario;
-    }
-
-    public int getGIRO_idgiro() {
-        return GIRO_idgiro;
-    }
-
-    public void setGIRO_idgiro(int GIRO_idgiro) {
-        this.GIRO_idgiro = GIRO_idgiro;
+    public void setGiro(String giro) {
+        this.giro = giro;
     }
 }

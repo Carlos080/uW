@@ -41,7 +41,7 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
     Button btn_perfil_a_config;
     int idusuario,no_control;
     String nombre,carrera,email,objetivos,conocimientos,experiencia_laboral;
-    TextView tv_carrera,tv_email,tv_objetivos,tv_conocimientos,tv_experiencia,tv_nombre_nav,tv_nocontrol_nav;
+    TextView tv_carrera,tv_email,tv_objetivos,tv_conocimientos,tv_experiencia,tv_nombre_nav,tv_secundario_nav;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -93,7 +93,7 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
         btn_perfil_a_config = (Button) rootView.findViewById(R.id.btn_perfil_a_conf);
         btn_perfil_a_config.setOnClickListener(this);
         tv_nombre_nav = (TextView) rootView.findViewById(R.id.tv_nombre_nav);
-        tv_nocontrol_nav = (TextView) rootView.findViewById(R.id.tv_nocontrol_nav);
+        tv_secundario_nav = (TextView) rootView.findViewById(R.id.tv_secundario_nav);
         tv_carrera = (TextView) rootView.findViewById(R.id.tv_carrera);
         tv_email = (TextView) rootView.findViewById(R.id.tv_email);
         tv_objetivos = (TextView) rootView.findViewById(R.id.tv_objetivos);
@@ -175,7 +175,7 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
         experiencia_laboral = sharedPreferences.getString("experiencia_laboral",null);
 
         tv_nombre_nav.setText(nombre);
-        tv_nocontrol_nav.setText(String.valueOf(no_control));
+        tv_secundario_nav.setText(String.valueOf(no_control));
         tv_carrera.setText(carrera);
         tv_email.setText(email);
         tv_objetivos.setText(objetivos);
