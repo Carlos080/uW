@@ -15,7 +15,7 @@ public class alumnos {
     String experiencia_laboral;
     String carrera;
     String curriculum;
-
+    int USUARIOS_usuario;
 
     public boolean isStatus() {
         return status;
@@ -95,5 +95,13 @@ public class alumnos {
 
     public void setCurriculum(String curriculum) {
         this.curriculum = curriculum;
+    }
+
+    public int getUSUARIOS_usuario() {
+        return USUARIOS_usuario;
+    }
+
+    public void setUSUARIOS_usuario(int USUARIOS_usuario) {
+        this.USUARIOS_usuario = USUARIOS_usuario;
     }
 }

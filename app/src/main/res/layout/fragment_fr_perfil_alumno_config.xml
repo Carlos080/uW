@@ -41,18 +41,19 @@
                 android:layout_below="@+id/tv_ico_pro"/>
 
             <TextView
-                android:id="@+id/et_ico_email"
-                android:text="@string/ico_email"
+                android:id="@+id/et_ico_phone"
+                android:text="@string/ico_phone"
                 android:textColor="@color/color1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/et_pro"/>
 
             <EditText
-                android:id="@+id/et_email"
+                android:id="@+id/et_phone"
+                android:inputType="phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/et_ico_email"/>
+                android:layout_below="@+id/et_ico_phone"/>
 
             <TextView
                 android:id="@+id/tv_ico_objetivos"
@@ -60,7 +61,7 @@
                 android:textColor="@color/color1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/et_email"/>
+                android:layout_below="@+id/et_phone"/>
 
             <EditText
                 android:id="@+id/et_objetivos"
@@ -83,20 +84,36 @@
                 android:layout_below="@+id/tv_ico_conocimientos"/>
 
             <TextView
+                android:id="@+id/et_ico_experiencia_laboral"
+                android:text="@string/ico_experiencia"
+                android:textColor="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_conocimientos"/>
+
+            <EditText
+                android:id="@+id/et_experiencia_laboral"
+                android:inputType="none"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_ico_experiencia_laboral"/>
+
+            <TextView
                 android:id="@+id/et_ico_curriculum"
                 android:text="@string/ico_curriculum"
                 android:textColor="@color/color1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/et_conocimientos"/>
+                android:layout_below="@id/et_experiencia_laboral"/>
+
             <TextView
                 android:id="@+id/tv_uri_curriculum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/et_ico_curriculum"/>
 
-            <TextView
-                android:id="@+id/tv_adj_curriculum"
+            <Button
+                android:id="@+id/btn_adj_curriculum"
                 android:text="@string/ico_adj"
                 android:textColor="@color/color1"
                 android:textAlignment="center"
@@ -112,7 +129,7 @@
                 android:background="@color/color1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_adj_curriculum"/>
+                android:layout_below="@id/btn_adj_curriculum"/>
 
         </RelativeLayout>
     </ScrollView>

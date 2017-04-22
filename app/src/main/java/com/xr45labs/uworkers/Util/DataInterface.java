@@ -9,6 +9,7 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 /**
  * Created by xr45 on 2/04/17.
@@ -35,4 +36,8 @@ public interface DataInterface {
     @FormUrlEncoded
     @POST("Api/perfil_empresa.php")
     Call<empresas> perfil_empresa(@Field("idusuario") int idusuario);
+
+    @FormUrlEncoded
+    @POST("Api/mod_alumno.php")
+    Call<GeneralPOJO> mod_alumno(@Field("idusuario") int idusuario, @Field("nombre") String nombre, @Field("telefono") String telefono, @Field("objetivos") String objetivos, @Field("conocimientos") String conocimientos, @Field("experiencia_laboral") String experiencia_laboral, @Field("curriculum") String curriculum);
 }
