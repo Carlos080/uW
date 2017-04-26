@@ -178,6 +178,15 @@ public class fr_perfil_alumno_config extends Fragment implements View.OnClickLis
                 if(response.isSuccessful()){
                     GeneralPOJO gp = response.body();
                     if(gp.isStatus()==true){
+                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("data_session",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("nombre",nombre);
+                        editor.putString("telefono",telefono);
+                        editor.putString("objetivos",objetivos);
+                        editor.putString("conocimientos",conocimientos);
+                        editor.putString("experiencia_laboral",experiencia_laboral);
+                        editor.commit();
+
                         Toast.makeText(getContext(), gp.getMessage(), Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(getContext(),gp.getMessage(),Toast.LENGTH_SHORT).show();
