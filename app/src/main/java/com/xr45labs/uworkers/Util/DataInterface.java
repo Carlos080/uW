@@ -40,4 +40,8 @@ public interface DataInterface {
     @FormUrlEncoded
     @POST("Api/mod_alumno.php")
     Call<GeneralPOJO> mod_alumno(@Field("idusuario") int idusuario, @Field("nombre") String nombre, @Field("telefono") String telefono, @Field("objetivos") String objetivos, @Field("conocimientos") String conocimientos, @Field("experiencia_laboral") String experiencia_laboral, @Field("curriculum") String curriculum);
+
+    @FormUrlEncoded
+    @POST("Api/mod_empresa.php")
+    Call<GeneralPOJO> mod_empresa(@Field("idusuario") int idusuario, @Field("nombre") String nombre, @Field("descripcion") String descripcion, @Field("telefono") String telefono);
 }
