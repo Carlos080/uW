@@ -59,4 +59,13 @@
     <string name="ico_nombre_instituto">{gmd_account_balance} Nombre del instituto:</string>
     <string name="obligatorio">Obligatorio...</string>
 
+    <string name="ico_sueldo">{gmd_attach_money} Sueldo:</string>
+    <string name="ico_horario">{gmd_access_time} Horario:</string>
+    <string name="matutino">Matutino</string>
+    <string name="vespertino">Vespertino</string>
+    <string name="nocturno">Nocturno</string>
+    <string name="ico_turno">{gmd_timelapse} Turno:</string>
+    <string name="medio_tiempo">Medio tiempo</string>
+    <string name="tiempo_completo">Tiempo completo</string>
+
 </resources>

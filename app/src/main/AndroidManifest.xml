@@ -18,15 +18,15 @@
         </activity>
         <activity
             android:name=".principal_alumnos"
-            android:label="@string/title_activity_principal_alumnos"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".principal_empresa"
-            android:label="@string/title_activity_principal_empresa"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".principal_instituto"
-            android:label="@string/title_activity_principal_instituto"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".crearcuenta_alumno_content" />
         <activity android:name=".crearcuenta_empresa_content"></activity>

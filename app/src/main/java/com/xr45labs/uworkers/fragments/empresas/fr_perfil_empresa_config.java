@@ -165,7 +165,7 @@ public class fr_perfil_empresa_config extends Fragment implements View.OnClickLi
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("nombre",nombre);
                         editor.putString("descripcion",descripcion);
-                        editor.putString("telefono",nombre);
+                        editor.putString("telefono",phone);
                         editor.commit();
                         Toast.makeText(getContext(), generalPOJO.getMessage(), Toast.LENGTH_SHORT).show();
                     }else {
