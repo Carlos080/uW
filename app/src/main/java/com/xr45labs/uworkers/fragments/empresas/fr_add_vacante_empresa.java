@@ -1,6 +1,7 @@
 package com.xr45labs.uworkers.fragments.empresas;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.icu.util.Calendar;
 import android.icu.util.TimeZone;
 import android.net.Uri;
@@ -15,12 +16,19 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.xr45labs.uworkers.Modelo.GeneralPOJO;
 import com.xr45labs.uworkers.R;
+import com.xr45labs.uworkers.Util.Connections;
+import com.xr45labs.uworkers.Util.DataInterface;
 import com.xr45labs.uworkers.Util.RetrofitConnection;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,8 +43,8 @@ public class fr_add_vacante_empresa extends Fragment implements View.OnClickList
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    String nombre,descripcion,horario,turno,fecha;
-    int sueldo;
+    String nombre="",descripcion="",horario="",turno="",fecha="";
+    int sueldo=0,idempresa;
     EditText et_nombre_vacante,et_descripcion,et_sueldo;
     RadioGroup rg_horario,rg_turno;
     Button btn_guardar;
@@ -161,7 +169,7 @@ public class fr_add_vacante_empresa extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(getContext(), horario+"   "+turno, Toast.LENGTH_SHORT).show();
+        datos();
         guardar_vacante();
     }
 
@@ -180,10 +188,51 @@ public class fr_add_vacante_empresa extends Fragment implements View.OnClickList
         void onFragmentInteraction(Uri uri);
     }
 
+    public void datos(){
+        if((!et_nombre_vacante.getText().toString().equals("")) && (!et_descripcion.getText().toString().equals("")) && (!et_sueldo.getText().toString().equals("")) && (!horario.equals("")) && (!turno.equals(""))) {
+            nombre = et_nombre_vacante.getText().toString();
+            descripcion = et_descripcion.getText().toString();
+            sueldo = Integer.parseInt(et_sueldo.getText().toString());
+            Date fechaActual = new Date();
+            SimpleDateFormat apptivaWeb = new SimpleDateFormat("dd-MM-yyyy");
+            fecha = apptivaWeb.format(fechaActual);
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("data_session",Context.MODE_PRIVATE);
+            idempresa = sharedPreferences.getInt("idempresa",0);
+        }else{
+            Toast.makeText(getContext(), "No se han llenado los campos correctamente...", Toast.LENGTH_SHORT).show();
+        }
+
+
+
+    }
+
     public void guardar_vacante(){
-        Date fechaActual = new Date();
-        SimpleDateFormat apptivaWeb = new SimpleDateFormat("dd-MM-yyyy");
-        fecha = apptivaWeb.format(fechaActual);
-        Toast.makeText(getContext(), fecha, Toast.LENGTH_SHORT).show();
+
+
+
+
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<GeneralPOJO> service = dataInterface.reg_vacante(nombre,descripcion,sueldo,turno,horario,fecha,idempresa);
+        service.enqueue(new Callback<GeneralPOJO>() {
+            @Override
+            public void onResponse(Call<GeneralPOJO> call, Response<GeneralPOJO> response) {
+                if(response.isSuccessful()){
+                    GeneralPOJO gerneralPOJO = response.body();
+                    if(gerneralPOJO.isStatus()==true){
+                        Toast.makeText(getContext(), gerneralPOJO.getMessage(), Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getContext(), gerneralPOJO.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    Toast.makeText(getContext(), "Ha ocurrido un error...", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GeneralPOJO> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
