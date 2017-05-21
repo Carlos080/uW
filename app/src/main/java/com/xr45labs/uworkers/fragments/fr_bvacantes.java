@@ -1,14 +1,35 @@
 package com.xr45labs.uworkers.fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import com.xr45labs.uworkers.Modelo.lista_vacantes;
+import com.xr45labs.uworkers.Modelo.vacante;
 import com.xr45labs.uworkers.R;
+import com.xr45labs.uworkers.Util.Connections;
+import com.xr45labs.uworkers.Util.DataInterface;
+import com.xr45labs.uworkers.Util.RetrofitConnection;
+import com.xr45labs.uworkers.adaptadores_recyclerview.vacantes_adapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,9 +39,14 @@ import com.xr45labs.uworkers.R;
  * Use the {@link fr_bvacantes#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fr_bvacantes extends Fragment {
+public class fr_bvacantes extends Fragment{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    int tipo,idempresa;
+    //ListView listView;
+    RecyclerView recyclerView;
+    vacantes_adapter adapter;
+    List<vacante> list = new ArrayList();
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -65,7 +91,24 @@ public class fr_bvacantes extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fr_bvacantes, container, false);
+        View rootview = inflater.inflate(R.layout.fragment_fr_bvacantes, container, false);
+        /*listView = (ListView) rootview.findViewById(R.id.lv_vacantes);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });*/
+        recyclerView = (RecyclerView) rootview.findViewById(R.id.rv);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+
+        tipo_usuario();
+
+
+        return rootview;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -106,4 +149,101 @@ public class fr_bvacantes extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    public void tipo_usuario(){
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("data_session",Context.MODE_PRIVATE);
+        tipo = sharedPreferences.getInt("tipo",0);
+
+        switch(tipo){
+            case 1:
+                lista_vacantes_alumnos();
+                break;
+            case 2:
+                idempresa = sharedPreferences.getInt("idempresa",0);
+                lista_vacantes_empresa(idempresa);
+                break;
+            case 3:
+                break;
+            default:
+                Toast.makeText(getContext(), "Error al cargar...", Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+    }
+
+    public void lista_vacantes_empresa(int idempresa){
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<lista_vacantes> service = dataInterface.lista_vacantes_empresa(idempresa);
+        service.enqueue(new Callback<lista_vacantes>() {
+            @Override
+            public void onResponse(Call<lista_vacantes> call, Response<lista_vacantes> response) {
+                if(response.isSuccessful()){
+                    lista_vacantes lv = response.body();
+                    if(lv.isStatus() == true){
+                        //Toast.makeText(getContext(), "Se realizo consulta con exito", Toast.LENGTH_SHORT).show();
+                        //llenar_lv(lv.getVacantes());
+                        //List<vacante> vacantes
+                        //////////////////////////////////////////
+                        list = lv.getVacantes();
+                        adapter = new vacantes_adapter(getContext(),list);
+                        recyclerView.setAdapter(adapter);
+                        //metodo_adaptador(list);
+                    }else{
+                        Toast.makeText(getContext(), "Error...", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(getContext(), "Error...", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<lista_vacantes> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    public void lista_vacantes_alumnos(){
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<lista_vacantes> service = dataInterface.lista_vacantes_alumno();
+        service.enqueue(new Callback<lista_vacantes>() {
+            @Override
+            public void onResponse(Call<lista_vacantes> call, Response<lista_vacantes> response) {
+                if(response.isSuccessful()){
+                    lista_vacantes lv = response.body();
+                    if(lv.isStatus()==true){
+                        list = lv.getVacantes();
+                        adapter = new vacantes_adapter(getContext(),list);
+                        recyclerView.setAdapter(adapter);
+                    }else{
+                        Toast.makeText(getContext(), lv.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(getContext(), "Error al cargar los datos...", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<lista_vacantes> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    /*public void llenar_lv(ArrayList<vacante> vacates){
+        List<String> list = new ArrayList<String>();
+        for(vacante v : vacates){
+            list.add(v.getNombre());
+        }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(),R.layout.support_simple_spinner_dropdown_item,list);
+        listView.setAdapter(arrayAdapter);
+    }*/
+    /*
+    public void metodo_adaptador(List<vacante> list){
+        vacantes_adapter adapter = new vacantes_adapter(getContext(),list);
+
+    }*/
 }

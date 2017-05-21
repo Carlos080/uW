@@ -2,14 +2,16 @@ package com.xr45labs.uworkers.Util;
 
 import com.xr45labs.uworkers.Modelo.GeneralPOJO;
 import com.xr45labs.uworkers.Modelo.alumnos;
-import com.xr45labs.uworkers.Modelo.empresas;
+import com.xr45labs.uworkers.Modelo.empresa;
+import com.xr45labs.uworkers.Modelo.lista_empresas;
+import com.xr45labs.uworkers.Modelo.lista_vacantes;
 import com.xr45labs.uworkers.Modelo.login;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 
 /**
  * Created by xr45 on 2/04/17.
@@ -35,7 +37,7 @@ public interface DataInterface {
 
     @FormUrlEncoded
     @POST("Api/perfil_empresa.php")
-    Call<empresas> perfil_empresa(@Field("idusuario") int idusuario);
+    Call<empresa> perfil_empresa(@Field("idusuario") int idusuario);
 
     @FormUrlEncoded
     @POST("Api/mod_alumno.php")
@@ -48,4 +50,14 @@ public interface DataInterface {
     @FormUrlEncoded
     @POST("Api/reg_vacante.php")
     Call<GeneralPOJO> reg_vacante(@Field("nombre") String nombre, @Field("descripcion") String descripcion, @Field("sueldo") int sueldo, @Field("turno") String turno, @Field("horario") String horrario, @Field("fecha_publicacion") String fecha_publicacion, @Field("EMPRESAS_idempresa") int idempresa);
+
+    @FormUrlEncoded
+    @POST("Api/vacantes_empresa.php")
+    Call<lista_vacantes> lista_vacantes_empresa(@Field("idempresa") int idempresa);/**/
+
+    @GET("Api/vacantes_alumno.php")
+    Call<lista_vacantes> lista_vacantes_alumno();
+
+    @GET("Api/lista_empresas.php")
+    Call<lista_empresas> lista_empresas();
 }

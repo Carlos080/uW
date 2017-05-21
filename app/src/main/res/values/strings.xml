@@ -54,7 +54,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!-- TODO: Iconos para vacantes -->
+    <!-- TODO: Iconos para vacante -->
     <string name="ico_titulo_vacante">{gmd_title} Titulo de la vacante:</string>
     <string name="ico_nombre_instituto">{gmd_account_balance} Nombre del instituto:</string>
     <string name="obligatorio">Obligatorio...</string>

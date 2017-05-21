@@ -4,7 +4,7 @@ package com.xr45labs.uworkers.Modelo;
  * Created by xr45 on 1/04/17.
  */
 
-public class empresas {
+public class empresa {
     boolean status;
     String message;
     int idempresa;

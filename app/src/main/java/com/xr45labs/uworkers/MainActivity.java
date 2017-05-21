@@ -13,9 +13,8 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
-import com.xr45labs.uworkers.Modelo.GeneralPOJO;
 import com.xr45labs.uworkers.Modelo.alumnos;
-import com.xr45labs.uworkers.Modelo.empresas;
+import com.xr45labs.uworkers.Modelo.empresa;
 import com.xr45labs.uworkers.Modelo.login;
 import com.xr45labs.uworkers.Util.Connections;
 import com.xr45labs.uworkers.Util.DataInterface;
@@ -127,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(response.isSuccessful()){
                     login l = response.body();
 
-                    if(l.isStatus()!=false){
+                    if(l.isStatus()==true){
                         //Agragar el codigo de shared preferences
 
                         SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
@@ -235,12 +234,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void empresa_datos(int idusuario){
         RetrofitConnection retrofitConnection = new RetrofitConnection();
         DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
-        Call<empresas> service = dataInterface.perfil_empresa(idusuario);
-        service.enqueue(new Callback<empresas>() {
+        Call<empresa> service = dataInterface.perfil_empresa(idusuario);
+        service.enqueue(new Callback<empresa>() {
             @Override
-            public void onResponse(Call<empresas> call, Response<empresas> response) {
+            public void onResponse(Call<empresa> call, Response<empresa> response) {
                 if(response.isSuccessful()){
-                    empresas e = response.body();
+                    empresa e = response.body();
                     if(e.isStatus()==true){
                         SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -259,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             @Override
-            public void onFailure(Call<empresas> call, Throwable t) {
+            public void onFailure(Call<empresa> call, Throwable t) {
                 Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

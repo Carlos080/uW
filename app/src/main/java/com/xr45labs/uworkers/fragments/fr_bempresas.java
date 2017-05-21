@@ -1,14 +1,31 @@
 package com.xr45labs.uworkers.fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.xr45labs.uworkers.Modelo.empresa;
+import com.xr45labs.uworkers.Modelo.lista_empresas;
 import com.xr45labs.uworkers.R;
+import com.xr45labs.uworkers.Util.Connections;
+import com.xr45labs.uworkers.Util.DataInterface;
+import com.xr45labs.uworkers.Util.RetrofitConnection;
+import com.xr45labs.uworkers.adaptadores_recyclerview.empresas_adapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +36,10 @@ import com.xr45labs.uworkers.R;
  * create an instance of this fragment.
  */
 public class fr_bempresas extends Fragment {
+    int tipo;
+    List<empresa> list = new ArrayList();
+    RecyclerView recyclerView;
+    empresas_adapter adapter;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -65,7 +86,15 @@ public class fr_bempresas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fr_bempresa, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_fr_bempresa, container, false);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        tipo_usuario();
+        Toast.makeText(getContext(), "holaaaaaaa", Toast.LENGTH_SHORT).show();
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -105,5 +134,51 @@ public class fr_bempresas extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void tipo_usuario(){
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("data_session",Context.MODE_PRIVATE);
+        tipo = sharedPreferences.getInt("tipo",0);
+
+        switch(tipo){
+            case 0:
+                Toast.makeText(getContext(), "Error de operacion..", Toast.LENGTH_SHORT).show();
+                break;
+            case 1:
+                lista_empresas();
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+    }
+
+    public void lista_empresas(){
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<lista_empresas> service = dataInterface.lista_empresas();
+        service.enqueue(new Callback<lista_empresas>() {
+            @Override
+            public void onResponse(Call<lista_empresas> call, Response<lista_empresas> response) {
+                if(response.isSuccessful()){
+                    lista_empresas le = response.body();
+                    if(le.isStatus()==true){
+                        list = le.getEmpresas();
+                        adapter = new empresas_adapter(getContext(),list);
+                        recyclerView.setAdapter(adapter);
+                    }else{
+
+                    }
+                }else{
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<lista_empresas> call, Throwable t) {
+
+            }
+        });
     }
 }
