@@ -104,7 +104,6 @@ public class fr_bvacantes extends Fragment{
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-
         tipo_usuario();
 
 

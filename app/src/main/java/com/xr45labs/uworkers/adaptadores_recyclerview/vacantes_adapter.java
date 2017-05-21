@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xr45labs.uworkers.Modelo.vacante;
 import com.xr45labs.uworkers.R;
@@ -27,18 +28,20 @@ public class vacantes_adapter extends RecyclerView.Adapter<vacantes_adapter.View
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View item_layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vacante,parent,false);
-        ViewHolder viewHolder = new ViewHolder(item_layout);
+        final ViewHolder viewHolder = new ViewHolder(item_layout);
+
         item_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+               int p = viewHolder.getAdapterPosition();
+                //Toast.makeText(context, String.valueOf(list.get(p).getIdvacante()), Toast.LENGTH_SHORT).show();
             }
         });
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.tv_nombre_vacante.setText(list.get(position).getNombre());
         holder.tv_sueldo.setText(String.valueOf(list.get(position).getSueldo()));
         holder.tv_fecha.setText(list.get(position).getFecha_publicacion());
