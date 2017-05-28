@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.xr45labs.uworkers.R;
 
@@ -65,6 +66,8 @@ public class fr_alumno_vacante extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        int idvacante = getArguments().getInt("idvacante");
+        Toast.makeText(getContext(), "Si funciona"+String.valueOf(idvacante), Toast.LENGTH_SHORT).show();
         return inflater.inflate(R.layout.fragment_fr_alumno_vacante, container, false);
     }
 

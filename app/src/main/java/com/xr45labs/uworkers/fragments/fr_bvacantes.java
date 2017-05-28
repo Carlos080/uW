@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import com.xr45labs.uworkers.Util.Connections;
 import com.xr45labs.uworkers.Util.DataInterface;
 import com.xr45labs.uworkers.Util.RetrofitConnection;
 import com.xr45labs.uworkers.adaptadores_recyclerview.vacantes_adapter;
+import com.xr45labs.uworkers.fragments.alumnos.fr_alumno_vacante;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,6 +105,7 @@ public class fr_bvacantes extends Fragment{
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
+
 
         tipo_usuario();
 
@@ -186,7 +189,9 @@ public class fr_bvacantes extends Fragment{
                         //////////////////////////////////////////
                         list = lv.getVacantes();
                         adapter = new vacantes_adapter(getContext(),list);
+
                         recyclerView.setAdapter(adapter);
+
                         //metodo_adaptador(list);
                     }else{
                         Toast.makeText(getContext(), "Error...", Toast.LENGTH_SHORT).show();
@@ -245,4 +250,12 @@ public class fr_bvacantes extends Fragment{
         vacantes_adapter adapter = new vacantes_adapter(getContext(),list);
 
     }*/
+
+
+    public void switch_fragment(Context context){
+        Fragment fragment = new fr_alumno_vacante();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_principal_alumnos,fragment,null);
+        fragmentTransaction.commit();
+    }
 }

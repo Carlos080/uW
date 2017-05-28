@@ -24,6 +24,7 @@ import com.xr45labs.uworkers.Modelo.alumnos;
 import com.xr45labs.uworkers.Util.Connections;
 import com.xr45labs.uworkers.Util.DataInterface;
 import com.xr45labs.uworkers.Util.RetrofitConnection;
+import com.xr45labs.uworkers.fragments.alumnos.fr_alumno_vacante;
 import com.xr45labs.uworkers.fragments.fr_bempresas;
 import com.xr45labs.uworkers.fragments.fr_bvacantes;
 import com.xr45labs.uworkers.fragments.alumnos.fr_perfil_alumno;
@@ -38,7 +39,8 @@ public class principal_alumnos extends AppCompatActivity
         fr_perfil_alumno.OnFragmentInteractionListener,
         fr_bvacantes.OnFragmentInteractionListener,
         fr_perfil_alumno_config.OnFragmentInteractionListener,
-        fr_bempresas.OnFragmentInteractionListener{
+        fr_bempresas.OnFragmentInteractionListener,
+        fr_alumno_vacante.OnFragmentInteractionListener {
 
     Fragment fragment = null;
     boolean FragmentTransaction = false;

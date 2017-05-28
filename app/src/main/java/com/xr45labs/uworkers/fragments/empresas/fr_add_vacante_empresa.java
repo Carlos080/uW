@@ -91,7 +91,7 @@ public class fr_add_vacante_empresa extends Fragment implements View.OnClickList
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View rootview = inflater.inflate(R.layout.fragment_fr_add_vacante, container, false);
-        et_nombre_vacante = (EditText) rootview.findViewById(R.id.et_descripcion_vacante);
+        et_nombre_vacante = (EditText) rootview.findViewById(R.id.et_nombre_vacante);
         et_descripcion = (EditText) rootview.findViewById(R.id.et_descripcion_vacante);
         et_sueldo = (EditText) rootview.findViewById(R.id.et_sueldo);
         rg_horario = (RadioGroup) rootview.findViewById(R.id.rg_horario);
