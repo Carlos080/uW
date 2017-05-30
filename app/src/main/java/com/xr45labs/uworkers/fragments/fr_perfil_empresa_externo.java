@@ -36,7 +36,7 @@ public class fr_perfil_empresa_externo extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     int idempresa;
-    TextView tv_giro, tv_descripcion, tv_telefono;
+    TextView tv_giro, tv_descripcion, tv_telefono,tv_nombre_nav,tv_secundario_nav;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -84,6 +84,8 @@ public class fr_perfil_empresa_externo extends Fragment {
         View rootview =  inflater.inflate(R.layout.fragment_fr_perfil_empresa_externo, container, false);
         idempresa = getArguments().getInt("idempresa");
         //Toast.makeText(getContext(), String.valueOf(idempresa), Toast.LENGTH_SHORT).show();
+        tv_nombre_nav = (TextView) rootview.findViewById(R.id.tv_nombre_nav);
+        tv_secundario_nav = (TextView) rootview.findViewById(R.id.tv_secundario_nav);
         tv_giro = (TextView) rootview.findViewById(R.id.tv_giro);
         tv_descripcion = (TextView) rootview.findViewById(R.id.tv_descripcion);
         tv_telefono = (TextView) rootview.findViewById(R.id.tv_phone);
@@ -142,6 +144,8 @@ public class fr_perfil_empresa_externo extends Fragment {
                     empresa_usuario eu = response.body();
                     if(eu.isStatus()==true){
                         //Toast.makeText(getContext(), eu.getNombre().toString(), Toast.LENGTH_SHORT).show();
+                        tv_nombre_nav.setText(eu.getNombre());
+                        tv_secundario_nav.setText(eu.getCorreo());
                         tv_giro.setText(eu.getGiro());
                         tv_descripcion.setText(eu.getDescripcion());
                         tv_telefono.setText(eu.getTelefono());
