@@ -1,6 +1,7 @@
 package com.xr45labs.uworkers.adaptadores_recyclerview;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -84,15 +85,40 @@ public class vacantes_adapter extends RecyclerView.Adapter<vacantes_adapter.View
 
         @Override
         public void onClick(View v) {
-            int idvacante = list.get(getAdapterPosition()).getIdvacante();
+            int position = getAdapterPosition();
+            int idempresa = list.get(position).getEMPRESAS_idempresa();
+            String nombre,descripcion,horario,turno,sueldo,fecha;
+            nombre = list.get(position).getNombre();
+            descripcion = list.get(position).getDescripcion();
+            horario = list.get(position).getHorario();
+            turno = list.get(position).getTurno();
+            sueldo = String.valueOf(list.get(position).getSueldo());
+            fecha = list.get(position).getFecha_publicacion();
+
             //Toast.makeText(context, String.valueOf(), Toast.LENGTH_SHORT).show();
             AppCompatActivity activity = (AppCompatActivity) v.getContext();
-            Fragment fragment = new fr_alumno_vacante();
-            Bundle bundle = new Bundle();
-            bundle.putInt("idvacante",idvacante);
-            fragment.setArguments(bundle);
 
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.content_principal_alumnos,fragment).commit();
+            SharedPreferences sharedPreferences = activity.getSharedPreferences("data_session",Context.MODE_PRIVATE);
+            int id_usuario = sharedPreferences.getInt("tipo",0);
+            switch(id_usuario){
+                case 1:
+                    Fragment fragment = new fr_alumno_vacante();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("idempresa",idempresa);
+                    bundle.putString("nombre",nombre);
+                    bundle.putString("descripcion",descripcion);
+                    bundle.putString("horario",horario);
+                    bundle.putString("turno",turno);
+                    bundle.putString("sueldo",sueldo);
+                    bundle.putString("fecha",fecha);
+                    fragment.setArguments(bundle);
+
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.content_principal_alumnos,fragment).commit();
+                    break;
+                case 2:
+                    break;
+            }
+
         }
     }
 }

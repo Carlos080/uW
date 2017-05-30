@@ -3,9 +3,11 @@ package com.xr45labs.uworkers.Util;
 import com.xr45labs.uworkers.Modelo.GeneralPOJO;
 import com.xr45labs.uworkers.Modelo.alumnos;
 import com.xr45labs.uworkers.Modelo.empresa;
+import com.xr45labs.uworkers.Modelo.empresa_usuario;
 import com.xr45labs.uworkers.Modelo.lista_empresas;
 import com.xr45labs.uworkers.Modelo.lista_vacantes;
 import com.xr45labs.uworkers.Modelo.login;
+import com.xr45labs.uworkers.Modelo.vacante;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -60,4 +62,12 @@ public interface DataInterface {
 
     @GET("Api/lista_empresas.php")
     Call<lista_empresas> lista_empresas();
+
+    @FormUrlEncoded
+    @POST("Api/datos_vacante.php")
+    Call<vacante> datos_vacante(@Field("idvacante") int idvacante);
+
+    @FormUrlEncoded
+    @POST("Api/datos_empresa.php")
+    Call<empresa_usuario> datos_empresa(@Field("idempresa") int idempresa);
 }

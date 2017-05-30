@@ -5,14 +5,32 @@ package com.xr45labs.uworkers.Modelo;
  */
 
 public class vacante {
+    boolean status;
+    String message;
     int idvacante;
     String nombre;
     String descripcion;
     int sueldo;
-    String truno;
+    String turno;
     String horario;
     String fecha_publicacion;
     int EMPRESAS_idempresa;
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public int getIdvacante() {
         return idvacante;
@@ -46,12 +64,12 @@ public class vacante {
         this.sueldo = sueldo;
     }
 
-    public String getTruno() {
-        return truno;
+    public String getTurno() {
+        return turno;
     }
 
-    public void setTruno(String truno) {
-        this.truno = truno;
+    public void setTurno(String turno) {
+        this.turno = turno;
     }
 
     public String getHorario() {
