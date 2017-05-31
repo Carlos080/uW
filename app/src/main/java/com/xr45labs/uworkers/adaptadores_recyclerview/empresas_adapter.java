@@ -1,5 +1,6 @@
 package com.xr45labs.uworkers.adaptadores_recyclerview;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.fragment.*;
 import android.content.Context;
@@ -64,14 +65,26 @@ public class empresas_adapter extends RecyclerView.Adapter<empresas_adapter.View
         public void onClick(View v) {
             int position = getAdapterPosition();
             int idempresa = list.get(position).getIdempresa();
-            Fragment fragment = new fr_perfil_empresa_externo();
-            Bundle bundle = new Bundle();
-            bundle.putInt("idempresa",idempresa);
-
-            fragment.setArguments(bundle);
-            //Toast.makeText(context, list.get(position).getNombre(), Toast.LENGTH_SHORT).show();
             AppCompatActivity activity = (AppCompatActivity) v.getContext();
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.content_principal_alumnos,fragment,null).commit();
+
+            SharedPreferences sharedPreferences = activity.getSharedPreferences("data_session",Context.MODE_PRIVATE);
+            int tipo_usuario = sharedPreferences.getInt("tipo",0);
+
+            switch(tipo_usuario){
+                case 1:
+                    Fragment fragment = new fr_perfil_empresa_externo();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("idempresa",idempresa);
+
+                    fragment.setArguments(bundle);
+                    //Toast.makeText(context, list.get(position).getNombre(), Toast.LENGTH_SHORT).show();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.content_principal_alumnos,fragment,null).commit();
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+            }
         }
     }
 }

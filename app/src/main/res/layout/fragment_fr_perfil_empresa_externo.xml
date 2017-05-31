@@ -63,6 +63,16 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_ico_phone"/>
 
+            <Button
+                android:id="@+id/btn_ver_vacantes_empresa"
+                android:text="@string/ver_vacantes_empresa"
+                android:textColor="@color/colorAccent"
+                android:textAlignment="center"
+                android:background="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_phone"/>
+
 
         </RelativeLayout>
 

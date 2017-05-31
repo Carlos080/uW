@@ -68,5 +68,6 @@
     <string name="medio_tiempo">Medio tiempo</string>
     <string name="tiempo_completo">Tiempo completo</string>
     <string name="ico_fecha">{gmd_date_range} Fecha de publicacion:</string>
+    <string name="ver_vacantes_empresa">{gmd_list} Ver vacantes de esta empresa</string>
 
 </resources>

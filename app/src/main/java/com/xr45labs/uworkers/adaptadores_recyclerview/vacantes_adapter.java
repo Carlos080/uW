@@ -99,8 +99,8 @@ public class vacantes_adapter extends RecyclerView.Adapter<vacantes_adapter.View
             AppCompatActivity activity = (AppCompatActivity) v.getContext();
 
             SharedPreferences sharedPreferences = activity.getSharedPreferences("data_session",Context.MODE_PRIVATE);
-            int id_usuario = sharedPreferences.getInt("tipo",0);
-            switch(id_usuario){
+            int tipo_usuario = sharedPreferences.getInt("tipo",0);
+            switch(tipo_usuario){
                 case 1:
                     Fragment fragment = new fr_alumno_vacante();
                     Bundle bundle = new Bundle();
