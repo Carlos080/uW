@@ -44,7 +44,7 @@ import retrofit2.Response;
 public class fr_bvacantes extends Fragment{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    int tipo,idempresa;
+    int tipo,idempresa,target;
     //ListView listView;
     RecyclerView recyclerView;
     vacantes_adapter adapter;
@@ -158,7 +158,15 @@ public class fr_bvacantes extends Fragment{
 
         switch(tipo){
             case 1:
-                lista_vacantes_alumnos();
+                idempresa = getArguments().getInt("idempresa");
+                if(idempresa==0){
+                    lista_vacantes_alumnos();
+                }
+
+                if(idempresa!=0){
+                    lista_vacantes_empresa(idempresa);
+                    //Toast.makeText(getContext(), String.valueOf(getArguments().getInt("idempresa")), Toast.LENGTH_SHORT).show();
+                }
                 break;
             case 2:
                 idempresa = sharedPreferences.getInt("idempresa",0);

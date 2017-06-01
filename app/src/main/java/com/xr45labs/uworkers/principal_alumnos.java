@@ -105,6 +105,9 @@ public class principal_alumnos extends AppCompatActivity
 
         if (id == R.id.nav_bvacantes) {
             fragment = new fr_bvacantes();
+            Bundle bundle = new Bundle();
+            bundle.putInt("idempresa",0);
+            fragment.setArguments(bundle);
             FragmentTransaction = true;
         }  else if(id==R.id.nav_bempresas){
             fragment = new fr_bempresas();

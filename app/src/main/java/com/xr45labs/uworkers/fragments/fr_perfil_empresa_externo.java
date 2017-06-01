@@ -1,13 +1,16 @@
 package com.xr45labs.uworkers.fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.telecom.Connection;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,11 +35,12 @@ import retrofit2.Response;
  * Use the {@link fr_perfil_empresa_externo#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fr_perfil_empresa_externo extends Fragment {
+public class fr_perfil_empresa_externo extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    int idempresa;
+    int idempresa,tipo;
     TextView tv_giro, tv_descripcion, tv_telefono,tv_nombre_nav,tv_secundario_nav;
+    Button btn_ver_vacantes_empresa;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -82,6 +86,8 @@ public class fr_perfil_empresa_externo extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootview =  inflater.inflate(R.layout.fragment_fr_perfil_empresa_externo, container, false);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("data_session",Context.MODE_PRIVATE);
+        tipo = sharedPreferences.getInt("tipo",0);
         idempresa = getArguments().getInt("idempresa");
         //Toast.makeText(getContext(), String.valueOf(idempresa), Toast.LENGTH_SHORT).show();
         tv_nombre_nav = (TextView) rootview.findViewById(R.id.tv_nombre_nav);
@@ -89,6 +95,8 @@ public class fr_perfil_empresa_externo extends Fragment {
         tv_giro = (TextView) rootview.findViewById(R.id.tv_giro);
         tv_descripcion = (TextView) rootview.findViewById(R.id.tv_descripcion);
         tv_telefono = (TextView) rootview.findViewById(R.id.tv_phone);
+        btn_ver_vacantes_empresa = (Button) rootview.findViewById(R.id.btn_ver_vacantes_empresa);
+        btn_ver_vacantes_empresa.setOnClickListener(this);
 
         datos_empresa();
         return rootview;
@@ -116,6 +124,18 @@ public class fr_perfil_empresa_externo extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("idempresa",idempresa);
+
+        Fragment fragment = new fr_bvacantes();
+        fragment.setArguments(bundle);
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_principal_alumnos,fragment);
+        fragmentTransaction.commit();
     }
 
     /**

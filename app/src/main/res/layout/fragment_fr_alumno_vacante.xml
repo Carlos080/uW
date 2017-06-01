@@ -96,7 +96,9 @@
 
     <Button
         android:id="@+id/btn_perfil_publicante"
-        android:text=""
+        android:text="@string/ver_perfil_empresa"
+        android:textColor="@color/colorAccent"
+        android:textAlignment="center"
         android:background="@color/color1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
