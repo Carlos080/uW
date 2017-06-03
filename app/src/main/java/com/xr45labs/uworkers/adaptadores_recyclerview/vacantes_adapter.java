@@ -18,6 +18,7 @@ import com.xr45labs.uworkers.Modelo.vacante;
 import com.xr45labs.uworkers.R;
 import com.xr45labs.uworkers.fragments.alumnos.fr_alumno_vacante;
 import com.xr45labs.uworkers.fragments.alumnos.fr_perfil_alumno_config;
+import com.xr45labs.uworkers.fragments.empresas.fr_vista_vacante_empresa;
 import com.xr45labs.uworkers.fragments.fr_bvacantes;
 
 import java.util.List;
@@ -87,6 +88,7 @@ public class vacantes_adapter extends RecyclerView.Adapter<vacantes_adapter.View
         public void onClick(View v) {
             int position = getAdapterPosition();
             int idempresa = list.get(position).getEMPRESAS_idempresa();
+            int idvacante = list.get(position).getIdvacante();
             String nombre,descripcion,horario,turno,sueldo,fecha;
             nombre = list.get(position).getNombre();
             descripcion = list.get(position).getDescripcion();
@@ -97,13 +99,15 @@ public class vacantes_adapter extends RecyclerView.Adapter<vacantes_adapter.View
 
             //Toast.makeText(context, String.valueOf(), Toast.LENGTH_SHORT).show();
             AppCompatActivity activity = (AppCompatActivity) v.getContext();
+            Fragment fragment;
+            Bundle bundle;
 
             SharedPreferences sharedPreferences = activity.getSharedPreferences("data_session",Context.MODE_PRIVATE);
             int tipo_usuario = sharedPreferences.getInt("tipo",0);
             switch(tipo_usuario){
                 case 1:
-                    Fragment fragment = new fr_alumno_vacante();
-                    Bundle bundle = new Bundle();
+                    fragment = new fr_alumno_vacante();
+                    bundle = new Bundle();
                     bundle.putInt("idempresa",idempresa);
                     bundle.putString("nombre",nombre);
                     bundle.putString("descripcion",descripcion);
@@ -116,6 +120,19 @@ public class vacantes_adapter extends RecyclerView.Adapter<vacantes_adapter.View
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.content_principal_alumnos,fragment).commit();
                     break;
                 case 2:
+                    fragment = new fr_vista_vacante_empresa();
+                    bundle = new Bundle();
+                    bundle.putInt("idempresa",idempresa);
+                    bundle.putString("nombre",nombre);
+                    bundle.putString("descripcion",descripcion);
+                    bundle.putString("horario",horario);
+                    bundle.putString("turno",turno);
+                    bundle.putString("sueldo",sueldo);
+                    bundle.putString("fecha",fecha);
+                    bundle.putInt("idvacante",idvacante);
+                    fragment.setArguments(bundle);
+
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.content_principal_empresa,fragment).commit();
                     break;
             }
 

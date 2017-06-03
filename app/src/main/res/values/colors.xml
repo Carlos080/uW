@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#187eae</color>
     <color name="colorAccent">#ffffff</color>
     <color name="color1">#187eae</color>
+    <color name="precaution">#f7f58f</color>
+    <color name="warning">#ef8383</color>
 </resources>

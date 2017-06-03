@@ -4,7 +4,7 @@ package com.xr45labs.uworkers.Modelo;
  * Created by xr45 on 1/04/17.
  */
 
-public class alumnos {
+public class alumno {
     boolean status;
     String message;
     int no_control;

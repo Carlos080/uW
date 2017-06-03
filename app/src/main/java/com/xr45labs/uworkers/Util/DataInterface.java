@@ -1,9 +1,10 @@
 package com.xr45labs.uworkers.Util;
 
 import com.xr45labs.uworkers.Modelo.GeneralPOJO;
-import com.xr45labs.uworkers.Modelo.alumnos;
+import com.xr45labs.uworkers.Modelo.alumno;
 import com.xr45labs.uworkers.Modelo.empresa;
 import com.xr45labs.uworkers.Modelo.empresa_usuario;
+import com.xr45labs.uworkers.Modelo.lista_alumnos;
 import com.xr45labs.uworkers.Modelo.lista_empresas;
 import com.xr45labs.uworkers.Modelo.lista_vacantes;
 import com.xr45labs.uworkers.Modelo.login;
@@ -35,7 +36,7 @@ public interface DataInterface {
 
     @FormUrlEncoded
     @POST("Api/perfil_alumno.php")
-    Call<alumnos> perfil_alumno(@Field("idusuario") int idusuario);
+    Call<alumno> perfil_alumno(@Field("idusuario") int idusuario);
 
     @FormUrlEncoded
     @POST("Api/perfil_empresa.php")
@@ -62,6 +63,9 @@ public interface DataInterface {
 
     @GET("Api/lista_empresas.php")
     Call<lista_empresas> lista_empresas();
+
+    @GET("Api/lista_alumnos.php")
+    Call<lista_alumnos> lista_alumnos();
 
     @FormUrlEncoded
     @POST("Api/datos_vacante.php")

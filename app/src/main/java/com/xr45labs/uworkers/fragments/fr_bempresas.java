@@ -93,7 +93,7 @@ public class fr_bempresas extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         tipo_usuario();
-        Toast.makeText(getContext(), "holaaaaaaa", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "holaaaaaaa", Toast.LENGTH_SHORT).show();
         return rootView;
     }
 

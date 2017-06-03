@@ -1,0 +1,142 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xr45labs.uworkers.fragments.empresas.fr_add_vacante_empresa">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_ico_nombre_vacante"
+                android:text="@string/ico_titulo_vacante"
+                android:textColor="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/et_nombre_vacante"
+                android:maxLength="40"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_ico_nombre_vacante"/>
+
+            <TextView
+                android:id="@+id/tv_ico_descripcion_vacante"
+                android:text="@string/ico_descripcion"
+                android:maxLength="500"
+                android:textColor="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_nombre_vacante"/>
+
+            <EditText
+                android:id="@+id/et_descripcion_vacante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_ico_descripcion_vacante"/>
+
+            <TextView
+                android:id="@+id/tv_ico_horario"
+                android:text="@string/ico_horario"
+                android:textColor="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/et_descripcion_vacante"/>
+
+            <RadioGroup
+                android:id="@+id/rg_horario"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_ico_horario">
+
+                <RadioButton
+                    android:id="@+id/rb_matutino"
+                    android:text="@string/matutino"
+                    android:textColor="@color/color1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:id="@+id/rb_vespertino"
+                    android:text="@string/vespertino"
+                    android:textColor="@color/color1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:id="@+id/rb_nocturno"
+                    android:text="@string/nocturno"
+                    android:textColor="@color/color1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv_ico_turno"
+                android:text="@string/ico_turno"
+                android:textColor="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rg_horario"/>
+
+            <RadioGroup
+                android:id="@+id/rg_turno"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_ico_turno">
+
+                <RadioButton
+                    android:id="@+id/rb_mediotiempo"
+                    android:text="@string/medio_tiempo"
+                    android:textColor="@color/color1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:id="@+id/rb_tiempo_completo"
+                    android:text="@string/tiempo_completo"
+                    android:textColor="@color/color1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv_ico_sueldo"
+                android:text="@string/ico_sueldo"
+                android:textColor="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rg_turno"/>
+
+            <EditText
+                android:id="@+id/et_sueldo"
+                android:textAlignment="center"
+                android:textColor="@color/color1"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_ico_sueldo"/>
+
+            <Button
+                android:id="@+id/btn_guardar"
+                android:text="@string/ico_guardar"
+                android:textColor="@color/colorAccent"
+                android:background="@color/color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_sueldo"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

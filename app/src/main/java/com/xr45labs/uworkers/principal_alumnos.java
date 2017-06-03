@@ -12,28 +12,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
-import com.xr45labs.uworkers.Modelo.alumnos;
-import com.xr45labs.uworkers.Util.Connections;
-import com.xr45labs.uworkers.Util.DataInterface;
-import com.xr45labs.uworkers.Util.RetrofitConnection;
 import com.xr45labs.uworkers.fragments.alumnos.fr_alumno_vacante;
 import com.xr45labs.uworkers.fragments.fr_bempresas;
 import com.xr45labs.uworkers.fragments.fr_bvacantes;
 import com.xr45labs.uworkers.fragments.alumnos.fr_perfil_alumno;
 import com.xr45labs.uworkers.fragments.alumnos.fr_perfil_alumno_config;
 import com.xr45labs.uworkers.fragments.fr_perfil_empresa_externo;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class principal_alumnos extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,

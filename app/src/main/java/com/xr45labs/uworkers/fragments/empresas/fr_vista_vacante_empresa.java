@@ -1,4 +1,4 @@
-package com.xr45labs.uworkers.fragments.alumnos;
+package com.xr45labs.uworkers.fragments.empresas;
 
 import android.content.Context;
 import android.net.Uri;
@@ -12,20 +12,22 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.xr45labs.uworkers.R;
-import com.xr45labs.uworkers.fragments.fr_perfil_empresa_externo;
+import com.xr45labs.uworkers.fragments.fr_modificar_vacante;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link fr_alumno_vacante.OnFragmentInteractionListener} interface
+ * {@link fr_vista_vacante_empresa.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link fr_alumno_vacante#newInstance} factory method to
+ * Use the {@link fr_vista_vacante_empresa#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fr_alumno_vacante extends Fragment implements View.OnClickListener {
+public class fr_vista_vacante_empresa extends Fragment implements View.OnClickListener {
     TextView tv_nombre_vacante, tv_descripcion_vacante,tv_horario,tv_turno,tv_sueldo,tv_fecha_publicacion;
-    Button btn_perfil_publicante;
-    int idempresa;
+    Button btn_modificar_vacante, btn_eliminar_vacante;
+    String nombre,descripcion,turno,horario,sueldo,fecha;
+    int idvacante;
+    Fragment fragment;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -37,7 +39,7 @@ public class fr_alumno_vacante extends Fragment implements View.OnClickListener 
 
     private OnFragmentInteractionListener mListener;
 
-    public fr_alumno_vacante() {
+    public fr_vista_vacante_empresa() {
         // Required empty public constructor
     }
 
@@ -47,11 +49,11 @@ public class fr_alumno_vacante extends Fragment implements View.OnClickListener 
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment fr_alumno_vacante.
+     * @return A new instance of fragment fr_vista_vacante_empresa.
      */
     // TODO: Rename and change types and number of parameters
-    public static fr_alumno_vacante newInstance(String param1, String param2) {
-        fr_alumno_vacante fragment = new fr_alumno_vacante();
+    public static fr_vista_vacante_empresa newInstance(String param1, String param2) {
+        fr_vista_vacante_empresa fragment = new fr_vista_vacante_empresa();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -72,18 +74,20 @@ public class fr_alumno_vacante extends Fragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        View rootview =  inflater.inflate(R.layout.fragment_fr_alumno_vacante, container, false);
-        btn_perfil_publicante  = (Button) rootview.findViewById(R.id.btn_perfil_publicante);
-        btn_perfil_publicante.setOnClickListener(this);
+        View rootview =  inflater.inflate(R.layout.fragment_fr_vista_vacante_empresa, container, false);
         tv_nombre_vacante = (TextView) rootview.findViewById(R.id.tv_nombre_vacante);
         tv_descripcion_vacante =(TextView) rootview.findViewById(R.id.tv_descripcion_vacante);
         tv_horario = (TextView) rootview.findViewById(R.id.tv_horario);
         tv_turno = (TextView) rootview.findViewById(R.id.tv_turno);
         tv_sueldo = (TextView) rootview.findViewById(R.id.tv_sueldo);
         tv_fecha_publicacion = (TextView) rootview.findViewById(R.id.tv_fecha_publicacion);
-        idempresa = getArguments().getInt("idempresa");
-        String nombre,descripcion,turno,horario,sueldo,fecha;
+
+        btn_modificar_vacante = (Button) rootview.findViewById(R.id.btn_modificar_vacante);
+        btn_modificar_vacante.setOnClickListener(this);
+        btn_eliminar_vacante = (Button) rootview.findViewById(R.id.btn_eliminar_vacante);
+        btn_eliminar_vacante.setOnClickListener(this);
+
+        idvacante = getArguments().getInt("idvacante");
         nombre = getArguments().getString("nombre");
         descripcion = getArguments().getString("descripcion");
         turno = getArguments().getString("turno");
@@ -128,13 +132,19 @@ public class fr_alumno_vacante extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        Fragment fragment = new fr_perfil_empresa_externo();
-        Bundle bundle = new Bundle();
-        bundle.putInt("idempresa",idempresa);
-        fragment.setArguments(bundle);
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_principal_alumnos,fragment,null);
-        fragmentTransaction.commit();
+        switch(v.getId()){
+            case R.id.btn_modificar_vacante:
+                fragment = new fr_modificar_vacante();
+                /*Fragment fragment = new fr_modificar_vacante();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.content_principal_alumnos,fragment,null);
+                fragmentTransaction.commit();*/
+
+                break;
+
+            case R.id.btn_eliminar_vacante:
+                break;
+        }
     }
 
     /**
@@ -151,5 +161,4 @@ public class fr_alumno_vacante extends Fragment implements View.OnClickListener 
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
 }

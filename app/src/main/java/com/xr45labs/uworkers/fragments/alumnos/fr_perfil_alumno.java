@@ -10,22 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.xr45labs.uworkers.MainActivity;
-import com.xr45labs.uworkers.Modelo.alumnos;
 import com.xr45labs.uworkers.R;
-import com.xr45labs.uworkers.Util.Connections;
-import com.xr45labs.uworkers.Util.DataInterface;
-import com.xr45labs.uworkers.Util.RetrofitConnection;
 import com.xr45labs.uworkers.principal_alumnos;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 /**

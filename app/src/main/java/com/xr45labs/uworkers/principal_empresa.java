@@ -21,6 +21,7 @@ import com.xr45labs.uworkers.fragments.*;
 import com.xr45labs.uworkers.fragments.empresas.fr_add_vacante_empresa;
 import com.xr45labs.uworkers.fragments.empresas.fr_perfil_empresa;
 import com.xr45labs.uworkers.fragments.empresas.fr_perfil_empresa_config;
+import com.xr45labs.uworkers.fragments.empresas.fr_vista_vacante_empresa;
 
 public class principal_empresa extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -28,7 +29,9 @@ public class principal_empresa extends AppCompatActivity
         fr_bvacantes.OnFragmentInteractionListener,
         fr_balumnos.OnFragmentInteractionListener,
         fr_perfil_empresa_config.OnFragmentInteractionListener,
-        fr_add_vacante_empresa.OnFragmentInteractionListener{
+        fr_add_vacante_empresa.OnFragmentInteractionListener,
+        fr_vista_vacante_empresa.OnFragmentInteractionListener,
+        fr_modificar_vacante.OnFragmentInteractionListener{
     String nombre,correo;
     TextView tv_nombre_nav,tv_correo_nav;
     Fragment fragment = null;

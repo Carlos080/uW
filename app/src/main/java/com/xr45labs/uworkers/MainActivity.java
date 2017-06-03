@@ -13,7 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
-import com.xr45labs.uworkers.Modelo.alumnos;
+import com.xr45labs.uworkers.Modelo.alumno;
 import com.xr45labs.uworkers.Modelo.empresa;
 import com.xr45labs.uworkers.Modelo.login;
 import com.xr45labs.uworkers.Util.Connections;
@@ -197,12 +197,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         RetrofitConnection retrofitConnection = new RetrofitConnection();
         DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
-        Call<alumnos> service = dataInterface.perfil_alumno(idusuario);
-        service.enqueue(new Callback<alumnos>() {
+        Call<alumno> service = dataInterface.perfil_alumno(idusuario);
+        service.enqueue(new Callback<alumno>() {
             @Override
-            public void onResponse(Call<alumnos> call, Response<alumnos> response) {
+            public void onResponse(Call<alumno> call, Response<alumno> response) {
                 if(response.isSuccessful()){
-                    alumnos a = response.body();
+                    alumno a = response.body();
                     if(a.isStatus()==true){
                         SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             @Override
-            public void onFailure(Call<alumnos> call, Throwable t) {
+            public void onFailure(Call<alumno> call, Throwable t) {
                 Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

@@ -4,11 +4,28 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.xr45labs.uworkers.Modelo.alumno;
+import com.xr45labs.uworkers.Modelo.alumno_usuario;
+import com.xr45labs.uworkers.Modelo.lista_alumnos;
 import com.xr45labs.uworkers.R;
+import com.xr45labs.uworkers.Util.Connections;
+import com.xr45labs.uworkers.Util.DataInterface;
+import com.xr45labs.uworkers.Util.RetrofitConnection;
+import com.xr45labs.uworkers.adaptadores_recyclerview.alumnos_adapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +36,9 @@ import com.xr45labs.uworkers.R;
  * create an instance of this fragment.
  */
 public class fr_balumnos extends Fragment {
+    List<alumno> list = new ArrayList();
+    RecyclerView recyclerView;
+    alumnos_adapter adapter;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -65,7 +85,13 @@ public class fr_balumnos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fr_balumnos, container, false);
+        View rootview = inflater.inflate(R.layout.fragment_fr_balumnos, container, false);
+        recyclerView = (RecyclerView) rootview.findViewById(R.id.recyclerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setAdapter(adapter);
+        lista_alumnos();
+        return rootview;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -105,5 +131,30 @@ public class fr_balumnos extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void lista_alumnos(){
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<lista_alumnos> service = dataInterface.lista_alumnos();
+        service.enqueue(new Callback<lista_alumnos>() {
+            @Override
+            public void onResponse(Call<lista_alumnos> call, Response<lista_alumnos> response) {
+                if(response.isSuccessful()){
+                    lista_alumnos la = response.body();
+                    if(la.isStatus()==true){
+                        //Toast.makeText(getContext(), la.getAlumnos().get(1).getNombre(), Toast.LENGTH_SHORT).show();
+                        list = la.getAlumnos();
+                        adapter = new alumnos_adapter(getContext(),list);
+                        recyclerView.setAdapter(adapter);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<lista_alumnos> call, Throwable t) {
+
+            }
+        });
     }
 }

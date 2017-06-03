@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.xr45labs.uworkers.Modelo.empresa;
 import com.xr45labs.uworkers.R;
+import com.xr45labs.uworkers.fragments.empresas.fr_vista_vacante_empresa;
 import com.xr45labs.uworkers.fragments.fr_perfil_empresa_externo;
 
 import java.util.List;
@@ -65,6 +66,7 @@ public class empresas_adapter extends RecyclerView.Adapter<empresas_adapter.View
         public void onClick(View v) {
             int position = getAdapterPosition();
             int idempresa = list.get(position).getIdempresa();
+            Fragment fragment;
             AppCompatActivity activity = (AppCompatActivity) v.getContext();
 
             SharedPreferences sharedPreferences = activity.getSharedPreferences("data_session",Context.MODE_PRIVATE);
@@ -72,7 +74,7 @@ public class empresas_adapter extends RecyclerView.Adapter<empresas_adapter.View
 
             switch(tipo_usuario){
                 case 1:
-                    Fragment fragment = new fr_perfil_empresa_externo();
+                    fragment = new fr_perfil_empresa_externo();
                     Bundle bundle = new Bundle();
                     bundle.putInt("idempresa",idempresa);
 
@@ -81,9 +83,12 @@ public class empresas_adapter extends RecyclerView.Adapter<empresas_adapter.View
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.content_principal_alumnos,fragment,null).commit();
                     break;
                 case 2:
+                    Toast.makeText(context, "kjdhfsjhfkjshdf", Toast.LENGTH_SHORT).show();
                     break;
                 case 3:
+
                     break;
+                
             }
         }
     }
