@@ -7,8 +7,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.xr45labs.uworkers.Modelo.vacante;
 import com.xr45labs.uworkers.R;
+import com.xr45labs.uworkers.Util.Connections;
+import com.xr45labs.uworkers.Util.DataInterface;
+import com.xr45labs.uworkers.Util.RetrofitConnection;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +29,8 @@ import com.xr45labs.uworkers.R;
  * create an instance of this fragment.
  */
 public class fr_modificar_vacante extends Fragment {
+    EditText et_nombre_vacante,et_descripcion_vacante,et_sueldo;
+    int idvacante;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -65,7 +77,16 @@ public class fr_modificar_vacante extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fr_modificar_vacante, container, false);
+        View rootview = inflater.inflate(R.layout.fragment_fr_modificar_vacante, container, false);
+        idvacante = getArguments().getInt("idvacante");
+
+        et_nombre_vacante = (EditText) rootview.findViewById(R.id.et_nombre_vacante);
+        et_descripcion_vacante = (EditText) rootview.findViewById(R.id.et_descripcion_vacante);
+        et_sueldo = (EditText) rootview.findViewById(R.id.et_sueldo);
+
+        datos_vacante(idvacante);
+
+        return rootview;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -105,5 +126,30 @@ public class fr_modificar_vacante extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void datos_vacante(final int idvacante){
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<vacante> service = dataInterface.datos_vacante(idvacante);
+        service.enqueue(new Callback<vacante>() {
+            @Override
+            public void onResponse(Call<vacante> call, Response<vacante> response) {
+                if(response.isSuccessful()){
+                    vacante v = response.body();
+                    if(v.isStatus()==true){
+                        //Toast.makeText(getContext(), v.getNombre(), Toast.LENGTH_SHORT).show();
+                        et_nombre_vacante.setText(v.getNombre());
+                        et_descripcion_vacante.setText(v.getDescripcion());
+                        et_sueldo.setText(String.valueOf(v.getSueldo()));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<vacante> call, Throwable t) {
+
+            }
+        });
     }
 }

@@ -10,9 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.xr45labs.uworkers.Modelo.vacante;
 import com.xr45labs.uworkers.R;
+import com.xr45labs.uworkers.Util.Connections;
+import com.xr45labs.uworkers.Util.DataInterface;
+import com.xr45labs.uworkers.Util.RetrofitConnection;
 import com.xr45labs.uworkers.fragments.fr_modificar_vacante;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +37,7 @@ public class fr_vista_vacante_empresa extends Fragment implements View.OnClickLi
     String nombre,descripcion,turno,horario,sueldo,fecha;
     int idvacante;
     Fragment fragment;
+    Bundle bundle;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -102,7 +112,6 @@ public class fr_vista_vacante_empresa extends Fragment implements View.OnClickLi
         tv_sueldo.setText(sueldo);
         tv_fecha_publicacion.setText(fecha);
 
-
         return rootview;
     }
 
@@ -135,10 +144,12 @@ public class fr_vista_vacante_empresa extends Fragment implements View.OnClickLi
         switch(v.getId()){
             case R.id.btn_modificar_vacante:
                 fragment = new fr_modificar_vacante();
-                /*Fragment fragment = new fr_modificar_vacante();
+                bundle = new Bundle();
+                bundle.putInt("idvacante",idvacante);
+                fragment.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.content_principal_alumnos,fragment,null);
-                fragmentTransaction.commit();*/
+                fragmentTransaction.replace(R.id.content_principal_empresa,fragment,null);
+                fragmentTransaction.commit();
 
                 break;
 
@@ -161,4 +172,6 @@ public class fr_vista_vacante_empresa extends Fragment implements View.OnClickLi
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
 }
