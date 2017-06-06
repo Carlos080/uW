@@ -12,11 +12,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.xr45labs.uworkers.Modelo.GeneralPOJO;
 import com.xr45labs.uworkers.Modelo.vacante;
 import com.xr45labs.uworkers.R;
 import com.xr45labs.uworkers.Util.Connections;
 import com.xr45labs.uworkers.Util.DataInterface;
 import com.xr45labs.uworkers.Util.RetrofitConnection;
+import com.xr45labs.uworkers.fragments.fr_bvacantes;
 import com.xr45labs.uworkers.fragments.fr_modificar_vacante;
 
 import retrofit2.Call;
@@ -144,16 +146,22 @@ public class fr_vista_vacante_empresa extends Fragment implements View.OnClickLi
         switch(v.getId()){
             case R.id.btn_modificar_vacante:
                 fragment = new fr_modificar_vacante();
+                FragmentTransaction fragmentTransaction;
                 bundle = new Bundle();
                 bundle.putInt("idvacante",idvacante);
                 fragment.setArguments(bundle);
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.content_principal_empresa,fragment,null);
                 fragmentTransaction.commit();
 
                 break;
 
             case R.id.btn_eliminar_vacante:
+                eliminar_vacante(idvacante);
+                /*fragment = new fr_bvacantes();
+                fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.content_principal_empresa,fragment,null);
+                fragmentTransaction.commit();*/
                 break;
         }
     }
@@ -173,5 +181,29 @@ public class fr_vista_vacante_empresa extends Fragment implements View.OnClickLi
         void onFragmentInteraction(Uri uri);
     }
 
+    public void eliminar_vacante(int idvacante){
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<GeneralPOJO> service = dataInterface.eliminar_vacante(idvacante);
+        service.enqueue(new Callback<GeneralPOJO>() {
+            @Override
+            public void onResponse(Call<GeneralPOJO> call, Response<GeneralPOJO> response) {
+                if(response.isSuccessful()){
+                    GeneralPOJO generalPOJO = response.body();
+                    if(generalPOJO.isStatus()==true){
+                        Toast.makeText(getContext(), generalPOJO.getMessage(), Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getContext(), generalPOJO.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(getContext(), "Error...", Toast.LENGTH_SHORT).show();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<GeneralPOJO> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }

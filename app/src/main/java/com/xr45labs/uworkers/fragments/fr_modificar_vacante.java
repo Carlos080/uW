@@ -3,18 +3,25 @@ package com.xr45labs.uworkers.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.xr45labs.uworkers.Modelo.GeneralPOJO;
 import com.xr45labs.uworkers.Modelo.vacante;
 import com.xr45labs.uworkers.R;
 import com.xr45labs.uworkers.Util.Connections;
 import com.xr45labs.uworkers.Util.DataInterface;
 import com.xr45labs.uworkers.Util.RetrofitConnection;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,9 +35,12 @@ import retrofit2.Response;
  * Use the {@link fr_modificar_vacante#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fr_modificar_vacante extends Fragment {
+public class fr_modificar_vacante extends Fragment implements View.OnClickListener {
     EditText et_nombre_vacante,et_descripcion_vacante,et_sueldo;
-    int idvacante;
+    RadioGroup rg_horario,rg_turno;
+    Button btn_guardar;
+    String nombre,descripcion,turno="",horario="",fecha_publicacion;
+    int idvacante,sueldo;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -79,12 +89,58 @@ public class fr_modificar_vacante extends Fragment {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_fr_modificar_vacante, container, false);
         idvacante = getArguments().getInt("idvacante");
+        datos_vacante(idvacante);
 
         et_nombre_vacante = (EditText) rootview.findViewById(R.id.et_nombre_vacante);
         et_descripcion_vacante = (EditText) rootview.findViewById(R.id.et_descripcion_vacante);
         et_sueldo = (EditText) rootview.findViewById(R.id.et_sueldo);
+        rg_horario = (RadioGroup) rootview.findViewById(R.id.rg_horario);
+        btn_guardar = (Button) rootview.findViewById(R.id.btn_guardar);
+        btn_guardar.setOnClickListener(this);
 
-        datos_vacante(idvacante);
+        rg_horario.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int horarioId) {
+                switch(horarioId){
+                    case R.id.rb_matutino:
+                        horario = "Matutino";
+                        break;
+
+                    case R.id.rb_vespertino:
+                        horario = "Vespertino";
+                        break;
+
+                    case R.id.rb_nocturno:
+                        horario = "Nocturno";
+                        break;
+
+                    default:
+                        horario = "";
+                        break;
+                }
+            }
+        });
+        rg_turno = (RadioGroup) rootview.findViewById(R.id.rg_turno);
+        rg_turno.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int turnoId) {
+                switch(turnoId){
+                    case R.id.rb_mediotiempo:
+                        turno = "Medio tiempo";
+                        break;
+
+                    case R.id.rb_tiempo_completo:
+                        turno = "Tiempo completo";
+                        break;
+
+                    default:
+                        turno ="";
+                        break;
+                }
+            }
+        });
+
+
 
         return rootview;
     }
@@ -112,6 +168,12 @@ public class fr_modificar_vacante extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    @Override
+    public void onClick(View v) {
+        datos();
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this
@@ -142,14 +204,65 @@ public class fr_modificar_vacante extends Fragment {
                         et_nombre_vacante.setText(v.getNombre());
                         et_descripcion_vacante.setText(v.getDescripcion());
                         et_sueldo.setText(String.valueOf(v.getSueldo()));
+                    }else{
+                        Toast.makeText(getContext(), v.getMessage(), Toast.LENGTH_SHORT).show();
                     }
+                }else{
+                    Toast.makeText(getContext(), "Error...", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<vacante> call, Throwable t) {
-
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void mod_vacante(String nombre, String descripcion, String turno, String horario, int sueldo, String fecha_publicacion, int idvacante){
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<GeneralPOJO> servicio = dataInterface.mod_vacante(nombre,descripcion,turno,horario,sueldo,fecha_publicacion,idvacante);
+        servicio.enqueue(new Callback<GeneralPOJO>() {
+            @Override
+            public void onResponse(Call<GeneralPOJO> call, Response<GeneralPOJO> response) {
+                if(response.isSuccessful()){
+                    GeneralPOJO generalPOJO = response.body();
+                    if(generalPOJO.isStatus()==true){
+                        Toast.makeText(getContext(), generalPOJO.getMessage(), Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getContext(), generalPOJO.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(getContext(), "Error...", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GeneralPOJO> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
+    public void datos(){
+        if((!et_nombre_vacante.getText().toString().equals("")) && (!et_descripcion_vacante.getText().toString().equals("")) && (!et_sueldo.getText().toString().equals("")) && (!horario.equals("")) && (!turno.equals(""))) {
+            nombre = et_nombre_vacante.getText().toString();
+            descripcion = et_descripcion_vacante.getText().toString();
+            sueldo = Integer.parseInt(et_sueldo.getText().toString());
+            Date fechaActual = new Date();
+            SimpleDateFormat apptivaWeb = new SimpleDateFormat("dd-MM-yyyy");
+            fecha_publicacion = apptivaWeb.format(fechaActual);
+
+            mod_vacante(nombre,descripcion,turno,horario,sueldo,fecha_publicacion,idvacante);
+            //Toast.makeText(getContext(), nombre+" "+horario+" "+turno+" "+" "+String.valueOf(sueldo)+" "+String.valueOf(idvacante)+" "+ fecha_publicacion, Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getContext(), "No se han llenado los campos correctamente...", Toast.LENGTH_SHORT).show();
+        }
+
+
+
     }
 }
