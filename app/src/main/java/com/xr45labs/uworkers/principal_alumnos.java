@@ -15,14 +15,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
+import com.xr45labs.uworkers.Modelo.alumno;
+import com.xr45labs.uworkers.Util.Connections;
+import com.xr45labs.uworkers.Util.DataInterface;
+import com.xr45labs.uworkers.Util.RetrofitConnection;
 import com.xr45labs.uworkers.fragments.alumnos.fr_alumno_vacante;
 import com.xr45labs.uworkers.fragments.fr_bempresas;
 import com.xr45labs.uworkers.fragments.fr_bvacantes;
 import com.xr45labs.uworkers.fragments.alumnos.fr_perfil_alumno;
 import com.xr45labs.uworkers.fragments.alumnos.fr_perfil_alumno_config;
 import com.xr45labs.uworkers.fragments.fr_perfil_empresa_externo;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class principal_alumnos extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -60,8 +69,7 @@ public class principal_alumnos extends AppCompatActivity
 
         tv_nombre = (TextView) vistaheader.findViewById(R.id.tv_nombre_nav);
         tv_nocontrol = (TextView) vistaheader.findViewById(R.id.tv_nocontrol_nav);
-        tv_nombre.setText(nombre);
-        tv_nocontrol.setText(String.valueOf(no_control));
+
 
         Fragment fragment = new fr_perfil_alumno();
         boolean fragmentTransaction = true;
@@ -105,6 +113,9 @@ public class principal_alumnos extends AppCompatActivity
             fragment = new fr_perfil_alumno();
             FragmentTransaction = true;
         }  else if (id == R.id.nav_logout) {
+            SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear().commit();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
@@ -132,8 +143,51 @@ public class principal_alumnos extends AppCompatActivity
 
     public void datos_perfil(){
         SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
-        nombre = sharedPreferences.getString("nombre",null);
-        no_control = sharedPreferences.getInt("no_control",0);
+        idusuario = sharedPreferences.getInt("idusuario",0);
+
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<alumno> service = dataInterface.perfil_alumno(idusuario);
+        service.enqueue(new Callback<alumno>() {
+            @Override
+            public void onResponse(Call<alumno> call, Response<alumno> response) {
+                if(response.isSuccessful()){
+                    alumno a = response.body();
+                    if(a.isStatus()==true){
+                        nombre = a.getNombre();
+                        no_control = a.getNo_control();
+                        SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("nombre",a.getNombre());
+                        editor.putInt("no_control",a.getNo_control());
+                        editor.putString("telefono",a.getTelefono());
+                        editor.putString("carrera",a.getCarrera());
+                        editor.putString("objetivos",a.getObjetivos());
+                        editor.putString("conocimientos",a.getConocimientos());
+                        editor.putString("experiencia_laboral",a.getExperiencia_laboral());
+                        editor.commit();
+
+                        tv_nombre.setText(nombre);
+                        tv_nocontrol.setText(String.valueOf(no_control));
+                    }else {
+                        //Toast.makeText(SplashScreen.this, a.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+
+                }else{
+                    //Toast.makeText(SplashScreen.this, "Error al cargar...", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<alumno> call, Throwable t) {
+                //Toast.makeText(SplashScreen.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+        /*nombre = sharedPreferences.getString("nombre",null);
+        no_control = sharedPreferences.getInt("no_control",0);*/
+        //Toast.makeText(this, String.valueOf(sharedPreferences.getInt("idusuario",0)), Toast.LENGTH_SHORT).show();
+
 
 }

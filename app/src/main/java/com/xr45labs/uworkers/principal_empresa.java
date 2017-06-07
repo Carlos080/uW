@@ -15,13 +15,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
+import com.xr45labs.uworkers.Modelo.empresa;
+import com.xr45labs.uworkers.Util.Connections;
+import com.xr45labs.uworkers.Util.DataInterface;
+import com.xr45labs.uworkers.Util.RetrofitConnection;
 import com.xr45labs.uworkers.fragments.*;
 import com.xr45labs.uworkers.fragments.empresas.fr_add_vacante_empresa;
 import com.xr45labs.uworkers.fragments.empresas.fr_perfil_empresa;
 import com.xr45labs.uworkers.fragments.empresas.fr_perfil_empresa_config;
 import com.xr45labs.uworkers.fragments.empresas.fr_vista_vacante_empresa;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class principal_empresa extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -33,6 +42,7 @@ public class principal_empresa extends AppCompatActivity
         fr_vista_vacante_empresa.OnFragmentInteractionListener,
         fr_modificar_vacante.OnFragmentInteractionListener{
     String nombre,correo;
+    int idusuario;
     TextView tv_nombre_nav,tv_correo_nav;
     Fragment fragment = null;
     boolean FragmentTransaction = false;
@@ -57,8 +67,7 @@ public class principal_empresa extends AppCompatActivity
         View vistaheader = navigationView.getHeaderView(0);
         tv_nombre_nav = (TextView) vistaheader.findViewById(R.id.tv_nombre_nav);
         tv_correo_nav = (TextView) vistaheader.findViewById(R.id.tv_correo_nav);
-        tv_nombre_nav.setText(nombre);
-        tv_correo_nav.setText(correo);
+
 
         Fragment fragment = new fr_perfil_empresa();
         getSupportFragmentManager().beginTransaction()
@@ -102,9 +111,11 @@ public class principal_empresa extends AppCompatActivity
             FragmentTransaction = true;
 
         } else if (id == R.id.nav_logout) {
+            SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear().commit();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-
         }
 
         if(FragmentTransaction){
@@ -127,9 +138,45 @@ public class principal_empresa extends AppCompatActivity
 
     }
 
+
     public void datos_perfil(){
         SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
-        nombre = sharedPreferences.getString("nombre",null);
+        idusuario = sharedPreferences.getInt("idusuario",0);
         correo = sharedPreferences.getString("correo",null);
+
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<empresa> service = dataInterface.perfil_empresa(idusuario);
+        service.enqueue(new Callback<empresa>() {
+            @Override
+            public void onResponse(Call<empresa> call, Response<empresa> response) {
+                if(response.isSuccessful()){
+                    empresa e = response.body();
+                    if(e.isStatus()==true){
+                        SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putInt("idempresa",e.getIdempresa());
+                        editor.putString("nombre",e.getNombre());
+                        editor.putString("descripcion",e.getDescripcion());
+                        editor.putString("telefono",e.getTelefono());
+                        editor.putString("giro",e.getGiro());
+                        editor.commit();
+
+                        tv_nombre_nav.setText(e.getNombre());
+                        tv_correo_nav.setText(correo);
+                    }else{
+                        Toast.makeText(principal_empresa.this, "Error al obtener los datos de la empresa...", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(principal_empresa.this, "Error de operacion...", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<empresa> call, Throwable t) {
+                Toast.makeText(principal_empresa.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

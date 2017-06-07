@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        comprobacion_sesion();
+        //comprobacion_sesion();
 
         HideKeyboard esconderteclado = new HideKeyboard();
         esconderteclado.setupUI(findViewById(R.id.activity_main),MainActivity.this);
@@ -142,13 +142,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         ///
                         switch(l.getTipo()){
                             case 1:
-                                alumno_datos(idusuario);
                                 intent = new Intent(getApplicationContext(),principal_alumnos.class);
                                 startActivity(intent);
                                 break;
 
                             case 2:
-                                empresa_datos(idusuario);
                                 intent = new Intent(getApplicationContext(),principal_empresa.class);
                                 startActivity(intent);
                                 break;
@@ -193,75 +191,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void alumno_datos(int idusuario){
 
-        RetrofitConnection retrofitConnection = new RetrofitConnection();
-        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
-        Call<alumno> service = dataInterface.perfil_alumno(idusuario);
-        service.enqueue(new Callback<alumno>() {
-            @Override
-            public void onResponse(Call<alumno> call, Response<alumno> response) {
-                if(response.isSuccessful()){
-                    alumno a = response.body();
-                    if(a.isStatus()==true){
-                        SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("nombre",a.getNombre());
-                        editor.putInt("no_control",a.getNo_control());
-                        editor.putString("telefono",a.getTelefono());
-                        editor.putString("carrera",a.getCarrera());
-                        editor.putString("objetivos",a.getObjetivos());
-                        editor.putString("conocimientos",a.getConocimientos());
-                        editor.putString("experiencia_laboral",a.getExperiencia_laboral());
-                        editor.commit();
 
-                    }else {
-                        Toast.makeText(MainActivity.this, a.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
 
-                }else{
-                    Toast.makeText(MainActivity.this, "Error al cargar...", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<alumno> call, Throwable t) {
-                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void empresa_datos(int idusuario){
-        RetrofitConnection retrofitConnection = new RetrofitConnection();
-        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
-        Call<empresa> service = dataInterface.perfil_empresa(idusuario);
-        service.enqueue(new Callback<empresa>() {
-            @Override
-            public void onResponse(Call<empresa> call, Response<empresa> response) {
-                if(response.isSuccessful()){
-                    empresa e = response.body();
-                    if(e.isStatus()==true){
-                        SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putInt("idempresa",e.getIdempresa());
-                        editor.putString("nombre",e.getNombre());
-                        editor.putString("descripcion",e.getDescripcion());
-                        editor.putString("telefono",e.getTelefono());
-                        editor.putString("giro",e.getGiro());
-                        editor.commit();
-                    }else{
-                        Toast.makeText(MainActivity.this, "Error al obtener los datos de la empresa...", Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    Toast.makeText(MainActivity.this, "Error de operacion...", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<empresa> call, Throwable t) {
-                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
 }
