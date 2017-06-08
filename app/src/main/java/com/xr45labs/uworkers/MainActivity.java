@@ -88,25 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.btn_sigup:
-                if(tipoc!=null){
-                    switch(tipoc){
-                        case "alumno":
-                            intent = new Intent(this, crearcuenta_alumno_content.class);
-                            startActivity(intent);
-                            break;
-
-                        case "empresa":
-                            intent = new Intent(this, crearcuenta_empresa_content.class);
-                            startActivity(intent);
-                            break;
-                        default:
-                            break;
-                    }
-                }else{
-                    Toast toast = Toast.makeText(this, "Selecciona un tipo de usuario...", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-
+                nueva_cuenta();
                 break;
         }
     }
@@ -177,18 +159,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void comprobacion_sesion(){
-        SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
+    public void nueva_cuenta(){
+        if(tipoc!=null){
+            switch(tipoc){
+                case "alumno":
+                    intent = new Intent(this, crearcuenta_alumno_content.class);
+                    startActivity(intent);
+                    break;
 
-        correo = sharedPreferences.getString("correo",null);
-        contrasena = sharedPreferences.getString("contrasena",null);
-        idusuario = sharedPreferences.getInt("idusuario",0);
-        foto_perfil = sharedPreferences.getString("foto_perfil",null);
-        foto_fondo = sharedPreferences.getString("foto_fondo",null);
-        tipo = sharedPreferences.getInt("tipo",0);
-
-        login_metodo(correo,contrasena);
-
+                case "empresa":
+                    intent = new Intent(this, crearcuenta_empresa_content.class);
+                    startActivity(intent);
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            Toast toast = Toast.makeText(this, "Selecciona un tipo de usuario...", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
 

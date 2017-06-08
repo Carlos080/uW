@@ -66,11 +66,7 @@
 
             <TextView
                 android:id="@+id/tv_objetivos"
-                android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis venenatis velit et metus. Duis lacinia leo in velit. Sed tristique.
- Sed id turpis malesuada nulla bibendum iaculis. In nec velit. Fusce augue diam, sollicitudin eu, porttitor vel, euismod vel, nisl.
- Aenean venenatis quam eu massa. Pellentesque non lorem non tortor placerat vulputate. Maecenas eleifend nibh ut lectus.
-Morbi eget eros. Sed luctus porta justo. Fusce eget est eu elit suscipit cursus. Duis a arcu et diam suscipit facilisis.
-Pellentesque lobortis libero et metus."
+                android:text=""
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_ico_objetivos" />
@@ -85,11 +81,7 @@ Pellentesque lobortis libero et metus."
 
             <TextView
                 android:id="@+id/tv_conocimientos"
-                android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis venenatis velit et metus. Duis lacinia leo in velit. Sed tristique.
- Sed id turpis malesuada nulla bibendum iaculis. In nec velit. Fusce augue diam, sollicitudin eu, porttitor vel, euismod vel, nisl.
- Aenean venenatis quam eu massa. Pellentesque non lorem non tortor placerat vulputate. Maecenas eleifend nibh ut lectus.
-Morbi eget eros. Sed luctus porta justo. Fusce eget est eu elit suscipit cursus. Duis a arcu et diam suscipit facilisis.
-Pellentesque lobortis libero et metus."
+                android:text=""
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_ico_conocimientos"/>
@@ -104,11 +96,7 @@ Pellentesque lobortis libero et metus."
 
             <TextView
                 android:id="@+id/tv_experiencia"
-                android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis venenatis velit et metus. Duis lacinia leo in velit. Sed tristique.
- Sed id turpis malesuada nulla bibendum iaculis. In nec velit. Fusce augue diam, sollicitudin eu, porttitor vel, euismod vel, nisl.
- Aenean venenatis quam eu massa. Pellentesque non lorem non tortor placerat vulputate. Maecenas eleifend nibh ut lectus.
-Morbi eget eros. Sed luctus porta justo. Fusce eget est eu elit suscipit cursus. Duis a arcu et diam suscipit facilisis.
-Pellentesque lobortis libero et metus."
+                android:text=""
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_ico_experiencia"/>

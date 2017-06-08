@@ -11,9 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.xr45labs.uworkers.Modelo.alumno;
 import com.xr45labs.uworkers.R;
+import com.xr45labs.uworkers.Util.Connections;
+import com.xr45labs.uworkers.Util.DataInterface;
+import com.xr45labs.uworkers.Util.RetrofitConnection;
 import com.xr45labs.uworkers.principal_alumnos;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -152,6 +161,49 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
     }
 
     public void datos_perfil(){
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("data_session",Context.MODE_PRIVATE);
+        idusuario = sharedPreferences.getInt("idusuario",0);
+
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<alumno> service = dataInterface.perfil_alumno(idusuario);
+        service.enqueue(new Callback<alumno>() {
+            @Override
+            public void onResponse(Call<alumno> call, Response<alumno> response) {
+                if(response.isSuccessful()){
+                    alumno a = response.body();
+                    if(a.isStatus()==true){
+                        nombre = a.getNombre();
+                        no_control = a.getNo_control();
+                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("data_session",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("nombre",a.getNombre());
+                        editor.putInt("no_control",a.getNo_control());
+                        editor.putString("telefono",a.getTelefono());
+                        editor.putString("carrera",a.getCarrera());
+                        editor.putString("objetivos",a.getObjetivos());
+                        editor.putString("conocimientos",a.getConocimientos());
+                        editor.putString("experiencia_laboral",a.getExperiencia_laboral());
+                        editor.commit();
+
+                        datos_alumno();
+                    }else {
+                        Toast.makeText(getContext(), a.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }else{
+                    Toast.makeText(getContext(), "Error al cargar...", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<alumno> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void datos_alumno(){
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("data_session",Context.MODE_PRIVATE);
 
         nombre = sharedPreferences.getString("nombre",null);
@@ -172,6 +224,7 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
 
 
     }
+    
 
 
 }

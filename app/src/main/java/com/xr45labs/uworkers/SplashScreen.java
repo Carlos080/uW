@@ -36,7 +36,6 @@ public class SplashScreen extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("data_session", Context.MODE_PRIVATE);
         String correo = sharedPreferences.getString("correo","");
         String contrasena = sharedPreferences.getString("contrasena","");
-
         if((!correo.equals(""))&&(!contrasena.equals(""))){
             login_metodo(correo,contrasena);
         }else{
@@ -105,8 +104,8 @@ public class SplashScreen extends AppCompatActivity {
                 break;
 
             case 2:
-                empresa_datos(idusuario);
-                intent = new Intent(getApplicationContext(),principal_alumnos.class);
+                //empresa_datos(idusuario);
+                intent = new Intent(getApplicationContext(),principal_empresa.class);
                 startActivity(intent);
                 break;
 

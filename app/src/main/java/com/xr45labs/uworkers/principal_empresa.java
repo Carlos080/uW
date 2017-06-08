@@ -47,6 +47,7 @@ public class principal_empresa extends AppCompatActivity
     Fragment fragment = null;
     boolean FragmentTransaction = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,11 +64,13 @@ public class principal_empresa extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        datos_perfil();
+
+
         View vistaheader = navigationView.getHeaderView(0);
         tv_nombre_nav = (TextView) vistaheader.findViewById(R.id.tv_nombre_nav);
         tv_correo_nav = (TextView) vistaheader.findViewById(R.id.tv_correo_nav);
 
+        datos_perfil();
 
         Fragment fragment = new fr_perfil_empresa();
         getSupportFragmentManager().beginTransaction()
