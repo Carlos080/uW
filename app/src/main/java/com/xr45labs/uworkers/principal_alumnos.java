@@ -170,24 +170,19 @@ public class principal_alumnos extends AppCompatActivity
                         tv_nombre.setText(nombre);
                         tv_nocontrol.setText(String.valueOf(no_control));
                     }else {
-                        //Toast.makeText(SplashScreen.this, a.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(principal_alumnos.this, a.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
 
                 }else{
-                    //Toast.makeText(SplashScreen.this, "Error al cargar...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(principal_alumnos.this, "Error al cargar...", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<alumno> call, Throwable t) {
-                //Toast.makeText(SplashScreen.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(principal_alumnos.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
-        /*nombre = sharedPreferences.getString("nombre",null);
-        no_control = sharedPreferences.getInt("no_control",0);*/
-        //Toast.makeText(this, String.valueOf(sharedPreferences.getInt("idusuario",0)), Toast.LENGTH_SHORT).show();
-
-
 }
