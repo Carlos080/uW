@@ -14,31 +14,35 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
-
         </activity>
         <activity
             android:name=".principal_alumnos"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".principal_empresa"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".principal_instituto"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".crearcuenta_alumno_content"/>
+            android:name=".crearcuenta_alumno_content"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".crearcuenta_empresa_content" />
+            android:name=".crearcuenta_empresa_content"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SplashScreen"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

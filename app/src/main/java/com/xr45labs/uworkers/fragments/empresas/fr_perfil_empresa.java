@@ -45,7 +45,7 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
 
     private static final int PICK_IMAGE = 100;
     Uri imageUri;
-    ImageView imageview;
+    de.hdodenhof.circleimageview.CircleImageView civ;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -94,8 +94,9 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.fragment_fr_perfil_empresa, container, false);
-        imageview = (ImageView) rootView.findViewById(R.id.imageView);
-        imageview.setOnClickListener(this);
+        civ = (de.hdodenhof.circleimageview.CircleImageView) rootView.findViewById(R.id.profile_image);
+        civ.setOnClickListener(this);
+
         tv_nombre_nav = (TextView) rootView.findViewById(R.id.tv_nombre_nav);
         tv_secundario_nav = (TextView) rootView.findViewById(R.id.tv_secundario_nav);
         tv_giro = (TextView) rootView.findViewById(R.id.tv_giro);
@@ -145,6 +146,10 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
                 Fragment fragment = new fr_perfil_empresa_config();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.content_principal_empresa,fragment).commit();
+                break;
+
+            case R.id.profile_image:
+                openGallery();
                 break;
         }
     }
@@ -236,7 +241,7 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         if(resultCode == RESULT_OK && requestCode == PICK_IMAGE){
             imageUri = data.getData();
-            imageview.setImageURI(imageUri);
+            civ.setImageURI(imageUri);
         }
     }
 }
