@@ -1,10 +1,12 @@
 package com.xr45labs.uworkers.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -171,7 +173,8 @@ public class fr_modificar_vacante extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        datos();
+        //datos();
+        dialog();
     }
 
 
@@ -265,4 +268,26 @@ public class fr_modificar_vacante extends Fragment implements View.OnClickListen
 
 
     }
+
+    public void dialog(){
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
+
+        builder.setMessage("¿Confirma la acción seleccionada?")
+                .setTitle("Confirmacion")
+                .setPositiveButton("Cancelar", new DialogInterface.OnClickListener()  {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                })
+                .setNegativeButton("Aceptar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        datos();
+                        dialog.cancel();
+                    }
+                });
+
+        android.app.AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
 }

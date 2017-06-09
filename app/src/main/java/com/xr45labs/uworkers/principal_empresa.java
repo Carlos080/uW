@@ -1,6 +1,7 @@
 package com.xr45labs.uworkers;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -43,6 +44,7 @@ public class principal_empresa extends AppCompatActivity
         fr_modificar_vacante.OnFragmentInteractionListener{
     String nombre,correo;
     int idusuario;
+    Context context = this;
     TextView tv_nombre_nav,tv_correo_nav;
     Fragment fragment = null;
     boolean FragmentTransaction = false;
@@ -114,11 +116,12 @@ public class principal_empresa extends AppCompatActivity
             FragmentTransaction = true;
 
         } else if (id == R.id.nav_logout) {
-            SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
+            /*SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.clear().commit();
             Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            startActivity(intent);*/
+            dialog();
         }
 
         if(FragmentTransaction){
@@ -182,4 +185,30 @@ public class principal_empresa extends AppCompatActivity
         });
 
     }
+
+    public void dialog(){
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+
+        builder.setMessage("¿Confirma la acción seleccionada?")
+                .setTitle("Confirmacion")
+                .setPositiveButton("Cancelar", new DialogInterface.OnClickListener()  {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                })
+                .setNegativeButton("Aceptar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.clear().commit();
+                        Intent intent = new Intent(context, MainActivity.class);
+                        startActivity(intent);
+                        dialog.cancel();
+                    }
+                });
+
+        android.app.AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
 }

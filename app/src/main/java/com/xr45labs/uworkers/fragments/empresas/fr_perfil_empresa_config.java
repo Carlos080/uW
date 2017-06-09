@@ -1,6 +1,7 @@
 package com.xr45labs.uworkers.fragments.empresas;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -119,7 +120,7 @@ public class fr_perfil_empresa_config extends Fragment implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        mod_empresa();
+        dialog();
     }
 
     /**
@@ -182,4 +183,26 @@ public class fr_perfil_empresa_config extends Fragment implements View.OnClickLi
             }
         });
     }
+
+    public void dialog(){
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
+
+        builder.setMessage("¿Confirma la acción seleccionada?")
+                .setTitle("Confirmacion")
+                .setPositiveButton("Cancelar", new DialogInterface.OnClickListener()  {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                })
+                .setNegativeButton("Aceptar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        mod_empresa();
+                        dialog.cancel();
+                    }
+                });
+
+        android.app.AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
 }

@@ -1,6 +1,8 @@
 package com.xr45labs.uworkers.fragments.empresas;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -157,11 +159,9 @@ public class fr_vista_vacante_empresa extends Fragment implements View.OnClickLi
                 break;
 
             case R.id.btn_eliminar_vacante:
-                eliminar_vacante(idvacante);
-                /*fragment = new fr_bvacantes();
-                fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.content_principal_empresa,fragment,null);
-                fragmentTransaction.commit();*/
+                //eliminar_vacante(idvacante);
+                dialog();
+
                 break;
         }
     }
@@ -191,7 +191,10 @@ public class fr_vista_vacante_empresa extends Fragment implements View.OnClickLi
                 if(response.isSuccessful()){
                     GeneralPOJO generalPOJO = response.body();
                     if(generalPOJO.isStatus()==true){
-                        Toast.makeText(getContext(), generalPOJO.getMessage(), Toast.LENGTH_SHORT).show();
+                        fragment = new fr_bvacantes();
+                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.content_principal_empresa,fragment,null);
+                        fragmentTransaction.commit();
                     }else{
                         Toast.makeText(getContext(), generalPOJO.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -205,5 +208,26 @@ public class fr_vista_vacante_empresa extends Fragment implements View.OnClickLi
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void dialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        builder.setMessage("¿Confirma la acción seleccionada?")
+                .setTitle("Confirmacion")
+                .setPositiveButton("Cancelar", new DialogInterface.OnClickListener()  {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                })
+                .setNegativeButton("Aceptar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        eliminar_vacante(idvacante);
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

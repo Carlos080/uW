@@ -1,15 +1,18 @@
 package com.xr45labs.uworkers.fragments.empresas;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -37,6 +42,11 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
     String nombre,correo,giro,descripcion,telefono;
     int idempresa,idusuario;
     Button btn_perfil_emp_config;
+
+    private static final int PICK_IMAGE = 100;
+    Uri imageUri;
+    ImageView imageview;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -84,13 +94,15 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.fragment_fr_perfil_empresa, container, false);
-        btn_perfil_emp_config = (Button) rootView.findViewById(R.id.btn_perfil_emp_conf);
-        btn_perfil_emp_config.setOnClickListener(this);
+        imageview = (ImageView) rootView.findViewById(R.id.imageView);
+        imageview.setOnClickListener(this);
         tv_nombre_nav = (TextView) rootView.findViewById(R.id.tv_nombre_nav);
         tv_secundario_nav = (TextView) rootView.findViewById(R.id.tv_secundario_nav);
         tv_giro = (TextView) rootView.findViewById(R.id.tv_giro);
         tv_descripcion = (TextView) rootView.findViewById(R.id.tv_descripcion);
         tv_telefono = (TextView) rootView.findViewById(R.id.tv_phone);
+        btn_perfil_emp_config = (Button) rootView.findViewById(R.id.btn_perfil_emp_conf);
+        btn_perfil_emp_config.setOnClickListener(this);
 
         //datos_empresa();
         datos_perfil();
@@ -123,9 +135,18 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        Fragment fragment = new fr_perfil_empresa_config();
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_principal_empresa,fragment).commit();
+
+        switch(v.getId()){
+            case R.id.imageView:
+                openGallery();
+                break;
+
+            case R.id.btn_perfil_emp_conf:
+                Fragment fragment = new fr_perfil_empresa_config();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.content_principal_empresa,fragment).commit();
+                break;
+        }
     }
 
     /**
@@ -197,5 +218,25 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
         tv_descripcion.setText(descripcion);
         tv_telefono.setText(telefono);
 
+    }
+
+
+
+
+
+    /////////////////////////////////////////////////////////////////////////
+
+
+    private void openGallery(){
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(gallery, PICK_IMAGE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(resultCode == RESULT_OK && requestCode == PICK_IMAGE){
+            imageUri = data.getData();
+            imageview.setImageURI(imageUri);
+        }
     }
 }
