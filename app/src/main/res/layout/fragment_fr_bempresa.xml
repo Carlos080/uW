@@ -7,9 +7,9 @@
 
     <TextView
         android:id="@+id/tv_ico_bempresas"
+        android:text="@string/bempresas"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/bempresas"/>
+        android:layout_height="wrap_content"/>
 
     <SearchView
         android:id="@+id/sv_empresas"

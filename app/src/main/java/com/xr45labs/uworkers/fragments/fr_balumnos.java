@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.xr45labs.uworkers.Modelo.alumno;
-import com.xr45labs.uworkers.Modelo.alumno_usuario;
+import com.xr45labs.uworkers.Modelo.alumno_datos;
 import com.xr45labs.uworkers.Modelo.lista_alumnos;
 import com.xr45labs.uworkers.R;
 import com.xr45labs.uworkers.Util.Connections;
@@ -36,8 +36,8 @@ import retrofit2.Response;
  * create an instance of this fragment.
  */
 public class fr_balumnos extends Fragment {
-    List<alumno> list = new ArrayList();
-    RecyclerView recyclerView;
+    List<alumno_datos> list = new ArrayList();
+    RecyclerView recyclerView_balumnos;
     alumnos_adapter adapter;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -86,10 +86,11 @@ public class fr_balumnos extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_fr_balumnos, container, false);
-        recyclerView = (RecyclerView) rootview.findViewById(R.id.recyclerView);
+        recyclerView_balumnos = (RecyclerView) rootview.findViewById(R.id.recyclerView_balumnos);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setAdapter(adapter);
+        recyclerView_balumnos.setLayoutManager(linearLayoutManager);
+
         lista_alumnos();
         return rootview;
     }
@@ -143,10 +144,9 @@ public class fr_balumnos extends Fragment {
                 if(response.isSuccessful()){
                     lista_alumnos la = response.body();
                     if(la.isStatus()==true){
-                        //Toast.makeText(getContext(), la.getAlumnos().get(1).getNombre(), Toast.LENGTH_SHORT).show();
                         list = la.getAlumnos();
                         adapter = new alumnos_adapter(getContext(),list);
-                        recyclerView.setAdapter(adapter);
+                        recyclerView_balumnos.setAdapter(adapter);
                     }
                 }
             }

@@ -3,11 +3,16 @@ package com.xr45labs.uworkers.fragments.empresas;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.xr45labs.uworkers.Modelo.GeneralPOJO;
 import com.xr45labs.uworkers.Modelo.empresa;
 import com.xr45labs.uworkers.R;
 import com.xr45labs.uworkers.Util.Connections;
@@ -23,6 +30,14 @@ import com.xr45labs.uworkers.Util.DataInterface;
 import com.xr45labs.uworkers.Util.RetrofitConnection;
 import com.xr45labs.uworkers.principal_empresa;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,7 +55,7 @@ import static android.app.Activity.RESULT_OK;
 public class fr_perfil_empresa extends Fragment implements View.OnClickListener {
     TextView tv_nombre_nav,tv_secundario_nav,tv_giro,tv_descripcion,tv_telefono;
     String nombre,correo,giro,descripcion,telefono;
-    int idempresa,idusuario;
+    int idempresa,idusuario, RESULT_LOAD_IMAGE=1;
     Button btn_perfil_emp_config;
 
     private static final int PICK_IMAGE = 100;
@@ -104,6 +119,8 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
         tv_telefono = (TextView) rootView.findViewById(R.id.tv_phone);
         btn_perfil_emp_config = (Button) rootView.findViewById(R.id.btn_perfil_emp_conf);
         btn_perfil_emp_config.setOnClickListener(this);
+
+        Glide.with(getContext()).load("https://pbs.twimg.com/profile_images/555870036645003265/53sC_mOi.jpeg").into(civ);
 
         //datos_empresa();
         datos_perfil();
@@ -242,6 +259,110 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
         if(resultCode == RESULT_OK && requestCode == PICK_IMAGE){
             imageUri = data.getData();
             civ.setImageURI(imageUri);
+            //String path = imageUri.getPath();
+
+            //String ruta = getRealPathFromURI(getContext(),imageUri);
+           // Log.e("ruta",ruta);
+            //File file = new File(ruta);
+
+            //SubFoto_perfil(file);
+
+
+
+
+
+
+
+
+
+
+/*
+            //Toast.makeText(getContext(), ruta, Toast.LENGTH_SHORT).show();
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+            Bitmap bm = scaleDownBitmap(BitmapFactory.decodeFile(ruta, options), 500, getContext());
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bm.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
+            byte[] b = baos.toByteArray();
+
+            String encoded = Base64.encodeToString(b, Base64.NO_WRAP);
+            Log.d("foto",encoded);
+            civ.setImageBitmap(bm);
+            Toast.makeText(getContext(), encoded, Toast.LENGTH_SHORT).show();
+
+            /*try {
+                InputStream inputStream  = getActivity().getContentResolver().openInputStream(imageUri);
+                Bitmap bitmap= BitmapFactory.decodeStream(inputStream);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
+                byte[] b = baos.toByteArray();
+
+                String encoded = Base64.encodeToString(b,Base64.NO_WRAP);
+                Log.e("foto",encoded);
+                //Toast.makeText(getContext(), encoded, Toast.LENGTH_SHORT).show();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }*/
+    }
+
+
+/*
+    public String getRealPathFromURI(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = context.getContentResolver().query(contentUri,proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
+    }
+    *//*
+    public static Bitmap scaleDownBitmap(Bitmap photo, int newHeight, Context context){
+        final float densityMultiplier = context.getResources().getDisplayMetrics().density;
+
+        int h = (int) (newHeight * densityMultiplier);
+        int w = (int) (h * photo.getWidth() / ((double) photo.getHeight()));
+
+        photo = Bitmap.createScaledBitmap(photo,w,h,true);
+
+        return photo;
+    }
+/*
+    public void SubFoto_perfil(File file){
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("uploaded_file", file.getName(), requestFile);
+
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<GeneralPOJO> service = dataInterface.SubFoto_perfil(body);
+        service.enqueue(new Callback<GeneralPOJO>() {
+            @Override
+            public void onResponse(Call<GeneralPOJO> call, Response<GeneralPOJO> response) {
+                if(response.isSuccessful()){
+                    GeneralPOJO generalPOJO = response.body();
+                    if(generalPOJO.isStatus()==true){
+                        Toast.makeText(getContext(), generalPOJO.getMessage(), Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getContext(), generalPOJO.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(getContext(), "Error...", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GeneralPOJO> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("mesaje",t.getMessage());
+            }
+        });*/
     }
 }

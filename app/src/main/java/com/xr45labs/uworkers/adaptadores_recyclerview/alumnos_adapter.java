@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.xr45labs.uworkers.Modelo.alumno;
-import com.xr45labs.uworkers.Modelo.alumno_usuario;
+import com.xr45labs.uworkers.Modelo.alumno_datos;
 import com.xr45labs.uworkers.R;
 
 import java.util.List;
@@ -18,10 +18,11 @@ import java.util.List;
  */
 
 public class alumnos_adapter extends RecyclerView.Adapter<alumnos_adapter.ViewHolder> {
-    Context context;
-    List<alumno> list;
 
-    public alumnos_adapter(Context context, List<alumno> list) {
+    Context context;
+    List<alumno_datos> list;
+
+    public alumnos_adapter(Context context, List<alumno_datos> list) {
         this.context = context;
         this.list = list;
     }
@@ -35,7 +36,8 @@ public class alumnos_adapter extends RecyclerView.Adapter<alumnos_adapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.tv_nombre.setText(list.get(position).getNombre());
+        holder.tv_nombre_alumno_item.setText(list.get(position).getNombre());
+        holder.tv_carrera_item.setText(list.get(position).getCarrera());
     }
 
     @Override
@@ -43,13 +45,13 @@ public class alumnos_adapter extends RecyclerView.Adapter<alumnos_adapter.ViewHo
         return list.size();
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView tv_nombre;
+        TextView tv_nombre_alumno_item, tv_carrera_item;
         public ViewHolder(View itemView) {
             super(itemView);
-
-            tv_nombre = (TextView) itemView.findViewById(R.id.tv_nombre_alumno_item);
-            //tv_carrera = (TextView) itemView.findViewById(R.id.tv_carrera);
+            tv_nombre_alumno_item = (TextView) itemView.findViewById(R.id.tv_nombre_alumno_item);
+            tv_carrera_item = (TextView) itemView.findViewById(R.id.tv_carrera_item);
         }
     }
 }

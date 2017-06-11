@@ -10,11 +10,14 @@ import com.xr45labs.uworkers.Modelo.lista_vacantes;
 import com.xr45labs.uworkers.Modelo.login;
 import com.xr45labs.uworkers.Modelo.vacante;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 /**
  * Created by xr45 on 2/04/17.
@@ -82,4 +85,8 @@ public interface DataInterface {
     @FormUrlEncoded
     @POST("Api/eliminar_vacante.php")
     Call<GeneralPOJO> eliminar_vacante(@Field("idvacante") int idvacante);
+
+    @Multipart
+    @POST("Api/upload.php")
+    Call<GeneralPOJO> SubFoto_perfil(@Part MultipartBody.Part file);
 }

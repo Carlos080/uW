@@ -23,7 +23,6 @@ android:theme="@style/ThemeOverlay.AppCompat.Dark">
         app:civ_border_color="@color/colorAccent"/>
 
 
-
     <TextView
         android:id="@+id/tv_nombre_nav"
         android:layout_width="match_parent"
