@@ -6,6 +6,7 @@ package com.xr45labs.uworkers.Modelo;
 
 public class alumno_datos {
     boolean status;
+    int idalumno;
     String nombre;
     String telefono;
     String carrera;
@@ -16,6 +17,14 @@ public class alumno_datos {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public int getIdalumno() {
+        return idalumno;
+    }
+
+    public void setIdalumno(int idalumno) {
+        this.idalumno = idalumno;
     }
 
     public String getNombre() {

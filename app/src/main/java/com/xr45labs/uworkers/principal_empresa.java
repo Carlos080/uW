@@ -41,7 +41,8 @@ public class principal_empresa extends AppCompatActivity
         fr_perfil_empresa_config.OnFragmentInteractionListener,
         fr_add_vacante_empresa.OnFragmentInteractionListener,
         fr_vista_vacante_empresa.OnFragmentInteractionListener,
-        fr_modificar_vacante.OnFragmentInteractionListener{
+        fr_modificar_vacante.OnFragmentInteractionListener,
+        fr_perfil_alumno_externo.OnFragmentInteractionListener{
     String nombre,correo;
     int idusuario;
     Context context = this;
@@ -83,12 +84,13 @@ public class principal_empresa extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-        }
+        }*/
+        this.moveTaskToBack(true);
     }
 
 
