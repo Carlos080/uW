@@ -120,7 +120,7 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
         btn_perfil_emp_config = (Button) rootView.findViewById(R.id.btn_perfil_emp_conf);
         btn_perfil_emp_config.setOnClickListener(this);
 
-        Glide.with(getContext()).load("https://pbs.twimg.com/profile_images/555870036645003265/53sC_mOi.jpeg").into(civ);
+        Glide.with(getContext()).load("http://uworkers.esy.es/Images/Foto_perfil/Screenshot_1496970672.png").into(civ);
 
         //datos_empresa();
         datos_perfil();
@@ -260,12 +260,11 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
             imageUri = data.getData();
             civ.setImageURI(imageUri);
             //String path = imageUri.getPath();
-
-            //String ruta = getRealPathFromURI(getContext(),imageUri);
+            String ruta = getRealPathFromURI(getContext(),imageUri);
            // Log.e("ruta",ruta);
-            //File file = new File(ruta);
+            File file = new File(ruta);
 
-            //SubFoto_perfil(file);
+            SubFoto_perfil(file);
 
 
 
@@ -303,13 +302,13 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
                 //Toast.makeText(getContext(), encoded, Toast.LENGTH_SHORT).show();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-            }
+            }*/
 
-        }*/
+        }
     }
 
 
-/*
+
     public String getRealPathFromURI(Context context, Uri contentUri) {
         Cursor cursor = null;
         try {
@@ -324,7 +323,7 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
             }
         }
     }
-    *//*
+    /*
     public static Bitmap scaleDownBitmap(Bitmap photo, int newHeight, Context context){
         final float densityMultiplier = context.getResources().getDisplayMetrics().density;
 
@@ -334,11 +333,11 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
         photo = Bitmap.createScaledBitmap(photo,w,h,true);
 
         return photo;
-    }
-/*
+    }*/
+
     public void SubFoto_perfil(File file){
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        MultipartBody.Part body = MultipartBody.Part.createFormData("uploaded_file", file.getName(), requestFile);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("foto", file.getName(), requestFile);
 
         RetrofitConnection retrofitConnection = new RetrofitConnection();
         DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
@@ -363,6 +362,6 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("mesaje",t.getMessage());
             }
-        });*/
+        });
     }
 }

@@ -88,5 +88,5 @@ public interface DataInterface {
 
     @Multipart
     @POST("Api/upload.php")
-    Call<GeneralPOJO> SubFoto_perfil(@Part MultipartBody.Part file);
+    Call<GeneralPOJO> SubFoto_perfil(@Part MultipartBody.Part body);
 }
