@@ -17,8 +17,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.xr45labs.uworkers.Modelo.GeneralPOJO;
 import com.xr45labs.uworkers.Modelo.alumno;
+import com.xr45labs.uworkers.Modelo.foto_perfil_descarga;
 import com.xr45labs.uworkers.R;
 import com.xr45labs.uworkers.Util.Connections;
 import com.xr45labs.uworkers.Util.DataInterface;
@@ -113,7 +115,7 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
         tv_conocimientos = (TextView) rootView.findViewById(R.id.tv_conocimientos);
         tv_experiencia = (TextView) rootView.findViewById(R.id.tv_experiencia);
 
-
+        descarga_foto_perfil();
         datos_perfil();
         
 
@@ -319,4 +321,30 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
         });
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void descarga_foto_perfil() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("data_session",Context.MODE_PRIVATE);
+        idusuario = sharedPreferences.getInt("idusuario",0);
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<foto_perfil_descarga> service = dataInterface.foto_perfil_descarga(idusuario);
+        service.enqueue(new Callback<foto_perfil_descarga>() {
+            @Override
+            public void onResponse(Call<foto_perfil_descarga> call, Response<foto_perfil_descarga> response) {
+                if(response.isSuccessful()){
+                    foto_perfil_descarga fpd = response.body();
+                    if(fpd.isStatus()==true){
+                        //Toast.makeText(getContext(), fpd.getFoto_perfil(), Toast.LENGTH_SHORT).show();
+                        Glide.with(getContext()).load(fpd.getFoto_perfil()).into(civ);
+                    }
+                    Toast.makeText(getContext(), String.valueOf(idusuario), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<foto_perfil_descarga> call, Throwable t) {
+
+            }
+        });
+    }
 }
