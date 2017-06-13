@@ -86,7 +86,8 @@ public interface DataInterface {
     @POST("Api/eliminar_vacante.php")
     Call<GeneralPOJO> eliminar_vacante(@Field("idvacante") int idvacante);
 
+
     @Multipart
     @POST("Api/upload.php")
-    Call<GeneralPOJO> SubFoto_perfil(@Part MultipartBody.Part body);
+    Call<GeneralPOJO> SubFoto_perfil(@Part("idusuario") int idusuario,@Part MultipartBody.Part body);
 }

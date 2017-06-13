@@ -265,45 +265,6 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
             File file = new File(ruta);
 
             SubFoto_perfil(file);
-
-
-
-
-
-
-
-
-
-
-/*
-            //Toast.makeText(getContext(), ruta, Toast.LENGTH_SHORT).show();
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-            Bitmap bm = scaleDownBitmap(BitmapFactory.decodeFile(ruta, options), 500, getContext());
-
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bm.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
-            byte[] b = baos.toByteArray();
-
-            String encoded = Base64.encodeToString(b, Base64.NO_WRAP);
-            Log.d("foto",encoded);
-            civ.setImageBitmap(bm);
-            Toast.makeText(getContext(), encoded, Toast.LENGTH_SHORT).show();
-
-            /*try {
-                InputStream inputStream  = getActivity().getContentResolver().openInputStream(imageUri);
-                Bitmap bitmap= BitmapFactory.decodeStream(inputStream);
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
-                byte[] b = baos.toByteArray();
-
-                String encoded = Base64.encodeToString(b,Base64.NO_WRAP);
-                Log.e("foto",encoded);
-                //Toast.makeText(getContext(), encoded, Toast.LENGTH_SHORT).show();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }*/
-
         }
     }
 
@@ -323,17 +284,7 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
             }
         }
     }
-    /*
-    public static Bitmap scaleDownBitmap(Bitmap photo, int newHeight, Context context){
-        final float densityMultiplier = context.getResources().getDisplayMetrics().density;
 
-        int h = (int) (newHeight * densityMultiplier);
-        int w = (int) (h * photo.getWidth() / ((double) photo.getHeight()));
-
-        photo = Bitmap.createScaledBitmap(photo,w,h,true);
-
-        return photo;
-    }*/
 
     public void SubFoto_perfil(File file){
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
@@ -341,7 +292,7 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
 
         RetrofitConnection retrofitConnection = new RetrofitConnection();
         DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
-        Call<GeneralPOJO> service = dataInterface.SubFoto_perfil(body);
+        Call<GeneralPOJO> service = dataInterface.SubFoto_perfil(idusuario,body);
         service.enqueue(new Callback<GeneralPOJO>() {
             @Override
             public void onResponse(Call<GeneralPOJO> call, Response<GeneralPOJO> response) {
