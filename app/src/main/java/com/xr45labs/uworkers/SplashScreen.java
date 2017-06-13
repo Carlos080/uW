@@ -68,7 +68,7 @@ public class SplashScreen extends AppCompatActivity {
                         editor.putString("correo",correo);
                         editor.putString("contrasena",contrasena);
                         editor.putInt("idusuario",idusuario);
-                        editor.putString("foto_perfil",foto_perfil);
+                        editor.putString("foto_perfil_descarga",foto_perfil);
                         editor.putString("foto_fondo",foto_fondo);
                         editor.putInt("tipo",tipo);
                         editor.commit();

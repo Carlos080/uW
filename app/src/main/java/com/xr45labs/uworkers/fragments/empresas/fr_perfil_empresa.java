@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.xr45labs.uworkers.Modelo.GeneralPOJO;
 import com.xr45labs.uworkers.Modelo.empresa;
+import com.xr45labs.uworkers.Modelo.foto_perfil_descarga;
 import com.xr45labs.uworkers.R;
 import com.xr45labs.uworkers.Util.Connections;
 import com.xr45labs.uworkers.Util.DataInterface;
@@ -120,8 +121,8 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
         btn_perfil_emp_config = (Button) rootView.findViewById(R.id.btn_perfil_emp_conf);
         btn_perfil_emp_config.setOnClickListener(this);
 
-        Glide.with(getContext()).load("http://uworkers.esy.es/Images/Foto_perfil/Screenshot_1496970672.png").into(civ);
-
+        //Glide.with(getContext()).load("http://uworkers.esy.es/Images/Foto_perfil/Screenshot_1496970672.png").into(civ);
+        descarga_foto_perfil();
         //datos_empresa();
         datos_perfil();
         return rootView;
@@ -248,7 +249,7 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
 
     /////////////////////////////////////////////////////////////////////////
 
-
+    //Modulo carga imagen de perfil///////////////////////////////////////////////////////////////////////////////////
     private void openGallery(){
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
@@ -312,6 +313,33 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
             public void onFailure(Call<GeneralPOJO> call, Throwable t) {
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("mesaje",t.getMessage());
+            }
+        });
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void descarga_foto_perfil() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("data_session",Context.MODE_PRIVATE);
+        idusuario = sharedPreferences.getInt("idusuario",0);
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<foto_perfil_descarga> service = dataInterface.foto_perfil_descarga(idusuario);
+        service.enqueue(new Callback<foto_perfil_descarga>() {
+            @Override
+            public void onResponse(Call<foto_perfil_descarga> call, Response<foto_perfil_descarga> response) {
+                if(response.isSuccessful()){
+                    foto_perfil_descarga fpd = response.body();
+                    if(fpd.isStatus()==true){
+                        //Toast.makeText(getContext(), fpd.getFoto_perfil(), Toast.LENGTH_SHORT).show();
+                        Glide.with(getContext()).load(fpd.getFoto_perfil()).into(civ);
+                    }
+                    Toast.makeText(getContext(), String.valueOf(idusuario), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<foto_perfil_descarga> call, Throwable t) {
+
             }
         });
     }

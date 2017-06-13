@@ -4,6 +4,7 @@ import com.xr45labs.uworkers.Modelo.GeneralPOJO;
 import com.xr45labs.uworkers.Modelo.alumno;
 import com.xr45labs.uworkers.Modelo.empresa;
 import com.xr45labs.uworkers.Modelo.empresa_usuario;
+import com.xr45labs.uworkers.Modelo.foto_perfil_descarga;
 import com.xr45labs.uworkers.Modelo.lista_alumnos;
 import com.xr45labs.uworkers.Modelo.lista_empresas;
 import com.xr45labs.uworkers.Modelo.lista_vacantes;
@@ -90,4 +91,8 @@ public interface DataInterface {
     @Multipart
     @POST("Api/upload.php")
     Call<GeneralPOJO> SubFoto_perfil(@Part("idusuario") int idusuario,@Part MultipartBody.Part body);
+
+    @FormUrlEncoded
+    @POST("Api/foto_perfil_descarga.php")
+    Call<foto_perfil_descarga> foto_perfil_descarga(@Field("idusuario") int idusuario);
 }

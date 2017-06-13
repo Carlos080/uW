@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         editor.putString("correo",correo);
                         editor.putString("contrasena",contrasena);
                         editor.putInt("idusuario",l.getIdusuario());
-                        editor.putString("foto_perfil",l.getFoto_perfil());
+                        editor.putString("foto_perfil_descarga",l.getFoto_perfil());
                         editor.putString("foto_fondo",l.getFoto_fondo());
                         editor.putInt("tipo",l.getTipo());
                         editor.commit();
