@@ -17,8 +17,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.xr45labs.uworkers.Modelo.alumno;
+import com.xr45labs.uworkers.Modelo.foto_perfil_descarga;
 import com.xr45labs.uworkers.Util.Connections;
 import com.xr45labs.uworkers.Util.DataInterface;
 import com.xr45labs.uworkers.Util.RetrofitConnection;
@@ -44,6 +46,7 @@ public class principal_alumnos extends AppCompatActivity
 
     Fragment fragment = null;
     boolean FragmentTransaction = false;
+    de.hdodenhof.circleimageview.CircleImageView profile_image;
     int idusuario,no_control;
     String objetivos,conocimientos,experiencia_laboral,carrera,nombre,correo,curriculum;
     TextView tv_nombre,tv_nocontrol;
@@ -64,12 +67,15 @@ public class principal_alumnos extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        datos_perfil();
+
         View vistaheader = navigationView.getHeaderView(0);
 
+        profile_image = (de.hdodenhof.circleimageview.CircleImageView) vistaheader.findViewById(R.id.profile_image);
         tv_nombre = (TextView) vistaheader.findViewById(R.id.tv_nombre_nav);
         tv_nocontrol = (TextView) vistaheader.findViewById(R.id.tv_nocontrol_nav);
 
+        datos_perfil();
+        descarga_foto_perfil();
 
         Fragment fragment = new fr_perfil_alumno();
         boolean fragmentTransaction = true;
@@ -182,6 +188,32 @@ public class principal_alumnos extends AppCompatActivity
 
             @Override
             public void onFailure(Call<alumno> call, Throwable t) {
+                Toast.makeText(principal_alumnos.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void descarga_foto_perfil() {
+        SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
+        idusuario = sharedPreferences.getInt("idusuario",0);
+        RetrofitConnection retrofitConnection = new RetrofitConnection();
+        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
+        Call<foto_perfil_descarga> service = dataInterface.foto_perfil_descarga(idusuario);
+        service.enqueue(new Callback<foto_perfil_descarga>() {
+            @Override
+            public void onResponse(Call<foto_perfil_descarga> call, Response<foto_perfil_descarga> response) {
+                if(response.isSuccessful()){
+                    foto_perfil_descarga fpd = response.body();
+                    if(fpd.isStatus()==true){
+                        //Toast.makeText(getContext(), fpd.getFoto_perfil(), Toast.LENGTH_SHORT).show();
+                        Glide.with(principal_alumnos.this).load(fpd.getFoto_perfil()).into(profile_image);
+                    }
+                    Toast.makeText(principal_alumnos.this, String.valueOf(idusuario), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<foto_perfil_descarga> call, Throwable t) {
                 Toast.makeText(principal_alumnos.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
