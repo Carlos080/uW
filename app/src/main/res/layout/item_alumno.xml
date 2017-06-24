@@ -20,10 +20,18 @@
         android:layout_toEndOf="@+id/profile_image"/>
 
     <TextView
+        android:id="@+id/tv_email_item_alumno"
+        android:textAlignment="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/profile_image"
+        android:layout_below="@id/tv_nombre_alumno_item"/>
+
+    <TextView
         android:id="@+id/tv_carrera_item"
         android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_nombre_alumno_item"/>
+        android:layout_below="@id/tv_email_item_alumno"/>
 
 </RelativeLayout>

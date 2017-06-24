@@ -4,11 +4,12 @@ package com.xr45labs.uworkers.Modelo;
  * Created by xr45 on 1/06/17.
  */
 
-public class alumno_datos {
+public class alumno_item {
     boolean status;
     int idalumno;
     String nombre;
-    String telefono;
+    String correo;
+    String foto_perfil;
     String carrera;
 
     public boolean isStatus() {
@@ -35,12 +36,20 @@ public class alumno_datos {
         this.nombre = nombre;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getFoto_perfil() {
+        return foto_perfil;
+    }
+
+    public void setFoto_perfil(String foto_perfil) {
+        this.foto_perfil = foto_perfil;
     }
 
     public String getCarrera() {

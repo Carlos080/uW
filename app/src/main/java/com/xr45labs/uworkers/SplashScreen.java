@@ -15,6 +15,8 @@ import com.xr45labs.uworkers.Util.Connections;
 import com.xr45labs.uworkers.Util.DataInterface;
 import com.xr45labs.uworkers.Util.RetrofitConnection;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,7 +29,8 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-       comprobacion_sesion();
+
+        comprobacion_sesion();
     }
 
 
@@ -97,7 +100,7 @@ public class SplashScreen extends AppCompatActivity {
     public void tipo_session(int tipo){
         switch(tipo){
             case 1:
-                //alumno_datos(idusuario);
+                //alumno_item(idusuario);
                 intent = new Intent(getApplicationContext(),principal_alumnos.class);
                 startActivity(intent);
 
@@ -113,44 +116,14 @@ public class SplashScreen extends AppCompatActivity {
                 break;
 
             default:
-                Toast.makeText(this, "kjsdjhlskjh", Toast.LENGTH_SHORT).show();
+                intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
                 break;
         }
     }
 
 
 
-    public void empresa_datos(int idusuario){
-        RetrofitConnection retrofitConnection = new RetrofitConnection();
-        DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
-        Call<empresa> service = dataInterface.perfil_empresa(idusuario);
-        service.enqueue(new Callback<empresa>() {
-            @Override
-            public void onResponse(Call<empresa> call, Response<empresa> response) {
-                if(response.isSuccessful()){
-                    empresa e = response.body();
-                    if(e.isStatus()==true){
-                        SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putInt("idempresa",e.getIdempresa());
-                        editor.putString("nombre",e.getNombre());
-                        editor.putString("descripcion",e.getDescripcion());
-                        editor.putString("telefono",e.getTelefono());
-                        editor.putString("giro",e.getGiro());
-                        editor.commit();
-                    }else{
-                        //Toast.makeText(SplashScreen.this, "Error al obtener los datos de la empresa...", Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    //Toast.makeText(SplashScreen.this, "Error de operacion...", Toast.LENGTH_SHORT).show();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<empresa> call, Throwable t) {
-                //Toast.makeText(SplashScreen.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
 
-    }
 }

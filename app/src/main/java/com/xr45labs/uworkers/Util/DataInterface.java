@@ -68,7 +68,7 @@ public interface DataInterface {
     @GET("Api/lista_empresas.php")
     Call<lista_empresas> lista_empresas();
 
-    @GET("Api/lista_alumnos.php")
+    @GET("Api/lista_items_alumno.php")
     Call<lista_alumnos> lista_alumnos();
 
     @FormUrlEncoded

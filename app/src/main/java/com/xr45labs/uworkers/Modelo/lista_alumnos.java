@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class lista_alumnos {
     boolean status;
     String message;
-    ArrayList<alumno_datos> alumnos;
+    ArrayList<alumno_item> alumnos;
 
     public boolean isStatus() {
         return status;
@@ -27,11 +27,11 @@ public class lista_alumnos {
         this.message = message;
     }
 
-    public ArrayList<alumno_datos> getAlumnos() {
+    public ArrayList<alumno_item> getAlumnos() {
         return alumnos;
     }
 
-    public void setAlumnos(ArrayList<alumno_datos> alumnos) {
+    public void setAlumnos(ArrayList<alumno_item> alumnos) {
         this.alumnos = alumnos;
     }
 }
