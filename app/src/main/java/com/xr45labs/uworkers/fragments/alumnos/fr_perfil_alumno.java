@@ -336,14 +336,17 @@ public class fr_perfil_alumno extends Fragment implements View.OnClickListener {
                     if(fpd.isStatus()==true){
                         //Toast.makeText(getContext(), fpd.getFoto_perfil(), Toast.LENGTH_SHORT).show();
                         Glide.with(getContext()).load(fpd.getFoto_perfil()).into(civ);
+                    }else{
+                        Toast.makeText(getContext(), fpd.getMessage(), Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(getContext(), String.valueOf(idusuario), Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getContext(), "Error...", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<foto_perfil_descarga> call, Throwable t) {
-
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

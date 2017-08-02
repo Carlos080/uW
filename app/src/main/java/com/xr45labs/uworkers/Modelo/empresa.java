@@ -12,6 +12,7 @@ public class empresa {
     String descripcion;
     String telefono;
     String giro;
+    int idgiro;
 
     public boolean isStatus() {
         return status;
@@ -67,5 +68,13 @@ public class empresa {
 
     public void setGiro(String giro) {
         this.giro = giro;
+    }
+
+    public int getIdgiro() {
+        return idgiro;
+    }
+
+    public void setIdgiro(int idgiro) {
+        this.idgiro = idgiro;
     }
 }

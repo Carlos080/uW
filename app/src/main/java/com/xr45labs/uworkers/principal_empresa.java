@@ -155,7 +155,7 @@ public class principal_empresa extends AppCompatActivity
     public void datos_perfil(){
         SharedPreferences sharedPreferences = getSharedPreferences("data_session",Context.MODE_PRIVATE);
         idusuario = sharedPreferences.getInt("idusuario",0);
-        correo = sharedPreferences.getString("correo",null);
+        correo = sharedPreferences.getString("correo","");
 
         RetrofitConnection retrofitConnection = new RetrofitConnection();
         DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
@@ -233,7 +233,7 @@ public class principal_empresa extends AppCompatActivity
                         //Toast.makeText(getContext(), fpd.getFoto_perfil(), Toast.LENGTH_SHORT).show();
                         Glide.with(context).load(fpd.getFoto_perfil()).into(profile_image);
                     }
-                    Toast.makeText(context, String.valueOf(idusuario), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, String.valueOf(idusuario), Toast.LENGTH_SHORT).show();
                 }
             }
 

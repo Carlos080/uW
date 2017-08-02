@@ -56,7 +56,7 @@ public interface DataInterface {
 
     @FormUrlEncoded
     @POST("Api/reg_vacante.php")
-    Call<GeneralPOJO> reg_vacante(@Field("nombre") String nombre, @Field("descripcion") String descripcion, @Field("sueldo") int sueldo, @Field("turno") String turno, @Field("horario") String horrario, @Field("fecha_publicacion") String fecha_publicacion, @Field("EMPRESAS_idempresa") int idempresa);
+    Call<GeneralPOJO> reg_vacante(@Field("nombre") String nombre, @Field("descripcion") String descripcion, @Field("sueldo") int sueldo, @Field("turno") String turno, @Field("horario") String horrario, @Field("fecha_publicacion") String fecha_publicacion, @Field("EMPRESAS_idempresa") int idempresa, @Field("EMPRESAS_USUARIOS_idusuario") int idusuario, @Field("EMPRESAS_GIRO_idgiro") int idgiro);
 
     @FormUrlEncoded
     @POST("Api/vacantes_empresa.php")

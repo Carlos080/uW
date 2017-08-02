@@ -44,7 +44,7 @@ public class fr_add_vacante_empresa extends Fragment implements View.OnClickList
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     String nombre="",descripcion="",horario="",turno="",fecha="";
-    int sueldo=0,idempresa;
+    int sueldo=0,idempresa,idusuario,idgiro;
     EditText et_nombre_vacante,et_descripcion,et_sueldo;
     RadioGroup rg_horario,rg_turno;
     Button btn_guardar;
@@ -198,6 +198,10 @@ public class fr_add_vacante_empresa extends Fragment implements View.OnClickList
             fecha = apptivaWeb.format(fechaActual);
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences("data_session",Context.MODE_PRIVATE);
             idempresa = sharedPreferences.getInt("idempresa",0);
+            idusuario = sharedPreferences.getInt("idusuario",0);
+            idgiro = sharedPreferences.getInt("idgiro",0);
+
+
         }else{
             Toast.makeText(getContext(), "No se han llenado los campos correctamente...", Toast.LENGTH_SHORT).show();
         }
@@ -213,7 +217,7 @@ public class fr_add_vacante_empresa extends Fragment implements View.OnClickList
 
         RetrofitConnection retrofitConnection = new RetrofitConnection();
         DataInterface dataInterface = retrofitConnection.connectRetrofit(Connections.API_URL);
-        Call<GeneralPOJO> service = dataInterface.reg_vacante(nombre,descripcion,sueldo,turno,horario,fecha,idempresa);
+        Call<GeneralPOJO> service = dataInterface.reg_vacante(nombre,descripcion,sueldo,turno,horario,fecha,idempresa,idusuario,idgiro);
         service.enqueue(new Callback<GeneralPOJO>() {
             @Override
             public void onResponse(Call<GeneralPOJO> call, Response<GeneralPOJO> response) {

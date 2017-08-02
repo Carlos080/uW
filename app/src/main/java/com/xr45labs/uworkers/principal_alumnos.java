@@ -208,7 +208,7 @@ public class principal_alumnos extends AppCompatActivity
                         //Toast.makeText(getContext(), fpd.getFoto_perfil(), Toast.LENGTH_SHORT).show();
                         Glide.with(principal_alumnos.this).load(fpd.getFoto_perfil()).into(profile_image);
                     }
-                    Toast.makeText(principal_alumnos.this, String.valueOf(idusuario), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(principal_alumnos.this, String.valueOf(idusuario), Toast.LENGTH_SHORT).show();
                 }
             }
 

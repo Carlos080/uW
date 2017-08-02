@@ -209,9 +209,11 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
                         editor.putString("descripcion",e.getDescripcion());
                         editor.putString("telefono",e.getTelefono());
                         editor.putString("giro",e.getGiro());
+                        editor.putInt("idgiro",e.getIdgiro());
                         editor.commit();
 
                         datos_empresa();
+
                     }else{
                         Toast.makeText(getContext(), "Error al obtener los datos de la empresa...", Toast.LENGTH_SHORT).show();
                     }
@@ -332,8 +334,11 @@ public class fr_perfil_empresa extends Fragment implements View.OnClickListener 
                     if(fpd.isStatus()==true){
                         //Toast.makeText(getContext(), fpd.getFoto_perfil(), Toast.LENGTH_SHORT).show();
                         Glide.with(getContext()).load(fpd.getFoto_perfil()).into(civ);
+                    }else{
+                        Toast.makeText(getContext(), "Error al obtener foto de perfil desde el servidor...", Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(getContext(), String.valueOf(idusuario), Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getContext(), "Se ha presentado un error a la hora de conectar con el servidor para obtener la foto de perfil... ", Toast.LENGTH_SHORT).show();
                 }
             }
 

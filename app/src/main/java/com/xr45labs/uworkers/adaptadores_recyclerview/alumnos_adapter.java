@@ -40,8 +40,8 @@ public class alumnos_adapter extends RecyclerView.Adapter<alumnos_adapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        /////
-        Glide.with(context).load(list.get(position).getFoto_perfil()).into(holder.profile_image);
+        ////
+           Glide.with(context).load(list.get(position).getFoto_perfil()).into(holder.profile_image);
         ////
         holder.tv_nombre_alumno_item.setText(list.get(position).getNombre());
         holder.tv_email_item_alumno.setText(list.get(position).getCorreo());

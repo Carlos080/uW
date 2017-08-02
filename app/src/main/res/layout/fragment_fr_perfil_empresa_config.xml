@@ -71,37 +71,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_ico_phone"/>
 
-            <TextView
-                android:id="@+id/tv_ico_contrasena"
-                android:text="@string/ico_contrasena"
-                android:textColor="@color/color1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/et_phone"/>
-
-            <EditText
-                android:id="@+id/et_contrasena"
-                android:inputType="textPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_ico_contrasena"/>
-
-            <TextView
-                android:id="@+id/tv_ico_contrasena_confir"
-                android:text="@string/ico_contrasena_conf"
-                android:textColor="@color/color1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/et_contrasena"/>
-
-            <EditText
-                android:id="@+id/et_contrasena_confir"
-                android:inputType="textPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_ico_contrasena_confir"
-                tools:ignore="LabelFor" />
-
             <Button
                 android:id="@+id/btn_guardar"
                 android:text="@string/ico_guardar"
@@ -109,7 +78,7 @@
                 android:background="@color/color1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/et_contrasena_confir"/>
+                android:layout_below="@id/et_phone"/>
 
 
 
