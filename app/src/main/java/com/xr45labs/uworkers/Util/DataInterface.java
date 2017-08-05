@@ -95,4 +95,8 @@ public interface DataInterface {
     @FormUrlEncoded
     @POST("Api/foto_perfil_descarga.php")
     Call<foto_perfil_descarga> foto_perfil_descarga(@Field("idusuario") int idusuario);
+
+    @FormUrlEncoded
+    @POST("Api/mod_password.php")
+    Call<GeneralPOJO> mod_password(@Field("idusuario") int idusuario, @Field("contrasena") String contrasena, @Field("nueva_contrasena") String nueva_contrasena);
 }
